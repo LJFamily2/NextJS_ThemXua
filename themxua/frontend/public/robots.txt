@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://themxua.com/sitemap.xml
+
+# Disallow admin pages
+Disallow: /admin/
+
+# Disallow API endpoints
+Disallow: /api/
+
+# Allow important pages
+Allow: /
+Allow: /menu
+Allow: /booking
+Allow: /news
+Allow: /events
+
+# Crawl delay (optional)
+Crawl-delay: 1
