@@ -1,0 +1,378 @@
+/* Homepage Styles - Preserving Original Vietnamese Restaurant Design */
+
+/* Hero Section */
+.hero-section {
+  height: 100vh;
+  width: 100%;
+  background: var(--heroBackground, white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 1200px;
+  height: 80%;
+}
+
+.hero-title {
+  flex: 1;
+  padding-right: 2rem;
+}
+
+.hero-main-title {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 800;
+  color: var(--heroMainTitle, black);
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+  animation: flyInLeft 1s ease-out;
+}
+
+.hero-description {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  color: var(--heroSubTitle, black);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  animation: fadeIn 1.5s ease-out 0.3s both;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.hero-btn {
+  position: relative;
+  padding: 1rem 2rem;
+  background: var(--heroBtnBackground, #fa9f1c);
+  border: 2px solid var(--heroBtnBackground, #fa9f1c);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 300ms ease;
+  animation: fadeIn 2s ease-out 0.6s both;
+}
+
+.hero-btn:hover {
+  background: transparent;
+  color: var(--heroBtnBackground, #fa9f1c);
+}
+
+.btn-link {
+  color: var(--heroBtnText, white);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.hero-btn:hover .btn-link {
+  color: var(--heroBtnBackground, #fa9f1c);
+}
+
+.hero-text {
+  color: var(--heroText, black);
+  font-size: 1rem;
+  animation: fadeIn 2.5s ease-out 0.9s both;
+}
+
+.phone-link {
+  color: var(--heroBtnBackground, #fa9f1c);
+  text-decoration: underline;
+}
+
+.hero-media {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-image {
+  width: 100%;
+  height: auto;
+  max-width: 500px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  animation: flyInRight 1s ease-out 0.3s both;
+}
+
+/* Spotlight Section - Area Space */
+.spotlight-section {
+  padding: 4rem 0;
+  background: var(--spotlightBackground, white);
+  display: none; /* Will show on larger screens */
+}
+
+.spotlight-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+
+.spotlight-title-container {
+  flex: 1;
+}
+
+.spotlight-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  color: var(--heroMainTitle, black);
+  margin-bottom: 1.5rem;
+  animation: fadeIn 1s ease-out;
+}
+
+.spotlight-description {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: var(--heroText, black);
+  margin-bottom: 2rem;
+}
+
+.spotlight-features {
+  flex: 1;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.feature-item {
+  text-align: center;
+  padding: 2rem;
+  border-radius: 12px;
+  background: rgba(250, 159, 28, 0.05);
+  transition: all 300ms ease;
+  animation: flyIn 1s ease-out;
+}
+
+.feature-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.feature-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--heroMainTitle, black);
+  margin-bottom: 1rem;
+}
+
+.feature-description {
+  color: var(--heroText, black);
+  line-height: 1.6;
+}
+
+/* Events Section */
+.events-section {
+  padding: 4rem 0;
+  background: var(--eventBackground, rgb(255, 255, 255));
+}
+
+.events-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.events-title {
+  text-align: center;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: var(--eventTitle, black);
+  margin-bottom: 3rem;
+  letter-spacing: 1px;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.event-card {
+  background: var(--eventItemBackground, white);
+  border: 2px solid var(--eventItemBorder, black);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 300ms ease;
+  animation: fadeIn 1s ease-out;
+}
+
+.event-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.event-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.event-image-container {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+
+.event-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 300ms ease;
+}
+
+.event-card:hover .event-image {
+  transform: scale(1.1);
+}
+
+.event-information {
+  padding: 2rem;
+  text-align: center;
+}
+
+.event-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--eventTitle, black);
+  margin-bottom: 1rem;
+}
+
+.event-hook {
+  color: var(--eventText, rgb(94, 94, 94));
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.event-divider {
+  display: block;
+  color: var(--eventDottedLine, black);
+  margin: 1rem 0;
+  font-weight: 300;
+}
+
+.event-time {
+  font-style: italic;
+  color: var(--eventTime, black);
+  font-weight: 500;
+}
+
+/* Animations */
+@keyframes flyInLeft {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes flyInRight {
+  0% {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes flyIn {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .spotlight-section {
+    display: block;
+  }
+
+  .features-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 1023px) {
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+    height: auto;
+    padding: 2rem 0;
+  }
+
+  .hero-title {
+    padding-right: 0;
+    margin-bottom: 2rem;
+  }
+
+  .hero-buttons {
+    align-items: center;
+  }
+
+  .spotlight-container {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-section {
+    height: auto;
+    min-height: 100vh;
+    padding: 2rem 0;
+  }
+
+  .events-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .event-card {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+}
