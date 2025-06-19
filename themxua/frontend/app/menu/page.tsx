@@ -1,167 +1,263 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import Card from '../components/Card';
+import Button from '../components/Button';
 
-interface MenuItem {
-  _id: string;
-  description: string;
-  image: string;
-  imageMobile?: string;
-  URL: string;
-  URLMobile?: string;
-}
+// Sample menu data - this would typically come from an API or database
+const menuData = {
+  'mon-chinh': [
+    {
+      id: 1,
+      title: 'Phở Bò Thềm Xưa',
+      description:
+        'Tô phở truyền thống với nước dùng được ninh từ xương bò trong 12 tiếng, thịt bò tươi ngon, bánh phở dai ngon',
+      price: '85.000 VNĐ',
+      category: 'Món Chính',
+      image: '/images/pho-bo.jpg',
+    },
+    {
+      id: 2,
+      title: 'Bún Bò Huế',
+      description:
+        'Bún bò Huế chuẩn vị miền Trung với nước dùng đậm đà, thịt bò, chả cua, giò heo thơm ngon',
+      price: '75.000 VNĐ',
+      category: 'Món Chính',
+      image: '/images/bun-bo-hue.jpg',
+    },
+    {
+      id: 3,
+      title: 'Cơm Tấm Sài Gòn',
+      description:
+        'Cơm tấm với sườn nướng than hoa, bì, chả, trứng ốp la và nước mắm pha chuẩn vị Sài Gòn',
+      price: '65.000 VNĐ',
+      category: 'Món Chính',
+      image: '/images/com-tam.jpg',
+    },
+    {
+      id: 4,
+      title: 'Bánh Xèo Miền Tây',
+      description:
+        'Bánh xèo giòn rụm với tôm thịt, giá đỗ, rau thơm và nước chấm đặc biệt',
+      price: '55.000 VNĐ',
+      category: 'Món Chính',
+      image: '/images/banh-xeo.jpg',
+    },
+  ],
+  'an-vat': [
+    {
+      id: 5,
+      title: 'Bánh Mì Thịt Nướng',
+      description:
+        'Bánh mì giòn thơm với thịt nướng than hoa, pate, rau củ tươi mát và gia vị đặc biệt',
+      price: '45.000 VNĐ',
+      category: 'Ăn Vặt',
+      image: '/images/banh-mi.jpg',
+    },
+    {
+      id: 6,
+      title: 'Gỏi Cuốn Tôm Thịt',
+      description:
+        'Gỏi cuốn tươi với tôm, thịt luộc, bún tươi, rau thơm và nước chấm đậm đà',
+      price: '35.000 VNĐ',
+      category: 'Ăn Vặt',
+      image: '/images/goi-cuon.jpg',
+    },
+    {
+      id: 7,
+      title: 'Chả Cá Lã Vọng',
+      description:
+        'Chả cá truyền thống Hà Nội với cá thác lác, nghệ, thì là và bún tươi',
+      price: '95.000 VNĐ',
+      category: 'Ăn Vặt',
+      image: '/images/cha-ca.jpg',
+    },
+  ],
+  'trang-mieng': [
+    {
+      id: 8,
+      title: 'Chè Đậu Xanh',
+      description: 'Chè đậu xanh thơm ngon, mát lạnh với nước cốt dừa béo ngậy',
+      price: '25.000 VNĐ',
+      category: 'Tráng Miệng',
+      image: '/images/che-dau-xanh.jpg',
+    },
+    {
+      id: 9,
+      title: 'Bánh Flan Caramen',
+      description: 'Bánh flan mềm mịn với lớp caramen đắng ngọt hài hòa',
+      price: '30.000 VNĐ',
+      category: 'Tráng Miệng',
+      image: '/images/banh-flan.jpg',
+    },
+    {
+      id: 10,
+      title: 'Chè Ba Màu',
+      description:
+        'Chè ba màu truyền thống với đậu xanh, đậu đỏ, thạch rau câu và nước cốt dừa',
+      price: '28.000 VNĐ',
+      category: 'Tráng Miệng',
+      image: '/images/che-ba-mau.jpg',
+    },
+  ],
+  'do-uong': [
+    {
+      id: 11,
+      title: 'Cà Phê Sữa Đá',
+      description:
+        'Cà phê phin truyền thống với sữa đặc ngọt ngào, đá lạnh sảng khoái',
+      price: '20.000 VNĐ',
+      category: 'Đồ Uống',
+      image: '/images/ca-phe-sua-da.jpg',
+    },
+    {
+      id: 12,
+      title: 'Nước Mía Tươi',
+      description:
+        'Nước mía vắt tươi mát lạnh, ngọt tự nhiên, bổ sung năng lượng',
+      price: '15.000 VNĐ',
+      category: 'Đồ Uống',
+      image: '/images/nuoc-mia.jpg',
+    },
+    {
+      id: 13,
+      title: 'Trà Đá Chanh',
+      description:
+        'Trà đá chanh tươi mát, chua ngọt hài hòa, giải khát tuyệt vời',
+      price: '12.000 VNĐ',
+      category: 'Đồ Uống',
+      image: '/images/tra-da-chanh.jpg',
+    },
+  ],
+};
+
+const categories = [
+  { id: 'tat-ca', name: 'Tất Cả', key: 'all' },
+  { id: 'mon-chinh', name: 'Món Chính', key: 'mon-chinh' },
+  { id: 'an-vat', name: 'Ăn Vặt', key: 'an-vat' },
+  { id: 'trang-mieng', name: 'Tráng Miệng', key: 'trang-mieng' },
+  { id: 'do-uong', name: 'Đồ Uống', key: 'do-uong' },
+];
 
 export default function MenuPage() {
-  const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [activeCategory, setActiveCategory] = useState('all');
 
-  useEffect(() => {
-    fetchMenuItems();
-  }, []);
-
-  const fetchMenuItems = async () => {
-    try {
-      const response = await fetch('http://localhost:5000/api/menu');
-      if (response.ok) {
-        const data = await response.json();
-        setMenuItems(data);
-      }
-    } catch (error) {
-      console.error('Error fetching menu items:', error);
-    } finally {
-      setLoading(false);
+  const getFilteredItems = () => {
+    if (activeCategory === 'all') {
+      return Object.values(menuData).flat();
     }
+    return menuData[activeCategory as keyof typeof menuData] || [];
   };
 
+  const filteredItems = getFilteredItems();
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm">
-        <div className="container mx-auto px-4 py-4">
-          <nav className="flex justify-between items-center">
-            <div className="text-2xl font-bold text-gray-800">ThemXua</div>
-            <div className="hidden md:flex space-x-8">
-              <a href="/" className="text-gray-600 hover:text-gray-800">
-                Home
-              </a>
-              <a href="/menu" className="text-orange-600 font-medium">
-                Menu
-              </a>
-              <a href="/booking" className="text-gray-600 hover:text-gray-800">
-                Booking
-              </a>
-              <a href="/events" className="text-gray-600 hover:text-gray-800">
-                Events
-              </a>
-              <a href="/news" className="text-gray-600 hover:text-gray-800">
-                News
-              </a>
-            </div>
-          </nav>
-        </div>
-      </header>
+    <div className="min-h-screen">
+      <Header />
 
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-amber-50 to-orange-50 py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">Our Menu</h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Discover our authentic Vietnamese dishes crafted with traditional
-            recipes and fresh ingredients
-          </p>
-        </div>
-      </section>
+      <main>
+        {/* Menu Hero Section */}
+        <section className="relative h-96 flex items-center justify-center overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-secondary/80 z-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary"></div>
 
-      {/* Menu Content */}
-      <div className="container mx-auto px-4 py-12">
-        {loading ? (
-          <div className="text-center py-12">
-            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-orange-600"></div>
-            <p className="mt-4 text-gray-600">Loading menu...</p>
-          </div>
-        ) : menuItems.length > 0 ? (
-          <div className="grid gap-8">
-            {menuItems.map(item => (
-              <div
-                key={item._id}
-                className="bg-white rounded-lg shadow-lg overflow-hidden"
-              >
-                <div className="md:flex">
-                  <div className="md:w-1/2">
-                    <img
-                      src={item.image}
-                      alt={item.description}
-                      className="w-full h-64 md:h-full object-cover"
-                    />
-                  </div>
-                  <div className="md:w-1/2 p-8">
-                    <div className="mb-4">
-                      <h3 className="text-2xl font-bold text-gray-800 mb-2">
-                        {item.description}
-                      </h3>
-                    </div>
-                    <div className="flex flex-col sm:flex-row gap-4">
-                      <a
-                        href={item.URL}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 transition-colors text-center font-medium"
-                      >
-                        View Full Menu
-                      </a>
-                      {item.URLMobile && (
-                        <a
-                          href={item.URLMobile}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="border border-orange-600 text-orange-600 px-6 py-3 rounded-lg hover:bg-orange-50 transition-colors text-center font-medium"
-                        >
-                          Mobile Menu
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-12">
-            <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
-              <span className="text-2xl">🍽️</span>
-            </div>
-            <h3 className="text-xl font-semibold text-gray-700 mb-2">
-              No Menu Available
-            </h3>
-            <p className="text-gray-500">
-              Our menu is being updated. Please check back soon!
+          <div className="relative z-20 text-center px-6 max-w-4xl mx-auto">
+            <h1 className="font-heading text-5xl md:text-6xl font-bold text-neutral mb-4">
+              Menu Thềm Xưa
+            </h1>
+            <p className="font-body text-xl md:text-2xl text-neutral/90 leading-relaxed">
+              Khám phá hương vị đặc trưng của ẩm thực Việt Nam
             </p>
           </div>
-        )}
+        </section>
+
+        {/* Category Filter */}
+        <section className="py-12 bg-light">
+          <div className="container mx-auto px-6">
+            <div className="flex flex-wrap justify-center gap-4">
+              {categories.map(category => (
+                <button
+                  key={category.id}
+                  onClick={() => setActiveCategory(category.key)}
+                  className={`px-6 py-3 rounded-full font-body font-semibold text-lg transition-all duration-300 ${
+                    activeCategory === category.key
+                      ? 'bg-accent text-white shadow-lg scale-105'
+                      : 'bg-white text-primary hover:bg-accent/10 hover:scale-105 border border-primary/20'
+                  }`}
+                >
+                  {category.name}
+                </button>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Menu Items */}
+        <section className="py-16">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-12">
+              <h2 className="font-heading text-3xl font-bold text-primary mb-4">
+                {activeCategory === 'all'
+                  ? 'Tất Cả Món Ăn'
+                  : categories.find(c => c.key === activeCategory)?.name}
+              </h2>
+              <p className="font-body text-lg text-gray-600">
+                {filteredItems.length} món ăn được tìm thấy
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+              {filteredItems.map(item => (
+                <Card
+                  key={item.id}
+                  variant="menu"
+                  title={item.title}
+                  description={item.description}
+                  price={item.price}
+                  category={item.category}
+                  image={item.image}
+                  imageAlt={item.title}
+                  buttonText="Đặt Món"
+                  buttonHref="/booking"
+                />
+              ))}
+            </div>
+
+            {filteredItems.length === 0 && (
+              <div className="text-center py-16">
+                <p className="font-body text-xl text-gray-500">
+                  Không tìm thấy món ăn nào trong danh mục này.
+                </p>
+              </div>
+            )}
+          </div>
+        </section>
 
         {/* Call to Action */}
-        <div className="text-center mt-12 bg-white rounded-lg shadow-lg p-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-4">
-            Ready to Order?
-          </h2>
-          <p className="text-gray-600 mb-6">
-            Make a reservation to experience our delicious Vietnamese cuisine
-          </p>
-          <a
-            href="/booking"
-            className="bg-orange-600 text-white px-8 py-3 rounded-lg hover:bg-orange-700 transition-colors font-medium text-lg"
-          >
-            Book a Table
-          </a>
-        </div>
-      </div>
+        <section className="py-20 bg-primary">
+          <div className="container mx-auto px-6 text-center">
+            <h2 className="font-heading text-4xl font-bold text-neutral mb-6">
+              Sẵn Sàng Thưởng Thức?
+            </h2>
+            <p className="font-body text-xl text-neutral/90 mb-8 max-w-2xl mx-auto">
+              Đặt bàn ngay hôm nay để trải nghiệm những món ăn tuyệt vời tại
+              Thềm Xưa
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button variant="secondary" size="lg" href="/booking">
+                Đặt Bàn Ngay
+              </Button>
+              <Button variant="outline" size="lg" href="tel:+84123456789">
+                Gọi Điện Đặt Bàn
+              </Button>
+            </div>
+          </div>
+        </section>
+      </main>
 
-      {/* Footer */}
-      <footer className="bg-gray-800 text-white py-8">
-        <div className="container mx-auto px-4 text-center">
-          <p>&copy; 2025 ThemXua Restaurant. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

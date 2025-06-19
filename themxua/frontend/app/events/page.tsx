@@ -1,186 +1,273 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-
-interface Event {
-  _id: string;
-  title: string;
-  hook: string;
-  description: string;
-  time: string;
-  image: string;
-  imageMobile?: string;
-  slug: string;
-  createdAt: string;
-}
+import { publicEventsAPI } from '../utils/api';
+import { EventData } from '../types';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import Card from '../components/Card';
+import Button from '../components/Button';
 
 export default function EventsPage() {
-  const [events, setEvents] = useState<Event[]>([]);
+  const [events, setEvents] = useState<EventData[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     fetchEvents();
   }, []);
-
   const fetchEvents = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/events');
-      if (response.ok) {
-        const data = await response.json();
-        setEvents(data);
+      setError(null);
+      const response = await publicEventsAPI.getAll();
+      if (response.success && response.data) {
+        setEvents(response.data as EventData[]);
+      } else {
+        // Fallback to direct fetch if API utility fails
+        const directResponse = await fetch('http://localhost:5000/api/events');
+        if (directResponse.ok) {
+          const data = await directResponse.json();
+          setEvents(data as EventData[]);
+        } else {
+          setError('Failed to load events. Please try again later.');
+        }
       }
     } catch (error) {
       console.error('Error fetching events:', error);
+      setError('Failed to load events. Please try again later.');
     } finally {
       setLoading(false);
     }
   };
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-GB', {
-      day: '2-digit',
-      month: '2-digit',
+    return new Date(dateString).toLocaleDateString('en-US', {
+      weekday: 'long',
       year: 'numeric',
+      month: 'long',
+      day: 'numeric',
     });
   };
 
+  const formatTime = (timeString: string) => {
+    // Handle different time formats
+    if (timeString.includes(':')) {
+      return timeString;
+    }
+    return timeString;
+  };
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm">
-        <div className="container mx-auto px-4 py-4">
-          <nav className="flex justify-between items-center">
-            <div className="text-2xl font-bold text-gray-800">ThemXua</div>
-            <div className="hidden md:flex space-x-8">
-              <a href="/" className="text-gray-600 hover:text-gray-800">
-                Home
-              </a>
-              <a href="/menu" className="text-gray-600 hover:text-gray-800">
-                Menu
-              </a>
-              <a href="/booking" className="text-gray-600 hover:text-gray-800">
-                Booking
-              </a>
-              <a href="/events" className="text-orange-600 font-medium">
-                Events
-              </a>
-              <a href="/news" className="text-gray-600 hover:text-gray-800">
-                News
-              </a>
-            </div>
-          </nav>
-        </div>
-      </header>
+    <div className="min-h-screen bg-cream-50">
+      <Header />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-amber-50 to-orange-50 py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">
+      <section className="relative bg-gradient-to-br from-sage-50 to-cream-100 py-20 lg:py-28">
+        <div className="absolute inset-0 bg-[url('/images/pattern-grain.png')] opacity-20"></div>
+        <div className="relative container mx-auto px-4 text-center">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-charcoal-800 mb-6">
             Special Events
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Join us for exciting events and special celebrations at ThemXua
-            Restaurant
+          <p className="text-lg md:text-xl text-charcoal-600 max-w-3xl mx-auto mb-8 leading-relaxed">
+            Join us for unforgettable dining experiences, seasonal celebrations,
+            and exclusive culinary events that bring our community together
+            around the table.
           </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button
+              href="/booking"
+              variant="primary"
+              size="lg"
+              className="px-8"
+            >
+              Reserve Your Spot
+            </Button>
+            <Button href="/menu" variant="outline" size="lg" className="px-8">
+              View Our Menu
+            </Button>
+          </div>
         </div>
       </section>
 
       {/* Events Content */}
-      <div className="container mx-auto px-4 py-12">
-        {loading ? (
-          <div className="text-center py-12">
-            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-orange-600"></div>
-            <p className="mt-4 text-gray-600">Loading events...</p>
-          </div>
-        ) : events.length > 0 ? (
-          <div className="space-y-8">
-            {events.map(event => (
-              <div
-                key={event._id}
-                className="bg-white rounded-lg shadow-lg overflow-hidden"
-              >
-                <div className="md:flex">
-                  <div className="md:w-1/2">
-                    <img
-                      src={event.image}
-                      alt={event.title}
-                      className="w-full h-64 md:h-full object-cover"
-                    />
-                  </div>
-                  <div className="md:w-1/2 p-8">
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium">
-                        {formatDate(event.createdAt)}
-                      </span>
-                      {event.time && (
-                        <span className="text-gray-500 text-sm">
-                          {event.time}
-                        </span>
-                      )}
-                    </div>
-                    <h3 className="text-2xl font-bold text-gray-800 mb-3">
-                      {event.title}
-                    </h3>
-                    <p className="text-lg text-orange-600 mb-4 font-medium">
-                      {event.hook}
-                    </p>
-                    <p className="text-gray-600 mb-6 line-clamp-4">
-                      {event.description}
-                    </p>
-                    <div className="flex gap-4">
-                      <a
-                        href="/booking"
-                        className="bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 transition-colors font-medium"
-                      >
-                        Reserve Now
-                      </a>
-                      <button className="border border-gray-300 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-50 transition-colors font-medium">
-                        Learn More
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-12">
-            <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
-              <span className="text-2xl">🎉</span>
+      <section className="py-16 lg:py-20">
+        <div className="container mx-auto px-4">
+          {loading ? (
+            <div className="text-center py-16">
+              <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-terracotta-500 mb-4"></div>
+              <p className="text-charcoal-600 text-lg">
+                Loading upcoming events...
+              </p>
             </div>
-            <h3 className="text-xl font-semibold text-gray-700 mb-2">
-              No Upcoming Events
-            </h3>
-            <p className="text-gray-500">
-              Stay tuned for exciting events and special celebrations!
-            </p>
-          </div>
-        )}
+          ) : error ? (
+            <div className="text-center py-16">
+              <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg
+                  className="w-10 h-10 text-red-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-semibold text-charcoal-700 mb-4">
+                Unable to Load Events
+              </h3>
+              <p className="text-charcoal-600 mb-6 max-w-md mx-auto">{error}</p>
+              <Button onClick={fetchEvents} variant="primary">
+                Try Again
+              </Button>
+            </div>
+          ) : events.length > 0 ? (
+            <div className="space-y-8">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl md:text-4xl font-display font-bold text-charcoal-800 mb-4">
+                  Upcoming Events
+                </h2>
+                <p className="text-lg text-charcoal-600 max-w-2xl mx-auto">
+                  Experience the finest in culinary artistry at our specially
+                  curated events
+                </p>
+              </div>
 
-        {/* Call to Action */}
-        <div className="text-center mt-12 bg-white rounded-lg shadow-lg p-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-4">
-            Don't Miss Out!
-          </h2>
-          <p className="text-gray-600 mb-6">
-            Book your table now to join us for our special events and
-            celebrations
-          </p>
-          <a
-            href="/booking"
-            className="bg-orange-600 text-white px-8 py-3 rounded-lg hover:bg-orange-700 transition-colors font-medium text-lg"
-          >
-            Make a Reservation
-          </a>
+              <div className="grid gap-8 lg:gap-12">
+                {events.map((event, index) => (
+                  <Card
+                    key={event._id}
+                    variant="event"
+                    className={`${
+                      index % 2 === 1 ? 'lg:flex-row-reverse' : ''
+                    } transition-all duration-300 hover:shadow-xl`}
+                  >
+                    <div className="lg:w-1/2">
+                      <img
+                        src={event.image || '/images/placeholder-event.jpg'}
+                        alt={event.title}
+                        className="w-full h-64 lg:h-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center">
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
+                        <div className="bg-terracotta-100 text-terracotta-800 px-4 py-2 rounded-full text-sm font-medium inline-block mb-2 sm:mb-0">
+                          {formatDate(event.createdAt)}
+                        </div>
+                        {event.time && (
+                          <div className="text-charcoal-500 text-sm font-medium">
+                            {formatTime(event.time)}
+                          </div>
+                        )}
+                      </div>
+
+                      <h3 className="text-2xl lg:text-3xl font-display font-bold text-charcoal-800 mb-4">
+                        {event.title}
+                      </h3>
+
+                      <p className="text-lg text-terracotta-600 mb-6 font-medium">
+                        {event.hook}
+                      </p>
+
+                      <p className="text-charcoal-600 mb-8 leading-relaxed">
+                        {event.description}
+                      </p>
+
+                      <div className="flex flex-col sm:flex-row gap-4">
+                        <Button href="/booking" variant="primary" size="lg">
+                          Reserve Now
+                        </Button>
+                        <Button
+                          href={`/events/${event.slug}`}
+                          variant="outline"
+                          size="lg"
+                        >
+                          Learn More
+                        </Button>
+                      </div>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div className="text-center py-16">
+              <div className="w-24 h-24 bg-sage-100 rounded-full flex items-center justify-center mx-auto mb-8">
+                <svg
+                  className="w-12 h-12 text-sage-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-display font-semibold text-charcoal-700 mb-4">
+                No Upcoming Events
+              </h3>{' '}
+              <p className="text-charcoal-600 mb-8 max-w-md mx-auto">
+                We&apos;re planning something special! Check back soon or follow
+                us on social media for updates on our upcoming events and
+                celebrations.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button href="/menu" variant="primary">
+                  Explore Our Menu
+                </Button>
+                <Button href="/booking" variant="outline">
+                  Make a Reservation
+                </Button>
+              </div>
+            </div>
+          )}
         </div>
-      </div>
+      </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-800 text-white py-8">
+      {/* Call to Action Section */}
+      <section className="bg-gradient-to-br from-terracotta-500 to-terracotta-600 py-16 lg:py-20">
         <div className="container mx-auto px-4 text-center">
-          <p>&copy; 2025 ThemXua Restaurant. All rights reserved.</p>
+          <div className="max-w-3xl mx-auto">
+            {' '}
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-6">
+              Don&apos;t Miss Our Special Events
+            </h2>
+            <p className="text-xl text-terracotta-100 mb-8 leading-relaxed">
+              Be the first to know about our exclusive dining experiences, wine
+              tastings, and seasonal celebrations. Reserve your table early to
+              secure your spot.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button
+                href="/booking"
+                variant="secondary"
+                size="lg"
+                className="px-8"
+              >
+                Make a Reservation
+              </Button>
+              <Button
+                href="/news"
+                variant="ghost"
+                size="lg"
+                className="px-8 border border-white/30 text-white hover:bg-white/10"
+              >
+                Stay Updated
+              </Button>
+            </div>
+          </div>
         </div>
-      </footer>
+      </section>
+
+      <Footer />
     </div>
   );
 }

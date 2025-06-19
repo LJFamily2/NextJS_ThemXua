@@ -1,29 +1,36 @@
-import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="bg-white shadow-sm">
+        {' '}
         <div className="container mx-auto px-4 py-4">
           <nav className="flex justify-between items-center">
             <div className="text-2xl font-bold text-gray-800">ThemXua</div>
             <div className="hidden md:flex space-x-8">
-              <a href="/" className="text-gray-600 hover:text-gray-800">
+              <Link href="/" className="text-gray-600 hover:text-gray-800">
                 Home
-              </a>
-              <a href="/menu" className="text-gray-600 hover:text-gray-800">
+              </Link>
+              <Link href="/menu" className="text-gray-600 hover:text-gray-800">
                 Menu
-              </a>
-              <a href="/booking" className="text-gray-600 hover:text-gray-800">
+              </Link>
+              <Link
+                href="/booking"
+                className="text-gray-600 hover:text-gray-800"
+              >
                 Booking
-              </a>
-              <a href="/events" className="text-gray-600 hover:text-gray-800">
+              </Link>
+              <Link
+                href="/events"
+                className="text-gray-600 hover:text-gray-800"
+              >
                 Events
-              </a>
-              <a href="/news" className="text-gray-600 hover:text-gray-800">
+              </Link>{' '}
+              <Link href="/news" className="text-gray-600 hover:text-gray-800">
                 News
-              </a>
+              </Link>
             </div>
             <div className="md:hidden">
               <button className="text-gray-600">☰</button>
@@ -37,25 +44,25 @@ export default function Home() {
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-5xl font-bold text-gray-800 mb-6 font-[family-name:var(--font-roboto-condensed)]">
             Welcome to ThemXua Restaurant
-          </h1>
+          </h1>{' '}
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
             Experience authentic Vietnamese cuisine in a warm and welcoming
             atmosphere. Book your table today for an unforgettable dining
             experience.
           </p>
           <div className="flex gap-4 justify-center">
-            <a
+            <Link
               href="/booking"
               className="bg-orange-600 text-white px-8 py-3 rounded-lg hover:bg-orange-700 transition-colors font-medium"
             >
               Book a Table
-            </a>
-            <a
+            </Link>
+            <Link
               href="/menu"
               className="border border-orange-600 text-orange-600 px-8 py-3 rounded-lg hover:bg-orange-50 transition-colors font-medium"
             >
-              View Menu
-            </a>
+              View Menu{' '}
+            </Link>
           </div>
         </div>
       </section>

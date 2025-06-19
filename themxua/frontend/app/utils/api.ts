@@ -327,4 +327,10 @@ export const eventsAPI = {
   delete: (id: string) => apiClient.delete(`/admin/events/${id}`),
 };
 
+// Public Events API methods (no auth required)
+export const publicEventsAPI = {
+  getAll: () => apiClient.get('/events'),
+  getBySlug: (slug: string) => apiClient.get(`/events/${slug}`),
+};
+
 export default apiClient;

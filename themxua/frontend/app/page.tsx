@@ -1,233 +1,178 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import Layout from './components/layout/Layout';
-import Image from 'next/image';
-import ModernSpotlight from './components/ModernSpotlight'; // Corrected import
-import RestaurantDesign from './components/RestaurantDesign';
-import BookingForm from './components/BookingForm';
-import InfiniteScrolling from './components/InfiniteScrolling';
-
-interface HeroData {
-  title: string;
-  description: string;
-  image?: string;
-  buttonText: string;
-}
-
-interface EventData {
-  id: string;
-  title: string;
-  hook: string;
-  time: string;
-  image: string;
-  slug: string;
-}
-
-// Removed SpotlightItem interface as ModernSpotlight handles its own data structure
-
-interface SpotlightData {
-  // This is for the "Area Space" spotlight, not the carousel
-  title: string;
-  description: string;
-  items: Array<{
-    title: string;
-    description: string;
-    icon: string;
-  }>;
-}
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Button from './components/Button';
+import Card from './components/Card';
 
 export default function Home() {
-  const [heroData, setHeroData] = useState<HeroData | null>(null);
-  const [events, setEvents] = useState<EventData[]>([]);
-  const [spotlightData, setSpotlightData] = useState<SpotlightData | null>(
-    null
-  );
-  // Removed spotlightItems state as ModernSpotlight handles its own data
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchHomeData = async () => {
-      try {
-        setHeroData({
-          title: 'Thềm Xưa',
-          description:
-            'Trải nghiệm ẩm thực Việt Nam đích thực tại không gian ấm cúng và thân thiện.',
-          buttonText: 'Đặt bàn ngay',
-          image: 'center.webp',
-        });
-
-        setSpotlightData({
-          title: 'Không Gian Độc Đáo',
-          description:
-            'Ánh đèn dịu nhẹ, chỗ ngồi êm ái và tiếng trò chuyện nhẹ nhàng tạo nên một không gian giống như sự mở rộng của ngôi nhà bạn.',
-          items: [
-            {
-              title: 'Ẩm Thực Đích Thực',
-              description:
-                'Công thức truyền thống được truyền từ thế hệ này sang thế hệ khác',
-              icon: '🍜',
-            },
-            {
-              title: 'Không Gian Ấm Cúng',
-              description:
-                'Môi trường ấm cúng và chào đón hoàn hảo cho mọi dịp',
-              icon: '🏮',
-            },
-            {
-              title: 'Dịch Vụ Tuyệt Vời',
-              description:
-                'Đội ngũ nhân viên thân thiện tận tâm mang đến trải nghiệm đáng nhớ',
-              icon: '⭐',
-            },
-          ],
-        });
-        setEvents([
-          {
-            id: '1',
-            title: 'Lễ Hội Ẩm Thực Truyền Thống',
-            hook: 'Khám phá hương vị Việt Nam qua các món ăn đặc sắc',
-            time: '15:00 - 22:00',
-            image: 'event1.jpg',
-            slug: 'le-hoi-am-thuc-truyen-thong',
-          },
-          {
-            id: '2',
-            title: 'Đêm Nhạc Dân Ca',
-            hook: 'Thưởng thức âm nhạc truyền thống trong không gian ấm cúng',
-            time: '19:00 - 21:00',
-            image: 'event2.jpg',
-            slug: 'dem-nhac-dan-ca',
-          },
-        ]);
-
-        // Removed mock spotlightItems data fetching as ModernSpotlight handles its own data
-      } catch (error) {
-        console.error('Error fetching home data:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchHomeData();
-  }, []);
-
-  if (loading) {
-    return (
-      <Layout>
-        <div className="min-h-screen flex items-center justify-center">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-600 mx-auto mb-4"></div>
-            <p className="text-gray-600">Đang tải...</p>
-          </div>
-        </div>
-      </Layout>
-    );
-  }
   return (
-    <Layout currentPage="home">
-      {/* ModernSpotlight component - no longer takes 'items' prop */}
-      <ModernSpotlight />
-      {/* Hero Section */}
-      {heroData && (
-        <section id="heroContainer" className="hero-section">
-          <div className="hero-content">
-            <div className="hero-title">
-              <h1 className="hero-main-title">{heroData.title}</h1>
-              <h5 className="hero-description">{heroData.description}</h5>
-              <div className="hero-buttons">
-                <button className="hero-btn primary">
-                  <a href="#bookingContainer" className="btn-link">
-                    {heroData.buttonText}
-                  </a>
-                </button>
-                <span className="hero-text">
-                  hoặc gọi ngay{' '}
-                  <a href="tel:+84123456789" className="phone-link">
-                    <strong>+84 123 456 789</strong>
-                  </a>
-                </span>
+    <div className="min-h-screen">
+      <Header />
+      <main>
+        {/* Hero Section */}
+        <section className="relative h-screen flex items-center justify-center overflow-hidden">
+          {/* Background Image */}
+          <div className="absolute inset-0 z-0">
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-secondary/60 z-10"></div>
+            {/* Replace with actual restaurant image */}
+            <div className="w-full h-full bg-gradient-to-br from-primary to-secondary"></div>
+          </div>
+
+          {/* Hero Content */}
+          <div className="relative z-20 text-center px-6 max-w-4xl mx-auto">
+            <h1 className="font-heading text-5xl md:text-7xl font-bold text-neutral mb-6 leading-tight">
+              Thềm Xưa
+            </h1>
+            <p className="font-body text-xl md:text-2xl text-neutral/90 mb-4 leading-relaxed">
+              Trải nghiệm ẩm thực Việt Nam đích thực
+            </p>
+            <p className="font-body text-lg md:text-xl text-neutral/80 mb-8 max-w-2xl mx-auto">
+              Trong không gian ấm cúng, truyền thống, nơi hương vị quê hương
+              được gìn giữ qua từng món ăn
+            </p>
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Button variant="primary" size="lg" href="/booking">
+                Đặt Bàn Ngay
+              </Button>
+              <Button variant="outline" size="lg" href="/menu">
+                Xem Menu
+              </Button>
+            </div>
+          </div>
+
+          {/* Scroll Indicator */}
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+            <div className="animate-bounce">
+              <div className="w-6 h-10 border-2 border-neutral rounded-full flex justify-center">
+                <div className="w-1 h-3 bg-neutral rounded-full mt-2 animate-pulse"></div>
               </div>
             </div>
-            {heroData.image && (
-              <div className="hero-media">
-                <Image
-                  src={`/images/${heroData.image}`}
-                  alt="Hình ảnh trang chủ của nhà hàng"
-                  width={800}
-                  height={600}
-                  className="hero-image"
-                  priority
-                />
-              </div>
-            )}
           </div>
-        </section>
-      )}
-      {/* Restaurant Design Section */}
-      <RestaurantDesign />
-      {/* Spotlight Section - Area Space */}
-      {spotlightData && (
-        <div className="spotlight-section">
-          <div className="spotlight-container">
-            <div className="spotlight-title-container">
-              <h1 className="spotlight-title">{spotlightData.title}</h1>
-              <p className="spotlight-description">
-                {spotlightData.description}
+        </section>{' '}
+        {/* Features Section */}
+        <section className="py-20 bg-light">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="font-heading text-4xl font-bold text-primary mb-4">
+                Tại Sao Chọn Thềm Xưa?
+              </h2>
+              <p className="font-body text-lg text-gray-600 max-w-2xl mx-auto">
+                Chúng tôi cam kết mang đến trải nghiệm ẩm thực đậm chất Việt Nam
+                với chất lượng tốt nhất
               </p>
             </div>
-            <div className="spotlight-features">
-              <div className="features-grid">
-                {spotlightData.items.map((item, index) => (
-                  <div key={index} className="feature-item">
-                    <div className="feature-icon">{item.icon}</div>
-                    <h3 className="feature-title">{item.title}</h3>
-                    <p className="feature-description">{item.description}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-      {/* Events Section */}
-      {events.length > 0 && (
-        <section className="events-section" id="eventsContainer">
-          <div className="events-container">
-            <h2 className="events-title">Sự Kiện Đặc Biệt</h2>
-            <div className="events-grid">
-              {events.map(event => (
-                <div key={event.id} className="event-card">
-                  <a href={`/events/${event.slug}`} className="event-link">
-                    <div className="event-image-container">
-                      <Image
-                        src={`/images/${event.image}`}
-                        alt={`Hình ảnh sự kiện ${event.title}`}
-                        width={400}
-                        height={300}
-                        className="event-image"
-                      />
-                    </div>
-                    <div className="event-information">
-                      <h3 className="event-title">{event.title}</h3>
-                      <p className="event-hook">{event.hook}</p>
-                      <span className="event-divider">-------------</span>
-                      <time className="event-time">{event.time}</time>
-                    </div>
-                  </a>
-                </div>
-              ))}
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <Card
+                variant="feature"
+                icon="🍜"
+                title="Món Ăn Truyền Thống"
+                description="Công thức được truyền qua nhiều thế hệ, giữ nguyên hương vị đậm đà của quê hương"
+              />
+              <Card
+                variant="feature"
+                icon="🌿"
+                title="Nguyên Liệu Tươi Ngon"
+                description="Chọn lọc kỹ càng từ những nguồn nguyên liệu tự nhiên, tươi ngon nhất"
+              />
+              <Card
+                variant="feature"
+                icon="🏮"
+                title="Không Gian Ấm Cúng"
+                description="Thiết kế theo phong cách Việt Nam truyền thống, tạo cảm giác thân thuộc như ở nhà"
+              />
             </div>
           </div>
         </section>
-      )}{' '}
-      {/* Include booking section inline */}
-      <BookingForm
-        backgroundImage="darkwood.webp"
-        restaurantPhone="+84 123 456 789"
-      />
-      {/* Infinite Scrolling */}
-      <InfiniteScrolling text="Thềm Xưa" />
-    </Layout>
+        {/* Menu Preview Section */}
+        <section className="py-20">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="font-heading text-4xl font-bold text-primary mb-4">
+                Món Ăn Nổi Bật
+              </h2>
+              <p className="font-body text-lg text-gray-600 max-w-2xl mx-auto">
+                Khám phá những món ăn được yêu thích nhất tại Thềm Xưa
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <Card
+                variant="menu"
+                title="Phở Bò Thềm Xưa"
+                description="Tô phở truyền thống với nước dùng được ninh từ xương bò trong 12 tiếng, thịt bò tươi ngon"
+                price="85.000 VNĐ"
+                category="Món Chính"
+                buttonText="Đặt Món"
+                buttonHref="/menu"
+              />
+              <Card
+                variant="menu"
+                title="Bánh Mì Thịt Nướng"
+                description="Bánh mì giòn thơm với thịt nướng than hoa, pate và rau củ tươi mát"
+                price="45.000 VNĐ"
+                category="Ăn Vặt"
+                buttonText="Đặt Món"
+                buttonHref="/menu"
+              />
+              <Card
+                variant="menu"
+                title="Chè Đậu Xanh"
+                description="Chè đậu xanh thơm ngon, mát lạnh, là món tráng miệng hoàn hảo"
+                price="25.000 VNĐ"
+                category="Tráng Miệng"
+                buttonText="Đặt Món"
+                buttonHref="/menu"
+              />
+            </div>
+
+            <div className="text-center mt-12">
+              <Button variant="primary" size="lg" href="/menu">
+                Xem Toàn Bộ Menu
+              </Button>
+            </div>
+          </div>
+        </section>
+        {/* Testimonials Section */}
+        <section className="py-20 bg-primary">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="font-heading text-4xl font-bold text-neutral mb-4">
+                Khách Hàng Nói Gì Về Chúng Tôi
+              </h2>
+              <p className="font-body text-lg text-neutral/80 max-w-2xl mx-auto">
+                Những phản hồi chân thực từ những người đã trải nghiệm tại Thềm
+                Xưa
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <Card
+                variant="testimonial"
+                description="Món ăn ngon tuyệt vời, không gian ấm cúng. Cảm giác như được về thăm quê hương. Tôi sẽ quay lại nhiều lần nữa!"
+                author="Nguyễn Minh Anh"
+                rating={5}
+              />
+              <Card
+                variant="testimonial"
+                description="Phở ở đây ngon nhất mà tôi từng ăn. Nước dùng đậm đà, thịt bò tươi ngon. Dịch vụ cũng rất chu đáo."
+                author="Trần Văn Đức"
+                rating={5}
+              />
+              <Card
+                variant="testimonial"
+                description="Không gian rất đẹp, món ăn chất lượng cao. Giá cả hợp lý. Rất phù hợp để đi cùng gia đình."
+                author="Lê Thị Hương"
+                rating={4}
+              />
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
+    </div>
   );
 }

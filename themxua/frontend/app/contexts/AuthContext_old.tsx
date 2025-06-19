@@ -44,7 +44,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [token, setToken] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
-
   // Check if token is expired or about to expire
   const checkTokenExpiry = useCallback(() => {
     const expiry = localStorage.getItem(TOKEN_EXPIRY_KEY);
@@ -54,7 +53,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const now = Date.now();
 
     return now >= expiryTime - REFRESH_THRESHOLD;
-  }, [logout]);
+  }, []);
 
   // Decode JWT to get expiry time
   const getTokenExpiry = (token: string): number | null => {
@@ -65,8 +64,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       console.error('Error decoding token:', error);
       return null;
     }
-  };  // Refresh token
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  };
+
+  // Logout function
+  const logout = useCallback(() => {
+    localStorage.removeItem(TOKEN_KEY);
+    localStorage.removeItem(USER_KEY);
+    localStorage.removeItem(TOKEN_EXPIRY_KEY);
+    setToken(null);
+    setUser(null);
+    router.push('/admin/sign-in');
+  }, [router]);
+
+  // Refresh token
   const refreshToken = useCallback(async (): Promise<boolean> => {
     try {
       const currentToken = localStorage.getItem(TOKEN_KEY);
@@ -100,10 +110,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         return false;
       }
     } catch (error) {
-      console.error('Error refreshing token:', error);      logout();
+      console.error('Error refreshing token:', error);
+      logout();
       return false;
     }
-  }, []);
+  }, [logout]);
 
   // Login function
   const login = async (
@@ -145,16 +156,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       return { success: false, message: 'Network error. Please try again.' };
     }
   };
-
-  // Logout function
-  const logout = useCallback(() => {
-    localStorage.removeItem(TOKEN_KEY);
-    localStorage.removeItem(USER_KEY);
-    localStorage.removeItem(TOKEN_EXPIRY_KEY);
-    setToken(null);
-    setUser(null);
-    router.push('/admin/sign-in');
-  }, [router]);
 
   // Auto-refresh token when it's about to expire
   useEffect(() => {

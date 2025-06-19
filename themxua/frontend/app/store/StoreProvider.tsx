@@ -4,8 +4,11 @@ import { createContext, useContext, useRef } from 'react';
 import { StoreApi, useStore } from 'zustand';
 import { useAppStore } from './useAppStore';
 
+// Define the AppState type to match useAppStore
+type AppState = ReturnType<typeof useAppStore.getState>;
+
 // Create store context
-const StoreContext = createContext<StoreApi<any> | null>(null);
+const StoreContext = createContext<StoreApi<AppState> | null>(null);
 
 // Store provider component
 interface StoreProviderProps {
@@ -13,7 +16,7 @@ interface StoreProviderProps {
 }
 
 export const StoreProvider: React.FC<StoreProviderProps> = ({ children }) => {
-  const storeRef = useRef<StoreApi<any>>();
+  const storeRef = useRef<StoreApi<AppState> | null>(null);
 
   if (!storeRef.current) {
     storeRef.current = useAppStore;
@@ -27,7 +30,7 @@ export const StoreProvider: React.FC<StoreProviderProps> = ({ children }) => {
 };
 
 // Custom hook to use store
-export const useStoreContext = <T,>(selector: (state: any) => T): T => {
+export const useStoreContext = <T,>(selector: (state: AppState) => T): T => {
   const store = useContext(StoreContext);
   if (!store) {
     throw new Error('useStoreContext must be used within StoreProvider');

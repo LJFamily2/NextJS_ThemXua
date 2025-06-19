@@ -18,13 +18,15 @@ export interface MenuData {
 }
 
 export interface EventData {
-  id: string;
+  _id: string;
   title: string;
   hook: string;
+  description: string;
   time: string;
   image: string;
+  imageMobile?: string;
   slug: string;
-  description?: string;
+  createdAt: string;
 }
 
 export interface HeroData {

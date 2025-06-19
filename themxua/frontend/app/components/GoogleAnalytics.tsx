@@ -10,7 +10,7 @@ declare global {
     gtag: (
       command: string,
       targetId: string,
-      config?: Record<string, any>
+      config?: Record<string, unknown>
     ) => void;
   }
 }
@@ -84,7 +84,7 @@ export const trackPageView = (url: string) => {
 };
 
 // Booking tracking
-export const trackBookingSubmit = (numberOfPeople: string, date: string) => {
+export const trackBookingSubmit = (numberOfPeople: string) => {
   trackEvent(
     'booking_submit',
     'engagement',

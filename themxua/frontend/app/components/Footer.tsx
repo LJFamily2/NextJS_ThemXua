@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
-import Image from 'next/image';
+import Link from 'next/link';
+import Button from './Button';
 
 interface FooterProps {
   restaurantInfo?: {
@@ -23,100 +23,131 @@ export default function Footer({
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="footer">
-      <div className="footer-container">
-        <div className="footer-content">
+    <footer className="bg-primary text-neutral">
+      <div className="container mx-auto px-6 py-12">
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Restaurant Info */}
-          <div className="footer-section">
-            <h3 className="footer-heading">{restaurantInfo.name}</h3>
-            <p className="footer-text">
-              Trải nghiệm ẩm thực Việt Nam đích thực trong không gian ấm cúng và
-              thân thiện.
+          <div className="lg:col-span-1">
+            <h3 className="font-heading text-2xl font-bold text-accent mb-4">
+              {restaurantInfo.name}
+            </h3>
+            <p className="font-body text-neutral/90 mb-6 leading-relaxed">
+              Trải nghiệm ẩm thực Việt Nam đích thực trong không gian ấm cúng,
+              nơi hương vị truyền thống được gìn giữ qua từng món ăn.
             </p>
-          </div>
-
-          {/* Contact Info */}
-          <div className="footer-section">
-            <h4 className="footer-heading">Liên Hệ</h4>
-            <div className="footer-contact">
-              <p className="footer-text">
-                <strong>Điện thoại:</strong>
-                <a href={`tel:${restaurantInfo.phone}`} className="footer-link">
-                  {restaurantInfo.phone}
-                </a>
-              </p>
-              <p className="footer-text">
-                <strong>Email:</strong>
-                <a
-                  href={`mailto:${restaurantInfo.email}`}
-                  className="footer-link"
-                >
-                  {restaurantInfo.email}
-                </a>
-              </p>
-              <p className="footer-text">
-                <strong>Địa chỉ:</strong> {restaurantInfo.address}
-              </p>
-            </div>
+            <Button variant="outline" size="md" href="/booking">
+              Đặt Bàn Ngay
+            </Button>
           </div>
 
           {/* Quick Links */}
-          <div className="footer-section">
-            <h4 className="footer-heading">Liên Kết Nhanh</h4>
-            <nav className="footer-nav">
-              <a href="/" className="footer-link">
+          <div>
+            <h4 className="font-heading text-lg font-semibold text-accent mb-4">
+              Liên Kết Nhanh
+            </h4>
+            <nav className="space-y-3">
+              <Link
+                href="/"
+                className="block font-body text-neutral/90 hover:text-accent transition-colors duration-300"
+              >
                 Trang Chủ
-              </a>
-              <a href="/menu" className="footer-link">
+              </Link>
+              <Link
+                href="/menu"
+                className="block font-body text-neutral/90 hover:text-accent transition-colors duration-300"
+              >
                 Menu
-              </a>
-              <a href="/events" className="footer-link">
+              </Link>
+              <Link
+                href="/events"
+                className="block font-body text-neutral/90 hover:text-accent transition-colors duration-300"
+              >
                 Sự Kiện
-              </a>
-              <a href="/booking" className="footer-link">
+              </Link>
+              <Link
+                href="/booking"
+                className="block font-body text-neutral/90 hover:text-accent transition-colors duration-300"
+              >
                 Đặt Bàn
-              </a>
+              </Link>
             </nav>
           </div>
 
-          {/* Social Media */}
-          <div className="footer-section">
-            <h4 className="footer-heading">Theo Dõi Chúng Tôi</h4>
-            <div className="footer-social">
-              <a href="#" className="social-link" aria-label="Facebook">
-                <Image
-                  src="/images/facebook.webp"
-                  alt="Facebook"
-                  width={32}
-                  height={32}
-                  className="social-icon"
-                />
+          {/* Contact Info */}
+          <div>
+            <h4 className="font-heading text-lg font-semibold text-accent mb-4">
+              Liên Hệ
+            </h4>
+            <div className="space-y-3">
+              <div className="font-body text-neutral/90">
+                <strong>Điện thoại:</strong>
+                <br />
+                <a
+                  href={`tel:${restaurantInfo.phone}`}
+                  className="hover:text-accent transition-colors duration-300"
+                >
+                  {restaurantInfo.phone}
+                </a>
+              </div>
+              <div className="font-body text-neutral/90">
+                <strong>Email:</strong>
+                <br />
+                <a
+                  href={`mailto:${restaurantInfo.email}`}
+                  className="hover:text-accent transition-colors duration-300"
+                >
+                  {restaurantInfo.email}
+                </a>
+              </div>
+              <div className="font-body text-neutral/90">
+                <strong>Địa chỉ:</strong>
+                <br />
+                {restaurantInfo.address}
+              </div>
+            </div>
+          </div>
+
+          {/* Social Media & Hours */}
+          <div>
+            <h4 className="font-heading text-lg font-semibold text-accent mb-4">
+              Theo Dõi Chúng Tôi
+            </h4>
+            <div className="flex space-x-4 mb-6">
+              <a
+                href="#"
+                className="w-10 h-10 bg-accent/20 rounded-full flex items-center justify-center hover:bg-accent hover:scale-110 transition-all duration-300"
+                aria-label="Facebook"
+              >
+                <span className="text-accent hover:text-white">📘</span>
               </a>
-              <a href="#" className="social-link" aria-label="Instagram">
-                <Image
-                  src="/images/instagram.webp"
-                  alt="Instagram"
-                  width={32}
-                  height={32}
-                  className="social-icon"
-                />
+              <a
+                href="#"
+                className="w-10 h-10 bg-accent/20 rounded-full flex items-center justify-center hover:bg-accent hover:scale-110 transition-all duration-300"
+                aria-label="Instagram"
+              >
+                <span className="text-accent hover:text-white">📷</span>
               </a>
-              <a href="#" className="social-link" aria-label="Messenger">
-                <Image
-                  src="/images/messenger.webp"
-                  alt="Messenger"
-                  width={32}
-                  height={32}
-                  className="social-icon"
-                />
+              <a
+                href="#"
+                className="w-10 h-10 bg-accent/20 rounded-full flex items-center justify-center hover:bg-accent hover:scale-110 transition-all duration-300"
+                aria-label="TikTok"
+              >
+                <span className="text-accent hover:text-white">🎵</span>
               </a>
+            </div>
+
+            <div className="font-body text-neutral/90">
+              <strong>Giờ mở cửa:</strong>
+              <br />
+              Thứ 2 - Chủ nhật: 10:00 - 22:00
             </div>
           </div>
         </div>
 
         {/* Copyright */}
-        <div className="footer-bottom">
-          <p className="footer-copyright">
+        <div className="border-t border-neutral/20 pt-6 text-center">
+          <p className="font-body text-neutral/80">
             © {currentYear} {restaurantInfo.name}. Tất cả quyền được bảo lưu.
           </p>
         </div>
