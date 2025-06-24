@@ -16,7 +16,8 @@ const HeroSection: React.FC = () => {
           className="object-cover"
           priority
         />
-      </div>      {/* Curved Overlay Gradient */}
+      </div>{' '}
+      {/* Curved Overlay Gradient */}
       <div
         className="absolute inset-0 animate-slide-in-left"
         style={{
@@ -31,9 +32,9 @@ const HeroSection: React.FC = () => {
           animationFillMode: 'both',
         }}
       />
-
       {/* Content Container */}
-      <div className="relative z-10 h-full flex items-center animate-slide-in-left-content"
+      <div
+        className="relative z-10 h-full flex items-center animate-slide-in-left-content"
         style={{
           animationDelay: '0.5s',
           animationFillMode: 'both',
