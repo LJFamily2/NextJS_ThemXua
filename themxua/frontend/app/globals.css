@@ -2,17 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global font family */
+* {
+  font-family: var(--font-roboto-serif), 'Roboto Serif', serif;
+}
+
 /* Custom font utilities */
-.font-dm-serif {
-  font-family: var(--font-dm-serif-display), serif;
-}
-
-.font-instrument {
-  font-family: var(--font-instrument-sans), sans-serif;
-}
-
 .font-roboto-serif {
-  font-family: var(--font-roboto-serif), serif;
+  font-family: var(--font-roboto-serif), 'Roboto Serif', serif;
 }
 
 /* Custom scrollbar for mobile menu */

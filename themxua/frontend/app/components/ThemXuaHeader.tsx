@@ -52,7 +52,7 @@ const ThemXuaHeader = () => {
               priority
             />
           </div>
-          <span className="text-themxua-primary font-dm-serif text-2xl font-normal leading-none transition-colors duration-300 group-hover:text-themxua-secondary">
+          <span className="text-themxua-primary font-dm-serif text-2xl font-black leading-none transition-colors duration-300 group-hover:text-themxua-secondary">
             Them Xua
           </span>
         </Link>
@@ -66,7 +66,7 @@ const ThemXuaHeader = () => {
               className={`relative font-instrument text-base font-normal leading-none transition-all duration-300 hover:text-themxua-secondary group
               ${
                 isActiveLink(item.href)
-                  ? 'text-themxua-secondary text-lg font-bold'
+                  ? 'text-themxua-secondary text-lg font-black'
                   : pathname === '/' && !scrolled
                     ? 'text-white'
                     : 'text-themxua-primary'

@@ -8,9 +8,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'dm-serif': ['var(--font-dm-serif-display)', 'serif'],
-        instrument: ['var(--font-instrument-sans)', 'sans-serif'],
-        'roboto-serif': ['Roboto Serif', 'serif'],
+        roboto: ['var(--font-roboto)', 'Roboto', 'sans-serif'],
+        sans: ['var(--font-roboto)', 'Roboto', 'sans-serif'],
       },
       colors: {
         themxua: {
