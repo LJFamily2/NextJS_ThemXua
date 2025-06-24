@@ -139,3 +139,96 @@ export const ClockIcon: React.FC<IconProps> = ({
     />
   </svg>
 );
+
+export const MouseScrollIcon: React.FC<IconProps> = ({
+  className = '',
+  size = 24,
+  color = 'currentColor',
+}) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 28 40"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+  >
+    {/* Mouse body with gradient effect */}
+    <rect
+      x="8"
+      y="6"
+      width="12"
+      height="20"
+      rx="6"
+      ry="6"
+      stroke={color}
+      strokeWidth="2.5"
+      fill="none"
+      className="drop-shadow-sm"
+    />
+
+    {/* Inner mouse body for depth */}
+    <rect
+      x="9.5"
+      y="7.5"
+      width="9"
+      height="17"
+      rx="4.5"
+      ry="4.5"
+      stroke={color}
+      strokeWidth="0.5"
+      fill="none"
+      opacity="0.3"
+    />
+
+    {/* Mouse scroll wheel - animated */}
+    <rect
+      x="12.5"
+      y="11"
+      width="3"
+      height="6"
+      rx="1.5"
+      ry="1.5"
+      fill={color}
+      className="animate-pulse"
+      opacity="0.8"
+    />
+
+    {/* Scroll indicator line */}
+    <line
+      x1="14"
+      y1="13"
+      x2="14"
+      y2="15"
+      stroke="white"
+      strokeWidth="0.8"
+      strokeLinecap="round"
+      className="animate-bounce"
+      style={{ animationDelay: '0.2s', animationDuration: '2s' }}
+    />
+
+    {/* Decorative scroll waves */}
+    <path
+      d="M10 30 C12 28, 16 28, 18 30"
+      stroke={color}
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      fill="none"
+      opacity="0.6"
+      className="animate-pulse"
+      style={{ animationDelay: '0.5s', animationDuration: '3s' }}
+    />
+
+    <path
+      d="M9 33 C11.5 31, 16.5 31, 19 33"
+      stroke={color}
+      strokeWidth="1.2"
+      strokeLinecap="round"
+      fill="none"
+      opacity="0.4"
+      className="animate-pulse"
+      style={{ animationDelay: '1s', animationDuration: '3s' }}
+    />
+
+  </svg>
+);

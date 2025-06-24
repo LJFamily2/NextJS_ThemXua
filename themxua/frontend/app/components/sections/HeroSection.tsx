@@ -3,6 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import ThemXuaButton from '../ui/ThemXuaButton';
+import { MouseScrollIcon } from '../ui/Icons';
 
 const HeroSection: React.FC = () => {
   return (
@@ -43,7 +44,7 @@ const HeroSection: React.FC = () => {
         <div className="w-full max-w-7xl mx-auto px-4 md:px-8 lg:px-[90px]">
           <div className="max-w-[691px]">
             {/* Main Heading */}
-            <h1 className="font-roboto-serif font-semibold italic text-4xl md:text-6xl lg:text-[72px] md:leading-tight lg:leading-none text-themxua-secondary mb-3 ">
+            <h1 className="font-roboto-serif font-semibold  text-4xl md:text-6xl lg:text-[72px] md:leading-tight lg:leading-none text-themxua-secondary mb-3 ">
               Khám Phá Ẩm Thực Thềm Xưa
             </h1>
 
@@ -74,6 +75,14 @@ const HeroSection: React.FC = () => {
             </div>
           </div>
         </div>
+      </div>
+      {/* Scroll Icon */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
+        <MouseScrollIcon
+          size={40}
+          color="#8B4513"
+          className="opacity-80 hover:opacity-100 transition-opacity duration-300"
+        />
       </div>
     </section>
   );

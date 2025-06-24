@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi">
-      <body className={`${robotoSerif.variable} font-roboto-serif antialiased select-none`}>
+      <body className={`${robotoSerif.variable} antialiased select-none`}>
         <ThemXuaHeader />
         <main>{children}</main>
       </body>

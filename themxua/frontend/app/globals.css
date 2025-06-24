@@ -36,6 +36,15 @@ html {
 }
 
 /* Custom animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.1;
+  }
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -67,6 +76,10 @@ html {
     opacity: 1;
     transform: translateX(0);
   }
+}
+
+.animate-fade-in {
+  animation: fadeIn 2s ease-in-out;
 }
 
 .animate-fade-in-up {

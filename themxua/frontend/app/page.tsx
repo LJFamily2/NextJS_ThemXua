@@ -10,9 +10,9 @@ export default function Home() {
     <div className="min-h-screen">
       <HeroSection />
       <WelcomeSection />
+      <DiningAreasSection />
       <MenuSection />
       <FoodShowcaseSection />
-      <DiningAreasSection />
       <FooterNew />
     </div>
   );
