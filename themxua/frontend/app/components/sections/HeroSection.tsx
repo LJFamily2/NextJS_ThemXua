@@ -16,24 +16,29 @@ const HeroSection: React.FC = () => {
           className="object-cover"
           priority
         />
-      </div>
-
-      {/* Overlay Gradient */}
+      </div>      {/* Curved Overlay Gradient */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 animate-slide-in-left"
         style={{
           background: `linear-gradient(90deg, 
           #F0E1CD 0%, 
           #F0E1CD 45%, 
           rgba(240, 225, 205, 0.8) 55%, 
           rgba(240, 225, 205, 0.4) 70%, 
-          rgba(240, 225, 205, 0.1) 85%, 
-          transparent 100%)`,
+          rgba(240, 225, 205, 0.1) 80%, 
+          transparent 95%)`,
+          animationDelay: '0.2s',
+          animationFillMode: 'both',
         }}
       />
 
       {/* Content Container */}
-      <div className="relative z-10 h-full flex items-center">
+      <div className="relative z-10 h-full flex items-center animate-slide-in-left-content"
+        style={{
+          animationDelay: '0.5s',
+          animationFillMode: 'both',
+        }}
+      >
         <div className="w-full max-w-7xl mx-auto px-4 md:px-8 lg:px-[90px]">
           <div className="max-w-[691px]">
             {/* Main Heading */}
