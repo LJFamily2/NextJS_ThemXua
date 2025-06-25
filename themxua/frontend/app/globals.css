@@ -78,6 +78,45 @@ html {
   }
 }
 
+/* Responsive overlay gradients for HeroSection */
+.bg-gradient-mobile {
+  background: linear-gradient(
+    0deg,
+    #f0e1cd 0%,
+    #f0e1cd 45%,
+    rgba(240, 225, 205, 0.8) 75%,
+    rgba(240, 225, 205, 0.4) 80%,
+    rgba(240, 225, 205, 0.1) 90%,
+    transparent 95%
+  );
+}
+
+@media (min-width: 768px) {
+  .bg-gradient-desktop {
+    background: linear-gradient(
+      90deg,
+      #f0e1cd 0%,
+      #f0e1cd 45%,
+      rgba(240, 225, 205, 0.8) 55%,
+      rgba(240, 225, 205, 0.4) 70%,
+      rgba(240, 225, 205, 0.1) 80%,
+      transparent 95%
+    );
+  }
+}
+
+/* Slide in from bottom animation for mobile */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .animate-fade-in {
   animation: fadeIn 2s ease-in-out;
 }
@@ -87,9 +126,15 @@ html {
 }
 
 .animate-slide-in-left {
-  animation: slideInLeft 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .animate-slide-in-left-content {
   animation: slideInLeftContent 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (min-width: 768px) {
+  .animate-slide-in-left {
+    animation: slideInLeft 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
 }

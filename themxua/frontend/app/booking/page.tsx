@@ -1,6 +1,6 @@
 ﻿export default function BookingPage() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-2 sm:px-4 md:px-8 py-8">
+    <section id="booking" className="relative min-h-screen flex items-center justify-center px-2 sm:px-4 md:px-8 py-8">
       {/* background */}
       <div
         className="absolute inset-0 bg-cover bg-center"
@@ -19,7 +19,7 @@
           <li>Tiệc sinh nhật</li>
           <li>Cá nhân</li>
         </ul>
-        <p className="text-base sm:text-lg md:text-xl font-instrument mb-4 sm:mb-6 text-themxua-secondary/80 italic text-center">
+        <p className="text-left text-base sm:text-lg md:text-xl font-instrument mb-4 sm:mb-6 text-themxua-secondary/80 italic md:text-center">
           Xin hãy gọi hoặc kết bạn{' '}
           <span className="font-bold text-themxua-primary">ZALO</span> bên dưới:
         </p>
