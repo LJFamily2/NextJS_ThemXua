@@ -1,67 +1,65 @@
 'use client';
 
-import React from 'react';
-import Image from 'next/image';
-import ThemXuaButton from '../ui/ThemXuaButton';
+import React, { useRef } from 'react';
+
+const AREAS = [
+  {
+    id: 'area-a',
+    label: 'Khu A',
+    image: '/images/section5-bg.png',
+  },
+  {
+    id: 'area-b',
+    label: 'Khu B',
+    image: '/images/section4-bg.png',
+  },
+  {
+    id: 'area-c',
+    label: 'Khu C',
+    image: '/images/center.webp',
+  },
+  {
+    id: 'area-d',
+    label: 'Khu D',
+    image: '/images/vip1.webp',
+  },
+];
 
 const DiningAreasSection: React.FC = () => {
+  const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+
   return (
-    <section className="bg-themxua-cream-darkest relative overflow-hidden">
-      {/* Background Image */}
-      <div className="relative w-full h-[600px] lg:h-[941px]">
-        <Image
-          src="/images/section5-bg.png"
-          alt="ThemXua Dining Area"
-          fill
-          className="object-cover"
-        />
+    <section className="bg-themxua-cream-darkest relative">
+      {/* Parallax Sections */}
+      <div>
+        {AREAS.map((area, idx) => (
+          <div
+            key={area.id}
+            id={area.id}
+            ref={el => {
+              sectionRefs.current[idx] = el;
+            }}
+            className="relative w-full h-[600px] lg:h-[941px] flex items-start justify-start scroll-mt-24"
+            style={{
+              backgroundImage: `url(${area.image})`,
+              backgroundAttachment: 'fixed',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'cover',
+            }}
+          >
+            {/* Overlay */}
+            {/* <div className="absolute inset-0 bg-black/20" /> */}
 
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-black/20" />
-
-        {/* Content */}
-        <div className="absolute inset-0 flex items-start justify-start">
-          <div className="mt-16 lg:mt-20 ml-4 lg:ml-0">
-            {/* Area Label */}
-            <div className="inline-flex items-center justify-center bg-themxua-secondary text-themxua-white px-6 lg:px-8 py-3 lg:py-4 rounded-r-[20px] shadow-lg">
-              <span className="font-roboto-serif font-medium text-2xl lg:text-[40px] leading-none">
-                Khu C
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom Navigation/Info */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-          <div className="flex flex-col items-center space-y-4">
-            {/* Area Description */}
-            <div className="bg-white/90 backdrop-blur-sm rounded-xl px-6 py-3 shadow-lg">
-              <p className="font-roboto-serif text-sm lg:text-base text-themxua-primary text-center">
-                Không gian VIP sang trọng, riêng tư
-              </p>
-            </div>
-
-            {/* View More Button */}
-            <ThemXuaButton
-              variant="primary"
-              size="md"
-              href="/areas"
-              className="shadow-lg"
+            {/* Sticky Label inside Section */}
+            <div
+              className="sticky inline-flex items-center justify-center bg-themxua-secondary text-themxua-white px-6 lg:px-8 py-3 lg:py-4 rounded-r-[20px] shadow-lg font-medium text-2xl lg:text-[40px] leading-none"
+              style={{ top: `${70 + 20}px`, marginTop: '2.5rem' }}
             >
-              Xem Tất Cả Khu Vực
-            </ThemXuaButton>
+              {area.label}
+            </div>
           </div>
-        </div>
-
-        {/* Side indicators (dots for other areas) */}
-        <div className="absolute right-6 lg:right-12 top-1/2 transform -translate-y-1/2">
-          <div className="flex flex-col space-y-3">
-            <div className="w-3 h-3 bg-white/50 rounded-full" />
-            <div className="w-3 h-3 bg-white/50 rounded-full" />
-            <div className="w-3 h-3 bg-white rounded-full" />
-            <div className="w-3 h-3 bg-white/50 rounded-full" />
-          </div>
-        </div>
+        ))}
       </div>
     </section>
   );
