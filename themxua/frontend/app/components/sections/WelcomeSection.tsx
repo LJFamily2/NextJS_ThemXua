@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const WelcomeSection: React.FC = () => {
   return (
@@ -18,38 +19,79 @@ const WelcomeSection: React.FC = () => {
             món hải sản tươi ngon và bữa cơm gia đình thân thương đang chờ đón
             bạn
           </p>
-        </div>
-
+        </div>{' '}
         {/* Image Gallery */}
         <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-[30px]">
-          {/* Image 1 */}
-          <div className="relative w-full max-w-[415px] h-[400px] lg:h-[580px] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+          {/* Image 1 - Outdoor Area */}
+          <div className="relative w-full max-w-[415px] h-[400px] lg:h-[580px] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group">
             <Image
               src="/images/center.webp"
-              alt="ThemXua Restaurant Interior 1"
+              alt="ThemXua Restaurant Outdoor Area"
               fill
               className="object-cover hover:scale-105 transition-transform duration-500"
             />
+            {/* Area Type Badge */}
+            <div className="absolute top-[25px] left-0 bg-themxua-cream px-[5px] py-[10px] rounded-r-[5px] shadow-md">
+              <span className="font-roboto-serif font-bold text-[15px] text-themxua-primary">
+                Ngoài trời
+              </span>            </div>
+            {/* View More Button */}
+            <div className="absolute bottom-[30px] left-1/2 transform -translate-x-1/2">
+              <Link 
+                href="/areas/outdoor" 
+                className="inline-block bg-themxua-primary text-white font-roboto-serif text-[15px] px-[20px] py-[10px] rounded-[5px] hover:bg-opacity-90 transition-all duration-300"
+              >
+                Xem thêm
+              </Link>
+            </div>
           </div>
 
-          {/* Image 2 */}
-          <div className="relative w-full max-w-[415px] h-[400px] lg:h-[580px] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+          {/* Image 2 - Private Room */}
+          <div className="relative w-full max-w-[415px] h-[400px] lg:h-[580px] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group">
             <Image
               src="/images/vip1.webp"
-              alt="ThemXua Restaurant Interior 2"
+              alt="ThemXua Restaurant Private Room"
               fill
               className="object-cover hover:scale-105 transition-transform duration-500"
             />
+            {/* Area Type Badge */}
+            <div className="absolute top-[25px] left-0 bg-themxua-cream px-[5px] py-[10px] rounded-r-[5px] shadow-md">
+              <span className="font-roboto-serif font-bold text-[15px] text-themxua-primary">
+                Phòng kín
+              </span>            </div>
+            {/* View More Button */}
+            <div className="absolute bottom-[30px] left-1/2 transform -translate-x-1/2">
+              <Link 
+                href="/areas/private-room" 
+                className="inline-block bg-themxua-primary text-white font-roboto-serif text-[15px] px-[20px] py-[10px] rounded-[5px] hover:bg-opacity-90 transition-all duration-300"
+              >
+                Xem thêm
+              </Link>
+            </div>
           </div>
 
-          {/* Image 3 */}
-          <div className="relative w-full max-w-[415px] h-[400px] lg:h-[580px] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+          {/* Image 3 - Banquet Hall */}
+          <div className="relative w-full max-w-[415px] h-[400px] lg:h-[580px] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group">
             <Image
               src="/images/wood.webp"
-              alt="ThemXua Restaurant Interior 3"
+              alt="ThemXua Restaurant Banquet Hall"
               fill
               className="object-cover hover:scale-105 transition-transform duration-500"
             />
+            {/* Area Type Badge */}
+            <div className="absolute top-[25px] left-0 bg-themxua-cream px-[5px] py-[10px] rounded-r-[5px] shadow-md">
+              <span className="font-roboto-serif font-bold text-[15px] text-themxua-primary">
+                Sảnh tiệc
+              </span>            </div>
+            {/* View More Button */}
+            <div className="absolute bottom-[30px] left-1/2 transform -translate-x-1/2">
+              <Link 
+                href="/areas/banquet-hall" 
+                className="inline-block bg-themxua-primary text-white font-roboto-serif text-[15px] px-[20px] py-[10px] rounded-[5px] hover:bg-opacity-90 transition-all duration-300"
+              >
+                Xem thêm
+              </Link>
+            </div>
           </div>
         </div>
       </div>
