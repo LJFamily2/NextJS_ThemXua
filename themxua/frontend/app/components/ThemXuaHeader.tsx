@@ -12,11 +12,21 @@ const ThemXuaHeader = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      // Only apply scrolled effect on desktop (lg and up)
+      if (window.innerWidth >= 1024) {
+        setScrolled(window.scrollY > 20);
+      } else {
+        setScrolled(false);
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleScroll);
+    handleScroll(); // set initial state
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
   }, []);
 
   const navigationItems = [
@@ -34,11 +44,10 @@ const ThemXuaHeader = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-themxua-background/95 backdrop-blur-md shadow-lg'
-          : 'bg-transparent backdrop-blur-none shadow-none'
-      }`}
+      className={`top-0 left-0 right-0 z-50 transition-all duration-300
+      ${scrolled ? 'bg-themxua-background/95 backdrop-blur-md shadow-lg' : 'bg-transparent backdrop-blur-none shadow-none'}
+      relative lg:fixed
+      `}
     >
       <nav className="flex items-center justify-between px-4 md:px-8 lg:px-[100px] h-[70px]">
         {/* Logo Section */}
@@ -81,14 +90,16 @@ const ThemXuaHeader = () => {
             </Link>
           ))}{' '}
           {/* Booking Button */}
-            <Link
+          <Link
             href="/booking"
             className={`text-white font-instrument font-semibold text-base leading-none px-5 py-2.5 rounded-md h-10 flex items-center justify-center transition-all duration-200 hover:shadow-lg hover:scale-105 active:scale-95 bg-[#662811] hover:outline hover:outline-2 hover:outline-[#662811] focus:outline focus:outline-2 focus:outline-[#662811] ${
-              isActiveLink('/booking') ? 'outline outline-2 outline-[#662811] outline-offset-2' : 'hover:outline-offset-2 focus:outline-offset-2'
+              isActiveLink('/booking')
+                ? 'outline outline-2 outline-[#662811] outline-offset-2'
+                : 'hover:outline-offset-2 focus:outline-offset-2'
             }`}
-            >
+          >
             Đặt bàn
-            </Link>
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
@@ -138,14 +149,16 @@ const ThemXuaHeader = () => {
               {item.name}
             </Link>
           ))}{' '}
-          <Link
+            <Link
             href="/booking"
             onClick={() => setIsOpen(false)}
-            className="text-white font-instrument font-semibold text-base leading-none px-5 py-2.5 rounded-md h-10 flex items-center justify-center transition-all duration-300 hover:brightness-75 w-fit"
+            className={`text-white font-instrument font-semibold text-base leading-none px-5 py-2.5 rounded-md h-10 flex items-center justify-center transition-all duration-300 hover:brightness-75 w-fit ${
+              isActiveLink('/booking') ? 'outline outline-2 outline-[#662811] outline-offset-2' : ''
+            }`}
             style={{ backgroundColor: '#662811' }}
-          >
+            >
             Đặt bàn
-          </Link>
+            </Link>
         </div>
       </div>
 
