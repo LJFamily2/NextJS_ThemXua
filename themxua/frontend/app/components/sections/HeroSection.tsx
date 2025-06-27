@@ -10,12 +10,23 @@ const HeroSection: React.FC = () => {
     <section className="relative w-full h-[764px] overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
+        {/* Desktop */}
         <Image
-          src="/images/hero-bg.png"
+          src="/images/heroDesktop.jpg"
           alt="ThemXua Restaurant Background"
           fill
-          className="object-cover"
+          className="object-cover object-[center_30%] hidden sm:block"
           priority
+          sizes="(min-width: 640px) 100vw, 0vw"
+        />
+        {/* Mobile */}
+        <Image
+          src="/images/heroMobile.jpg"
+          alt="ThemXua Restaurant Background"
+          fill
+          className="object-cover sm:hidden"
+          priority
+          sizes="(max-width: 639px) 100vw"
         />
       </div>{' '}
       {/* Overlay Gradient */}
@@ -34,7 +45,7 @@ const HeroSection: React.FC = () => {
           animationFillMode: 'both',
         }}
       >
-        <div className="w-full max-w-7xl mx-auto px-4 md:px-8 lg:px-[90px]">
+        <div className="w-full max-w-7xl mx-auto px-4 md:px-16">
           <div className="max-w-[691px]">
             {/* Main Heading */}
             <h1 className=" font-semibold text-5xl leading-tight md:text-6xl lg:text-[72px] md:leading-tight lg:leading-none text-themxua-secondary mb-3 ">

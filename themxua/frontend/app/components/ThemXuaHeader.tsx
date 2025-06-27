@@ -59,6 +59,7 @@ const ThemXuaHeader = () => {
               fill
               className="object-contain pb-1"
               priority
+              sizes="(max-width: 639px) 100vw, (min-width: 640px) 100vw"
             />
           </div>
           <span className="text-themxua-primary font-dm-serif text-2xl font-medium leading-none transition-colors duration-300 group-hover:text-themxua-secondary z-40">
