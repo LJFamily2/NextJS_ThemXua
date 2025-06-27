@@ -12,10 +12,10 @@ const Footer: React.FC = () => {
           <div className="space-y-8">
             {/* Brand Logo/Name */}
             <div className="mb-8">
-              <h2 className="font-roboto-serif font-bold text-4xl lg:text-6xl text-themxua-primary mb-2">
+              <h2 className=" font-bold text-5xl lg:text-6xl text-themxua-primary mb-1">
                 THEM XUA
               </h2>
-                <p className="font-roboto-serif text-md text-themxua-black opacity-80">
+                <p className=" text-md text-themxua-black opacity-80">
                 Ẩm thực Việt Nam - Nơi hương vị truyền thống gặp gỡ hiện đại
                 </p>
             </div>
@@ -26,27 +26,27 @@ const Footer: React.FC = () => {
               <div className="space-y-6">
                 {/* Hours */}
                 <div className="space-y-3">
-                  <h3 className="font-roboto-serif font-semibold text-xl text-themxua-primary">
+                  <h3 className=" font-semibold text-xl text-themxua-primary">
                     Giờ hoạt động
                   </h3>
-                  <p className="font-roboto-serif text-base text-themxua-black">
+                  <p className=" text-base text-themxua-black">
                     Thứ 2 - CN: 10h - 23h
                   </p>
                 </div>
 
                 {/* Contact */}
                 <div className="space-y-3">
-                  <h3 className="font-roboto-serif font-semibold text-xl text-themxua-primary">
+                  <h3 className=" font-semibold text-xl text-themxua-primary">
                     Liên hệ
                   </h3>
                   <div className="space-y-2">
                     <a
                       href="tel:+84971807272"
-                      className="font-roboto-serif text-base text-themxua-black hover:text-themxua-primary transition-colors cursor-pointer"
+                      className=" text-base text-themxua-black hover:text-themxua-primary transition-colors cursor-pointer"
                     >
                       +84 971807272
                     </a>
-                    <p className="font-roboto-serif text-base text-themxua-black">
+                    <p className=" text-base text-themxua-black">
                       themxuaintn@gmail.com
                     </p>
                     <a
@@ -61,7 +61,7 @@ const Footer: React.FC = () => {
                       >
                         <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                       </svg>
-                      <span className="font-roboto-serif text-base">
+                      <span className=" text-base">
                         Facebook
                       </span>
                     </a>
@@ -71,16 +71,16 @@ const Footer: React.FC = () => {
 
               {/* Address */}
               <div className="space-y-3">
-                <h3 className="font-roboto-serif font-semibold text-xl text-themxua-primary">
+                <h3 className=" font-semibold text-xl text-themxua-primary">
                   Địa chỉ
                 </h3>
                 <div className="space-y-2">
-                  <p className="font-roboto-serif text-base text-themxua-black leading-relaxed">
+                  <p className=" text-base text-themxua-black leading-relaxed">
                     Cổng chính: 23 Hoàng Lê Kha,
                     <br />
                     Phường 3, Tây Ninh
                   </p>
-                  <p className="font-roboto-serif text-base text-themxua-black leading-relaxed">
+                  <p className=" text-base text-themxua-black leading-relaxed">
                     Cổng sau: 23 Hoàng Lê Kha,
                     <br />
                     Phường 3, Tây Ninh
@@ -111,13 +111,13 @@ const Footer: React.FC = () => {
         <div className="border-t border-themxua-black/20 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             {/* Copyright */}
-            <p className="font-roboto-serif text-sm text-themxua-black opacity-70">
+            <p className=" text-sm text-themxua-black opacity-70">
               © THEM XUA. All rights reserved.
             </p>
 
             {/* Social Links or Additional Info */}
             <div className="flex items-center gap-6">
-              <p className="font-roboto-serif text-sm text-themxua-black opacity-70">
+              <p className=" text-sm text-themxua-black opacity-70">
                 Follow us for updates
               </p>
             </div>

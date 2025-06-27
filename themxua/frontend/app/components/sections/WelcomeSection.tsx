@@ -10,11 +10,11 @@ const WelcomeSection: React.FC = () => {
       <div className="w-full max-w-7xl mx-auto px-4 md:px-8 lg:px-[70px]">
         {/* Text Content */}
         <div className="text-center mb-16 lg:mb-20">
-          <h2 className="font-roboto-serif font-semibold text-3xl md:text-4xl lg:text-[47px] leading-tight text-themxua-primary mb-6 lg:mb-8">
+          <h2 className=" font-semibold text-3xl md:text-4xl lg:text-[47px] leading-tight text-themxua-primary mb-6 lg:mb-8">
             Chào mừng đến với Thềm Xưa
           </h2>
 
-          <p className="font-roboto-serif text-base lg:text-lg leading-relaxed text-themxua-gray max-w-5xl mx-auto">
+          <p className=" text-base lg:text-lg leading-relaxed text-themxua-gray max-w-5xl mx-auto">
             Đắm chìm trong không gian ấm cúng và mộc mạc của Thềm Xưa, nơi những
             món hải sản tươi ngon và bữa cơm gia đình thân thương đang chờ đón
             bạn
@@ -31,15 +31,16 @@ const WelcomeSection: React.FC = () => {
               className="object-cover hover:scale-105 transition-transform duration-500"
             />
             {/* Area Type Badge */}
-            <div className="absolute top-[25px] left-0 bg-themxua-cream px-[5px] py-[10px] rounded-r-[5px] shadow-md">
-              <span className="font-roboto-serif font-bold text-[15px] text-themxua-primary">
+            <div className="absolute top-[25px] left-0 bg-themxua-cream px-[5px] py-[10px] rounded-r-[5px] shadow-md transition-all duration-300 group-hover:scale-110 group-hover:px-[12px] group-hover:py-[18px]">
+              <span className=" font-bold text-[15px] text-themxua-primary transition-all duration-300 group-hover:text-[20px]">
                 Ngoài trời
-              </span>            </div>
+              </span>
+            </div>
             {/* View More Button */}
             <div className="absolute bottom-[30px] left-1/2 transform -translate-x-1/2">
-              <Link 
-                href="/areas/outdoor" 
-                className="inline-block bg-themxua-primary text-white font-roboto-serif text-[15px] px-[20px] py-[10px] rounded-[5px] hover:bg-opacity-90 transition-all duration-300"
+              <Link
+                href="/areas/outdoor"
+                className="inline-block bg-themxua-primary text-white  text-[15px] px-[20px] py-[10px] rounded-[5px] hover:bg-opacity-90 transition-all duration-300"
               >
                 Xem thêm
               </Link>
@@ -55,15 +56,16 @@ const WelcomeSection: React.FC = () => {
               className="object-cover hover:scale-105 transition-transform duration-500"
             />
             {/* Area Type Badge */}
-            <div className="absolute top-[25px] left-0 bg-themxua-cream px-[5px] py-[10px] rounded-r-[5px] shadow-md">
-              <span className="font-roboto-serif font-bold text-[15px] text-themxua-primary">
+            <div className="absolute top-[25px] left-0 bg-themxua-cream px-[5px] py-[10px] rounded-r-[5px] shadow-md transition-all duration-300 group-hover:scale-110 group-hover:px-[12px] group-hover:py-[18px]">
+              <span className=" font-bold text-[15px] text-themxua-primary transition-all duration-300 group-hover:text-[20px]">
                 Phòng kín
-              </span>            </div>
+              </span>
+            </div>
             {/* View More Button */}
             <div className="absolute bottom-[30px] left-1/2 transform -translate-x-1/2">
-              <Link 
-                href="/areas/private-room" 
-                className="inline-block bg-themxua-primary text-white font-roboto-serif text-[15px] px-[20px] py-[10px] rounded-[5px] hover:bg-opacity-90 transition-all duration-300"
+              <Link
+                href="/areas/private-room"
+                className="inline-block bg-themxua-primary text-white  text-[15px] px-[20px] py-[10px] rounded-[5px] hover:bg-opacity-90 transition-all duration-300"
               >
                 Xem thêm
               </Link>
@@ -79,15 +81,16 @@ const WelcomeSection: React.FC = () => {
               className="object-cover hover:scale-105 transition-transform duration-500"
             />
             {/* Area Type Badge */}
-            <div className="absolute top-[25px] left-0 bg-themxua-cream px-[5px] py-[10px] rounded-r-[5px] shadow-md">
-              <span className="font-roboto-serif font-bold text-[15px] text-themxua-primary">
+            <div className="absolute top-[25px] left-0 bg-themxua-cream px-[5px] py-[10px] rounded-r-[5px] shadow-md transition-all duration-300 group-hover:scale-110 group-hover:px-[12px] group-hover:py-[18px]">
+              <span className=" font-bold text-[15px] text-themxua-primary transition-all duration-300 group-hover:text-[20px]">
                 Sảnh tiệc
-              </span>            </div>
+              </span>
+            </div>
             {/* View More Button */}
             <div className="absolute bottom-[30px] left-1/2 transform -translate-x-1/2">
-              <Link 
-                href="/areas/banquet-hall" 
-                className="inline-block bg-themxua-primary text-white font-roboto-serif text-[15px] px-[20px] py-[10px] rounded-[5px] hover:bg-opacity-90 transition-all duration-300"
+              <Link
+                href="/areas/banquet-hall"
+                className="inline-block bg-themxua-primary text-white  text-[15px] px-[20px] py-[10px] rounded-[5px] hover:bg-opacity-90 transition-all duration-300"
               >
                 Xem thêm
               </Link>

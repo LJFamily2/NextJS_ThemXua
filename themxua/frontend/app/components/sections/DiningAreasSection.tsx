@@ -53,8 +53,7 @@ const DiningAreasSection: React.FC = () => {
 
             {/* Sticky Label inside Section */}
             <div
-              className="sticky inline-flex items-center justify-center bg-themxua-secondary text-themxua-white px-6 lg:px-8 py-3 lg:py-4 rounded-r-[20px] shadow-lg font-medium text-2xl lg:text-[40px] leading-none"
-              style={{ top: `${70 + 20}px`, marginTop: '2.5rem' }}
+              className="sticky top-5 md:top-20 inline-flex items-center justify-center bg-themxua-secondary text-themxua-white px-6 mt-8 lg:px-8 py-3 lg:py-4 rounded-r-[20px] shadow-lg font-medium text-2xl lg:text-[40px] leading-none"
             >
               {area.label}
             </div>

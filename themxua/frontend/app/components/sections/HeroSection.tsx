@@ -20,7 +20,7 @@ const HeroSection: React.FC = () => {
       </div>{' '}
       {/* Overlay Gradient */}
       <div
-        className="absolute inset-0 animate-slide-in-left md:animate-slide-in-left bg-gradient-mobile md:bg-gradient-desktop"
+        className="absolute inset-0 animate-slide-in-left md:animate-slide-in-left bg-gradient-mobile bg-gradient-desktop"
         style={{
           animationDelay: '0.2s',
           animationFillMode: 'both',
