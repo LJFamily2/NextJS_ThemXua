@@ -51,17 +51,17 @@ const ThemXuaHeader = () => {
     >
       <nav className="flex items-center justify-between px-4 md:px-8 lg:px-[100px] h-[70px]">
         {/* Logo Section */}
-        <Link href="/" className="flex items-center gap-1 group">
-          <div className="relative w-12 h-12 transition-transform duration-300 group-hover:scale-105">
+        <Link href="/" className="flex items-center gap-1 group z-40">
+          <div className="relative w-12 h-12 transition-transform duration-300 group-hover:scale-110 animate-[slideInRight_0.5s_ease-in] z-30">
             <Image
-              src="/images/logo.png"
+              src="/images/logoTransparentNauDo.png"
               alt="Them Xua Logo"
               fill
-              className="object-contain"
+              className="object-contain pb-1"
               priority
             />
           </div>
-          <span className="text-themxua-primary font-dm-serif text-2xl font-medium leading-none transition-colors duration-300 group-hover:text-themxua-secondary">
+          <span className="text-themxua-primary font-dm-serif text-2xl font-medium leading-none transition-colors duration-300 group-hover:text-themxua-secondary z-40">
             Them Xua
           </span>
         </Link>
@@ -88,11 +88,12 @@ const ThemXuaHeader = () => {
                 }`}
               />
             </Link>
-          ))}{' '}
+          ))}
+
           {/* Booking Button */}
           <Link
             href="/booking"
-            className={`text-white font-instrument font-semibold text-base leading-none px-5 py-2.5 rounded-md h-10 flex items-center justify-center transition-all duration-200 hover:shadow-lg hover:scale-105 active:scale-95 bg-[#662811] hover:outline hover:outline-2 hover:outline-[#662811] focus:outline focus:outline-2 focus:outline-[#662811] ${
+            className={`text-white font-instrument font-semibold text-base leading-none px-5 py-2.5 rounded-md h-10 flex items-center justify-center transition-all duration-200 hover:shadow-lg hover:scale-105 active:scale-95 bg-[#662811] hover:outline hover:outline-2 hover:outline-[#662811] focus:outline focus:outline-2 focus:outline-[#662811] animate-[wavy-outline_2s_ease-in-out_4] outline outline-[#662811] ${
               isActiveLink('/booking')
                 ? 'outline outline-2 outline-[#662811] outline-offset-2'
                 : 'hover:outline-offset-2 focus:outline-offset-2'
@@ -148,17 +149,21 @@ const ThemXuaHeader = () => {
             >
               {item.name}
             </Link>
-          ))}{' '}
-            <Link
+          ))}
+
+          {/* Booking Button */}
+          <Link
             href="/booking"
             onClick={() => setIsOpen(false)}
-            className={`text-white font-instrument font-semibold text-base leading-none px-5 py-2.5 rounded-md h-10 flex items-center justify-center transition-all duration-300 hover:brightness-75 w-fit ${
-              isActiveLink('/booking') ? 'outline outline-2 outline-[#662811] outline-offset-2' : ''
+            className={`text-white font-instrument font-semibold text-base leading-none px-5 py-2.5 rounded-md h-10 flex items-center justify-center transition-all duration-300 hover:brightness-75 w-fit  ${
+              isActiveLink('/booking')
+                ? 'outline outline-2 outline-[#662811] outline-offset-2'
+                : ''
             }`}
             style={{ backgroundColor: '#662811' }}
-            >
+          >
             Đặt bàn
-            </Link>
+          </Link>
         </div>
       </div>
 
