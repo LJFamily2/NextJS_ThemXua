@@ -76,14 +76,10 @@ const Footer: React.FC = () => {
                 </h3>
                 <div className="space-y-2">
                   <p className=" text-base text-themxua-black leading-relaxed">
-                    Cổng chính: 23 Hoàng Lê Kha,
-                    <br />
-                    Phường 3, Tây Ninh
+                    Cổng chính: 23 Hoàng Lê Kha, Phường 3, Tây Ninh
                   </p>
                   <p className=" text-base text-themxua-black leading-relaxed">
-                    Cổng sau: 23 Hoàng Lê Kha,
-                    <br />
-                    Phường 3, Tây Ninh
+                    Cổng sau: 285 Huỳnh Công Giản, Tây Ninh
                   </p>
                 </div>
               </div>

@@ -76,7 +76,7 @@ export default function MenuPage() {
     <div className="min-h-screen bg-themxua-background flex flex-col md:flex-row pt-[70px]">
       {/* Main Menu Content Area */}
       <div className="flex-grow p-4 md:p-8">
-        <h1 className="text-4xl md:text-5xl font-dm-serif text-themxua-primary mb-2 text-center">
+        <h1 className="text-4xl md:text-5xl text-themxua-primary mb-2 text-center font-medium">
           Thực Đơn
         </h1>
         <p className="text-lg md:text-xl font-instrument text-themxua-secondary mb-8 md:mb-12 text-center">
