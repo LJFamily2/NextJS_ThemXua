@@ -16,7 +16,7 @@ const AREAS = [
   {
     id: 'area-c',
     label: 'Khu C',
-    image: '/images/center.webp',
+    image: '/images/khuC.jpg',
   },
   {
     id: 'area-d',
