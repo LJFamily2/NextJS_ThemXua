@@ -32,7 +32,7 @@ const ThemXuaHeader = () => {
   const navigationItems = [
     { name: 'Trang chủ', href: '/' },
     { name: 'Menu', href: '/menu' },
-    { name: 'Liên hệ', href: '/contact' },
+    { name: 'Liên hệ', href: '/#contact' },
   ];
 
   const isActiveLink = (href: string) => {
@@ -42,11 +42,18 @@ const ThemXuaHeader = () => {
     return pathname.startsWith(href);
   };
 
+  const isRelativeHeader = ['/menu'];
+
   return (
     <header
       className={`top-0 left-0 right-0 z-50 transition-all duration-300
-      ${scrolled ? 'bg-themxua-background/95 backdrop-blur-md shadow-lg' : 'bg-transparent backdrop-blur-none shadow-none'}
-      relative lg:fixed
+        ${
+          isRelativeHeader.includes(pathname)
+            ? 'bg-themxua-background relative'
+            : scrolled
+              ? 'bg-themxua-background/95 backdrop-blur-md shadow-lg lg:fixed'
+              : 'bg-transparent backdrop-blur-none shadow-none relative lg:fixed'
+        }
       `}
     >
       <nav className="flex items-center justify-between px-4 md:px-8 lg:px-[100px] h-[70px]">

@@ -36,7 +36,7 @@ const Footer: React.FC = () => {
 
                 {/* Contact */}
                 <div className="space-y-3">
-                  <h3 className=" font-semibold text-xl text-themxua-primary">
+                  <h3 className=" font-semibold text-xl text-themxua-primary" id='contact'>
                     Liên hệ
                   </h3>
                   <div className="space-y-2">
