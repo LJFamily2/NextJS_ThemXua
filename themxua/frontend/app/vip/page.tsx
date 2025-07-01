@@ -45,7 +45,7 @@ const VipRoomPage: React.FC = () => {
     <div className="min-h-screen">
       {/* Hero Section with Background Image */}
       <section
-        className="relative min-h-screen flex items-center justify-center"
+        className="relative min-h-screen flex items-center justify-center cursorWhite"
         style={{
           backgroundImage: "url('/images/vip-hero-bg.jpg')",
           backgroundSize: 'cover',
@@ -106,7 +106,7 @@ const VipRoomPage: React.FC = () => {
                 src="/images/vip1.jpg"
                 alt="VIP Room Interior"
                 fill
-                className="object-cover hidden md:block object-[30%_center] transition-transform duration-500 group-hover:scale-110"
+                className="object-cover cursorWhite hidden md:block object-[30%_center] transition-transform duration-500 group-hover:scale-110"
                 sizes="(min-width: 1300px) 50vw, 40vw"
                 priority
               />
@@ -116,7 +116,7 @@ const VipRoomPage: React.FC = () => {
                 src="/images/vip1Mobile.jpg"
                 alt="VIP Room Interior"
                 fill
-                className="object-cover block md:hidden transition-transform duration-500 group-hover:scale-110"
+                className="object-cover block md:hidden object-[10%_center] transition-transform duration-500 group-hover:scale-110"
                 sizes="100vw"
                 priority
               />
@@ -218,20 +218,20 @@ const VipRoomPage: React.FC = () => {
           <div className="order-1 lg:order-2">
             <div className="relative w-full h-[400px] md:h-[500px] lg:h-[528px] rounded-lg overflow-hidden shadow-lg group">
               <Image
-                src="/images/vip1.jpg"
+                src="/images/vip2.jpg"
                 alt="VIP Room Interior"
                 fill
-                className="object-cover hidden md:block object-[30%_center] transition-transform duration-500 group-hover:scale-110"
+                className="object-cover cursorWhite hidden md:block object-[60%_center] transition-transform duration-500 group-hover:scale-110"
                 sizes="(min-width: 1300px) 50vw, 40vw"
                 priority
               />
 
               {/* Mobile Image */}
               <Image
-                src="/images/vip1Mobile.jpg"
+                src="/images/vip2Mobile.jpg"
                 alt="VIP Room Interior"
                 fill
-                className="object-cover block md:hidden transition-transform duration-500 group-hover:scale-110"
+                className="object-cover block md:hidden object-[55%_center] transition-transform duration-500 group-hover:scale-110"
                 sizes="100vw"
                 priority
               />
@@ -256,7 +256,7 @@ const VipRoomPage: React.FC = () => {
                 src="/images/vip1.jpg"
                 alt="VIP Room Interior"
                 fill
-                className="object-cover hidden md:block object-[30%_center] transition-transform duration-500 group-hover:scale-110"
+                className="object-cover cursorWhite hidden md:block object-[30%_center] transition-transform duration-500 group-hover:scale-110"
                 sizes="(min-width: 1300px) 50vw, 40vw"
                 priority
               />
@@ -266,7 +266,7 @@ const VipRoomPage: React.FC = () => {
                 src="/images/vip1Mobile.jpg"
                 alt="VIP Room Interior"
                 fill
-                className="object-cover block md:hidden transition-transform duration-500 group-hover:scale-110"
+                className="object-cover block md:hidden object-[80%_center] transition-transform duration-500 group-hover:scale-110"
                 sizes="100vw"
                 priority
               />
@@ -371,7 +371,7 @@ const VipRoomPage: React.FC = () => {
                 src="/images/vip1.jpg"
                 alt="VIP Room Interior"
                 fill
-                className="object-cover hidden md:block object-[30%_center] transition-transform duration-500 group-hover:scale-110"
+                className="object-cover cursorWhite hidden md:block object-[30%_center] transition-transform duration-500 group-hover:scale-110"
                 sizes="(min-width: 1300px) 50vw, 40vw"
                 priority
               />

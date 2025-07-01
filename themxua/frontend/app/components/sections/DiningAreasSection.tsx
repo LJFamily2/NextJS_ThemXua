@@ -29,7 +29,7 @@ const DiningAreasSection: React.FC = () => {
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   return (
-    <section className="bg-themxua-cream-darkest relative" id='dining-areas'>
+    <section className="bg-themxua-cream-darkest relative cursorWhite" id='dining-areas'>
       {/* Parallax Sections */}
       <div>
         {AREAS.map((area, idx) => (

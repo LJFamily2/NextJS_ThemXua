@@ -7,6 +7,14 @@
   font-family: var(--font-roboto-serif), 'Roboto Serif', serif;
 }
 
+html, body {
+  cursor: url('/images/defaultCursor.png') 32 32, auto !important;
+}
+
+body .cursorWhite {
+  cursor: url('/images/whiteCursor.png') 32 32, auto !important;
+}
+
 /* Custom font utilities */
 .font-roboto-serif {
   font-family: var(--font-roboto-serif), 'Roboto Serif', serif;
