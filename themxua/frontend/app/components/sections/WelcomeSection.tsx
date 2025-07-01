@@ -15,7 +15,7 @@ const WelcomeSection: React.FC = () => {
           </h2>
 
           <p className=" text-base lg:text-lg leading-relaxed text-themxua-gray max-w-5xl mx-auto">
-            Đắm chìm trong không gian ấm cúng và mộc mạc của Thềm Xưa, nơi những
+            Đắm chìm trong không gian ấm cúng và mộc mạc của <span className="font-semibold">Thềm Xưa</span>, nơi những
             món hải sản tươi ngon và bữa cơm gia đình thân thương đang chờ đón
             bạn
           </p>
@@ -64,7 +64,7 @@ const WelcomeSection: React.FC = () => {
             {/* View More Button */}
             <div className="absolute bottom-[30px] left-1/2 transform -translate-x-1/2">
               <Link
-                href="/areas/private-room"
+                href="/vip"
                 className="inline-block bg-themxua-primary text-white  text-[15px] px-[20px] py-[10px] rounded-[5px] hover:bg-opacity-90 transition-all duration-300"
               >
                 Xem thêm

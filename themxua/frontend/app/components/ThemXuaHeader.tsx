@@ -42,7 +42,7 @@ const ThemXuaHeader = () => {
     return pathname.startsWith(href);
   };
 
-  const isRelativeHeader = ['/menu'];
+  const isRelativeHeader = ['/menu', '/vip'];
 
   return (
     <header
