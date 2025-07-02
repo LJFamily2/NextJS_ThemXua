@@ -1,35 +1,40 @@
 'use client';
 
 import React, { useRef } from 'react';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const AREAS = [
   {
     id: 'area-a',
-    label: 'Khu A',
+    labelKey: 'diningAreas.areaA',
     image: '/images/section5-bg.png',
   },
   {
     id: 'area-b',
-    label: 'Khu B',
+    labelKey: 'diningAreas.areaB',
     image: '/images/section4-bg.png',
   },
   {
     id: 'area-c',
-    label: 'Khu C',
+    labelKey: 'diningAreas.areaC',
     image: '/images/khuC.jpg',
   },
   {
     id: 'area-d',
-    label: 'Khu D',
+    labelKey: 'diningAreas.areaD',
     image: '/images/vip1.webp',
   },
 ];
 
 const DiningAreasSection: React.FC = () => {
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const { t } = useLanguage();
 
   return (
-    <section className="bg-themxua-cream-darkest relative cursorWhite" id='dining-areas'>
+    <section
+      className="bg-themxua-cream-darkest relative cursorWhite"
+      id="dining-areas"
+    >
       {/* Parallax Sections */}
       <div>
         {AREAS.map((area, idx) => (
@@ -52,10 +57,8 @@ const DiningAreasSection: React.FC = () => {
             {/* <div className="absolute inset-0 bg-black/20" /> */}
 
             {/* Sticky Label inside Section */}
-            <div
-              className="sticky top-5 md:top-20 inline-flex items-center justify-center bg-themxua-secondary text-themxua-white px-6 mt-8 lg:px-8 py-3 lg:py-4 rounded-r-[20px] shadow-lg font-medium text-2xl lg:text-[40px] leading-none"
-            >
-              {area.label}
+            <div className="sticky top-5 md:top-20 inline-flex items-center justify-center bg-themxua-secondary text-themxua-white px-6 mt-8 lg:px-8 py-3 lg:py-4 rounded-r-[20px] shadow-lg font-medium text-2xl lg:text-[40px] leading-none">
+              {t(area.labelKey)}
             </div>
           </div>
         ))}

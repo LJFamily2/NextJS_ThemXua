@@ -2,8 +2,10 @@
 
 import React from 'react';
 import Image from 'next/image';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const FoodShowcaseSection: React.FC = () => {
+  const { t } = useLanguage();
   return (
     <section className="bg-themxua-cream-light py-16 lg:py-24 relative overflow-hidden">
       {/* Background Brand Text */}
@@ -33,10 +35,8 @@ const FoodShowcaseSection: React.FC = () => {
               />
             </div>
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 lg:p-8 shadow-lg">
-              <p className=" text-base lg:text-lg text-themxua-gray leading-relaxed">
-                Nâng tầm trải nghiệm ẩm thực của bạn tại <span className="font-semibold">Thềm Xưa</span> với tuyển tập
-                các món ăn Việt Nam được tuyển chọn kỹ lưỡng, mỗi món là một
-                kiệt tác về hương vị và mùi thơm.
+              <p className="text-base lg:text-lg text-themxua-gray leading-relaxed">
+                {t('foodShowcase.description1')}
               </p>
             </div>
           </div>
@@ -45,14 +45,11 @@ const FoodShowcaseSection: React.FC = () => {
             <div className="space-y-6 lg:space-y-8">
               {/* Top Section - Text Content */}
               <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 lg:p-8 shadow-lg">
-                <h3 className=" font-semibold text-2xl lg:text-3xl text-themxua-primary mb-4">
-                  Khám phá tinh hoa ẩm thực Việt Nam
+                <h3 className="font-semibold text-2xl lg:text-3xl text-themxua-primary mb-4">
+                  {t('foodShowcase.title')}
                 </h3>
-                <p className=" text-base lg:text-lg text-themxua-gray leading-relaxed">
-                  Tại <span className="font-semibold">Thềm Xưa</span>, chúng tôi rất tự hào về cam kết của mình đối với
-                  tính xác thực và chất lượng. Thực đơn của chúng tôi có nhiều
-                  món ăn Việt Nam đa dạng, được chế biến khéo léo bằng các
-                  nguyên liệu địa phương tươi ngon nhất.
+                <p className="text-base lg:text-lg text-themxua-gray leading-relaxed">
+                  {t('foodShowcase.description2')}
                 </p>
               </div>
 

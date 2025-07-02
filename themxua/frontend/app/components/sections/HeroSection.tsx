@@ -4,8 +4,11 @@ import React from 'react';
 import Image from 'next/image';
 import ThemXuaButton from '../ui/ThemXuaButton';
 import { MouseScrollIcon } from '../ui/Icons';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const HeroSection: React.FC = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="relative w-full h-[764px] overflow-hidden">
       {/* Background Image */}
@@ -48,13 +51,13 @@ const HeroSection: React.FC = () => {
         <div className="w-full max-w-7xl mx-auto px-4 md:px-16">
           <div className="max-w-[691px]">
             {/* Main Heading */}
-            <h1 className=" font-semibold text-5xl leading-tight md:text-6xl lg:text-[72px] md:leading-tight lg:leading-none text-themxua-secondary mb-3 ">
-              Khám Phá Ẩm Thực Thềm Xưa
+            <h1 className="font-semibold text-5xl leading-tight md:text-6xl lg:text-[72px] md:leading-tight lg:leading-none text-themxua-secondary mb-3">
+              {t('hero.title')}
             </h1>
 
             {/* Subtitle */}
-            <p className=" font-semibold text-lg md:text-xl lg:text-xl leading-relaxed text-themxua-orange mb-8 lg:mb-12">
-              Hãy tận hưởng sự ấm cúng của những bữa cơm gia đình
+            <p className="font-semibold text-lg md:text-xl lg:text-xl leading-relaxed text-themxua-orange mb-8 lg:mb-12">
+              {t('hero.subtitle')}
             </p>
 
             {/* Buttons */}
@@ -65,7 +68,7 @@ const HeroSection: React.FC = () => {
                 href="/booking#booking"
                 className="w-full sm:w-auto min-w-[172px] h-[55px] rounded-lg text-themxua-white"
               >
-                Đặt Bàn
+                {t('booking.title')}
               </ThemXuaButton>
 
               <ThemXuaButton
@@ -74,7 +77,7 @@ const HeroSection: React.FC = () => {
                 href="/menu"
                 className="w-full sm:w-auto min-w-[172px] h-[55px] rounded-lg"
               >
-                Xem Menu
+                {t('menu.explore')}
               </ThemXuaButton>
             </div>
           </div>
@@ -86,7 +89,7 @@ const HeroSection: React.FC = () => {
         <div className="flex flex-col items-center absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20 sm:hidden">
           <span className="animate-bounce text-themxua-orange text-3xl">↓</span>
           <span className="mt-1 text-xs text-themxua-orange font-semibold animate-pulse">
-            Kéo xuống
+            {t('hero.scrollDown')}
           </span>
         </div>
         {/* Desktop: Mouse Scroll Icon */}

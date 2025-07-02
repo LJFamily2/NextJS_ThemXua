@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Roboto_Serif } from 'next/font/google';
 import './globals.css';
 import ThemXuaHeader from './components/ThemXuaHeader';
+import { LanguageProvider } from './contexts/LanguageContext';
 
 const robotoSerif = Roboto_Serif({
   subsets: ['latin'],
@@ -23,8 +24,10 @@ export default function RootLayout({
   return (
     <html lang="vi">
       <body className={`${robotoSerif.variable} antialiased select-none`}>
-        <ThemXuaHeader />
-        <main>{children}</main>
+        <LanguageProvider>
+          <ThemXuaHeader />
+          <main>{children}</main>
+        </LanguageProvider>
       </body>
     </html>
   );

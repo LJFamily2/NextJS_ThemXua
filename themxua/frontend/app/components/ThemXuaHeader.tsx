@@ -4,11 +4,18 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import {
+  useLanguage,
+  languages,
+  LanguageCode,
+} from '../contexts/LanguageContext';
 
 const ThemXuaHeader = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { currentLanguage, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,10 +37,9 @@ const ThemXuaHeader = () => {
   }, []);
 
   const navigationItems = [
-    { name: 'Trang chủ', href: '/' },
-    { name: 'Menu', href: '/menu' },
-    { name: 'Sảnh tiệc', href: '/party' },
-    { name: 'Liên hệ', href: '/#contact' },
+    { name: t('header.home'), href: '/' },
+    { name: t('header.menu'), href: '/menu' },
+    { name: t('header.contact'), href: '/#contact' },
   ];
 
   const isActiveLink = (href: string) => {
@@ -43,7 +49,12 @@ const ThemXuaHeader = () => {
     return pathname.startsWith(href);
   };
 
-  const isRelativeHeader = ['/menu', '/vip', '/party'];
+  const isRelativeHeader = ['/menu', '/vip'];
+
+  const handleLanguageChange = (lang: LanguageCode) => {
+    setLanguage(lang);
+    setIsLangMenuOpen(false);
+  };
 
   return (
     <header
@@ -102,6 +113,88 @@ const ThemXuaHeader = () => {
             </Link>
           ))}
 
+          {/* Language Selector */}
+          <div className="relative">
+            <button
+              onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
+              className={`flex items-center gap-2 px-3 py-2 rounded-lg border-2 transition-all duration-300 hover:scale-105 hover:shadow-md ${
+                pathname === '/' && !scrolled
+                  ? 'text-white border-white/30 bg-white/10 hover:bg-white/20 hover:border-white/50'
+                  : 'text-themxua-primary border-themxua-primary/30 bg-themxua-cream/20 hover:bg-themxua-cream/40 hover:border-themxua-primary/50'
+              }`}
+              aria-expanded={isLangMenuOpen}
+              aria-label="Select language"
+            >
+              <div className="relative w-5 h-5">
+                <Image
+                  src={languages[currentLanguage].flag}
+                  alt={`${languages[currentLanguage].name} flag`}
+                  fill
+                  className="object-cover rounded-sm"
+                  sizes="20px"
+                />
+              </div>
+              <span className="text-sm font-medium tracking-wide">
+                {currentLanguage.toUpperCase()}
+              </span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className={`h-3 w-3 transition-transform duration-300 ${isLangMenuOpen ? 'rotate-180' : ''}`}
+                fill="currentColor"
+                viewBox="0 0 12 12"
+              >
+                <path d="M6 8L2 4h8z" />
+              </svg>
+            </button>
+
+            {isLangMenuOpen && (
+              <div className="absolute right-0 mt-3 w-44 rounded-xl shadow-2xl bg-white border border-themxua-primary/10 overflow-hidden z-50 backdrop-blur-sm">
+                <div className="py-2" role="menu" aria-orientation="vertical">
+                  {Object.values(languages).map((lang, index) => (
+                    <button
+                      key={lang.code}
+                      onClick={() =>
+                        handleLanguageChange(lang.code as LanguageCode)
+                      }
+                      className={`flex items-center gap-3 px-4 py-3 text-sm w-full text-left transition-all duration-200 hover:scale-[1.02] ${
+                        currentLanguage === lang.code
+                          ? 'bg-gradient-to-r from-themxua-cream/40 to-themxua-cream/20 text-themxua-primary font-semibold border-l-4 border-themxua-secondary'
+                          : 'text-gray-700 hover:bg-themxua-cream/30 hover:text-themxua-primary'
+                      } ${index !== Object.values(languages).length - 1 ? 'border-b border-themxua-primary/5' : ''}`}
+                      role="menuitem"
+                    >
+                      <div className="relative w-6 h-6">
+                        <Image
+                          src={lang.flag}
+                          alt={`${lang.name} flag`}
+                          fill
+                          className="object-cover rounded-sm"
+                          sizes="24px"
+                        />
+                      </div>
+                      <span className="font-medium">{lang.name}</span>
+                      {currentLanguage === lang.code && (
+                        <span className="ml-auto text-themxua-secondary">
+                          <svg
+                            className="w-4 h-4"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                        </span>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
           {/* Booking Button */}
           <Link
             href="/booking"
@@ -111,33 +204,104 @@ const ThemXuaHeader = () => {
                 : 'hover:outline-offset-2 focus:outline-offset-2'
             }`}
           >
-            Đặt bàn
+            {t('header.booking')}
           </Link>
         </div>
+        {/* Mobile Controls */}
+        <div className="lg:hidden flex items-center gap-2">
+          {/* Mobile Language Selector */}
+          <div className="lg:hidden flex items-center">
+            <button
+              onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
+              className="flex items-center gap-2 px-3 py-2 rounded-lg border-2 border-themxua-primary/30 bg-themxua-cream/20 text-themxua-primary hover:bg-themxua-cream/40 hover:border-themxua-primary/50 transition-all duration-300"
+              aria-expanded={isLangMenuOpen}
+              aria-label="Select language"
+            >
+              <div className="relative w-4 h-4">
+                <Image
+                  src={languages[currentLanguage].flag}
+                  alt={`${languages[currentLanguage].name} flag`}
+                  fill
+                  className="object-cover rounded-sm"
+                  sizes="16px"
+                />
+              </div>
+              <span className="text-xs font-medium">
+                {currentLanguage.toUpperCase()}
+              </span>
+            </button>
+          </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="lg:hidden flex flex-col items-center justify-center w-8 h-8 space-y-1 group"
-          aria-label="Toggle menu"
-        >
-          <span
-            className={`block w-6 h-0.5 bg-themxua-primary transition-all duration-300 ${
-              isOpen ? 'rotate-45 translate-y-1.5' : ''
-            }`}
-          />
-          <span
-            className={`block w-6 h-0.5 bg-themxua-primary transition-all duration-300 ${
-              isOpen ? 'opacity-0' : ''
-            }`}
-          />
-          <span
-            className={`block w-6 h-0.5 bg-themxua-primary transition-all duration-300 ${
-              isOpen ? '-rotate-45 -translate-y-1.5' : ''
-            }`}
-          />
-        </button>
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="lg:hidden flex flex-col items-center justify-center w-8 h-8 space-y-1 group"
+            aria-label="Toggle menu"
+          >
+            <span
+              className={`block w-6 h-0.5 bg-themxua-primary transition-all duration-300 ${
+                isOpen ? 'rotate-45 translate-y-1.5' : ''
+              }`}
+            />
+            <span
+              className={`block w-6 h-0.5 bg-themxua-primary transition-all duration-300 ${
+                isOpen ? 'opacity-0' : ''
+              }`}
+            />
+            <span
+              className={`block w-6 h-0.5 bg-themxua-primary transition-all duration-300 ${
+                isOpen ? '-rotate-45 -translate-y-1.5' : ''
+              }`}
+            />
+          </button>
+        </div>
       </nav>
+
+      {/* Mobile Language Menu */}
+      {isLangMenuOpen && (
+        <div className="lg:hidden absolute top-[70px] right-4 mt-2 w-40 rounded-xl shadow-2xl bg-white border border-themxua-primary/10 overflow-hidden z-50">
+          <div className="py-2" role="menu" aria-orientation="vertical">
+            {Object.values(languages).map((lang, index) => (
+              <button
+                key={lang.code}
+                onClick={() => handleLanguageChange(lang.code as LanguageCode)}
+                className={`flex items-center gap-3 px-4 py-3 text-sm w-full text-left transition-all duration-200 ${
+                  currentLanguage === lang.code
+                    ? 'bg-gradient-to-r from-themxua-cream/40 to-themxua-cream/20 text-themxua-primary font-semibold border-l-4 border-themxua-secondary'
+                    : 'text-gray-700 hover:bg-themxua-cream/30 hover:text-themxua-primary'
+                } ${index !== Object.values(languages).length - 1 ? 'border-b border-themxua-primary/5' : ''}`}
+                role="menuitem"
+              >
+                <div className="relative w-5 h-5">
+                  <Image
+                    src={lang.flag}
+                    alt={`${lang.name} flag`}
+                    fill
+                    className="object-cover rounded-sm"
+                    sizes="20px"
+                  />
+                </div>
+                <span className="font-medium">{lang.name}</span>
+                {currentLanguage === lang.code && (
+                  <span className="ml-auto text-themxua-secondary">
+                    <svg
+                      className="w-4 h-4"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </span>
+                )}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Mobile Menu */}
       <div
@@ -174,7 +338,7 @@ const ThemXuaHeader = () => {
             }`}
             style={{ backgroundColor: '#662811' }}
           >
-            Đặt bàn
+            {t('header.booking')}
           </Link>
         </div>
       </div>

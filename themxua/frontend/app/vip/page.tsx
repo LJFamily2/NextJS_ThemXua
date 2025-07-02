@@ -4,12 +4,24 @@ import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { SectionContainer } from '../components/ui';
 import ThemXuaButton from '../components/ui/ThemXuaButton';
+import { useLanguage } from '../contexts/LanguageContext';
+
+// Define interface for VIP room data
+interface VipRoom {
+  id: number;
+  titleKey: string;
+  image: string;
+  mobileImage: string;
+  imagePosition: string;
+  mobileImagePosition: string;
+  layout: 'image-left' | 'image-right';
+}
 
 // VIP Room data
-const vipRoomsData = [
+const vipRoomsData: VipRoom[] = [
   {
     id: 1,
-    title: 'Phòng VIP 1 - Không gian Sang Trọng dành cho 6 người',
+    titleKey: 'vip.room1',
     image: '/images/vip1.jpg',
     mobileImage: '/images/vip1Mobile.jpg',
     imagePosition: 'object-[30%_center]',
@@ -18,7 +30,7 @@ const vipRoomsData = [
   },
   {
     id: 2,
-    title: 'Phòng VIP 2 - Không gian Sang Trọng dành cho 8 người',
+    titleKey: 'vip.room2',
     image: '/images/vip2.jpg',
     mobileImage: '/images/vip2Mobile.jpg',
     imagePosition: 'object-[60%_center]',
@@ -27,7 +39,7 @@ const vipRoomsData = [
   },
   {
     id: 3,
-    title: 'Phòng VIP 3 - Không gian Sang Trọng dành cho 12 người',
+    titleKey: 'vip.room3',
     image: '/images/vip1.jpg',
     mobileImage: '/images/vip1Mobile.jpg',
     imagePosition: 'object-[30%_center]',
@@ -36,7 +48,7 @@ const vipRoomsData = [
   },
   {
     id: 4,
-    title: 'Phòng VIP 4 - Không gian Sang Trọng dành cho 8 người',
+    titleKey: 'vip.room4',
     image: '/images/vip1.jpg',
     mobileImage: '/images/vip1Mobile.jpg',
     imagePosition: 'object-[30%_center]',
@@ -47,11 +59,12 @@ const vipRoomsData = [
 
 // Reusable VIP Room Component
 interface VipRoomSectionProps {
-  room: (typeof vipRoomsData)[0];
+  room: VipRoom;
   isVisible: boolean;
 }
 
 const VipRoomSection: React.FC<VipRoomSectionProps> = ({ room, isVisible }) => {
+  const { t } = useLanguage();
   const isImageLeft = room.layout === 'image-left';
 
   return (
@@ -67,7 +80,7 @@ const VipRoomSection: React.FC<VipRoomSectionProps> = ({ room, isVisible }) => {
         <div className="relative w-full h-[400px] md:h-[500px] lg:h-[528px] rounded-lg overflow-hidden shadow-lg group">
           <Image
             src={room.image}
-            alt="VIP Room Interior"
+            alt={t(room.titleKey)}
             fill
             className={`object-cover cursorWhite hidden md:block ${room.imagePosition} transition-transform duration-500 group-hover:scale-110`}
             sizes="(min-width: 1300px) 50vw, 40vw"
@@ -75,7 +88,7 @@ const VipRoomSection: React.FC<VipRoomSectionProps> = ({ room, isVisible }) => {
           />
           <Image
             src={room.mobileImage}
-            alt="VIP Room Interior"
+            alt={t(room.titleKey)}
             fill
             className={`object-cover block md:hidden ${room.mobileImagePosition} transition-transform duration-500 group-hover:scale-110`}
             sizes="100vw"
@@ -89,26 +102,26 @@ const VipRoomSection: React.FC<VipRoomSectionProps> = ({ room, isVisible }) => {
         className={`${isImageLeft ? 'order-2 lg:order-2' : 'order-2 lg:order-1'} space-y-6`}
       >
         <h3 className="text-2xl md:text-3xl font-serif font-normal text-[#3D3634] leading-tight">
-          {room.title}
+          {t(room.titleKey)}
         </h3>
 
         <div>
           <h4 className="text-lg md:text-xl font-medium text-[#6a5844] leading-tight">
-            Các tiện ích:
+            {t('vip.amenities.title')}:
           </h4>
           <ul className="text-base md:text-md font-medium text-[#897F77] space-y-2 mt-2">
-            <li>- Máy lạnh, toilet riêng</li>
-            <li>- Thiết kế theo phong cách hầm rượu</li>
+            <li>- {t('vip.amenities.ac')}</li>
+            <li>- {t('vip.amenities.design')}</li>
           </ul>
         </div>
 
         <div>
           <h4 className="text-lg md:text-xl font-medium text-[#6a5844] leading-tight mt-3">
-            Ưu đãi phòng:
+            {t('vip.benefits.title')}:
           </h4>
           <ul className="text-base md:text-md font-medium text-[#897F77] space-y-2 mt-2">
-            <li>- Tặng trang trí đơn giản: bóng bay và chữ HPBD</li>
-            <li>- Hỗ trợ miễn phí đặt trước: loa phát nhạc, máy chiếu</li>
+            <li>- {t('vip.benefits.decor')}</li>
+            <li>- {t('vip.benefits.equipment')}</li>
           </ul>
         </div>
 
@@ -119,10 +132,10 @@ const VipRoomSection: React.FC<VipRoomSectionProps> = ({ room, isVisible }) => {
             href="/booking#booking"
             className="w-full md:w-auto text-themxua-white"
           >
-            Đặt bàn
+            {t('vip.booking.button')}
           </ThemXuaButton>
           <small className="italic text-[#C4AA89] block md:inline mt-1 md:mt-0">
-            Phụ thu 45k /1h. Miễn phí từ tiếng thứ 4.
+            {t('vip.booking.note')}
           </small>
         </div>
       </div>
@@ -130,36 +143,40 @@ const VipRoomSection: React.FC<VipRoomSectionProps> = ({ room, isVisible }) => {
   );
 };
 
-const VipRoomPage: React.FC = () => {
-  // Intersection Observer hook for animations
-  const useIntersectionObserver = (options = {}) => {
-    const elementRef = useRef<HTMLDivElement>(null);
-    const [isVisible, setIsVisible] = React.useState(false);
+// Hook for Intersection Observer
+const useIntersectionObserver = (options = {}) => {
+  const elementRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = React.useState(false);
 
-    useEffect(() => {
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-            observer.unobserve(entry.target);
-          }
-        },
-        {
-          threshold: 0.1,
-          rootMargin: '50px',
-          ...options,
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
         }
-      );
-
-      if (elementRef.current) {
-        observer.observe(elementRef.current);
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '50px',
+        ...options,
       }
+    );
 
-      return () => observer.disconnect();
-    }, [options]);
+    if (elementRef.current) {
+      observer.observe(elementRef.current);
+    }
 
-    return [elementRef, isVisible] as const;
-  };
+    return () => observer.disconnect();
+  }, [options]);
+
+  return [elementRef, isVisible] as const;
+};
+
+// Main VIP Page Component
+const VipRoomPage: React.FC = () => {
+  const { t } = useLanguage();
+
   // Create individual refs for each section
   const section1 = useIntersectionObserver();
   const section2 = useIntersectionObserver();
@@ -186,15 +203,13 @@ const VipRoomPage: React.FC = () => {
         {/* Hero Content */}
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
           <h1 className="text-6xl md:text-8xl lg:text-[86px] font-roboto-serif font-normal text-[#F8F8F6] mb-6 leading-tight">
-            Phòng VIP
+            {t('vip.hero.title')}
           </h1>
           <p className="text-base md:text-md font-roboto-serif font-normal text-[#DED6C8] leading-[2.5em] mb-8 max-w-2xl mx-auto">
-            Chào mừng bạn đến với phòng VIP của quán ăn chúng tôi, nơi sang
-            trọng và riêng tư hòa quyện với nhau để tạo ra một trải nghiệm ẩm
-            thực khó quên.
+            {t('vip.hero.subtitle')}
           </p>
           <p className="text-sm md:text-base font-normal text-[#C3B29D] leading-tight">
-            Khám phá ngay
+            {t('vip.hero.explore')}
           </p>
         </div>
       </section>
@@ -206,13 +221,13 @@ const VipRoomPage: React.FC = () => {
         className="text-center pt-20"
       >
         <p className="text-base font-normal text-[#C4AA89] mb-4 leading-tight">
-          Khám phá Phòng VIP
+          {t('vip.section.discover')}
         </p>
         <h2 className="text-4xl md:text-5xl lg:text-[40px] font-semibold text-[#463B34] leading-tight mb-8">
-          Nâng Tầm Trải Nghiệm Ẩm Thực
+          {t('vip.section.elevate')}
         </h2>
         <p className="text-lg md:text-xl font-medium text-[#877C76] leading-tight max-w-4xl mx-auto">
-          Trải nghiệm ẩm thực sang trọng
+          {t('vip.section.experience')}
         </p>
       </SectionContainer>
 

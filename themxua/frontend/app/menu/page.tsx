@@ -1,8 +1,10 @@
 ﻿'use client';
 import Image from 'next/image';
 import { useState, useEffect, useMemo } from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function MenuPage() {
+  const { t } = useLanguage();
   const [activeSectionId, setActiveSectionId] = useState<string | null>(null);
 
   // Placeholder data for menu sections and images
@@ -10,32 +12,64 @@ export default function MenuPage() {
     () => [
       {
         id: 'Main display',
-        title: 'Xin chào',
+        titleKey: 'menu.sections.hello',
         images: ['/images/00.png'],
       },
       {
         id: 'Appetizers',
-        title: 'Lai Rai',
+        titleKey: 'menu.sections.bites',
         images: ['/images/01.png', '/images/02.png', '/images/03.png'],
       },
       {
         id: 'Main Courses',
-        title: 'Sashimi',
+        titleKey: 'menu.sections.sashimi',
         images: ['/images/04.png'],
       },
       {
         id: 'Desserts',
-        title: 'Vịt Quay Hong Kong',
+        titleKey: 'menu.sections.roastedDuck',
         images: ['/images/05.png'],
       },
-      { id: 'Mì & Miến', title: 'Mì & Miến', images: ['/images/06.png'] },
-      { id: 'Cơm Chiên', title: 'Cơm Chiên', images: ['/images/07.png'] },
-      { id: 'Cháo & Súp', title: 'Cháo & Súp', images: ['/images/08.png'] },
-      { id: 'Lẩu', title: 'Lẩu', images: ['/images/09.png'] },
-      { id: 'Gỏi Salad', title: 'Gỏi Salad', images: ['/images/10.png'] },
-      { id: 'Đậu Hủ & Rau', title: 'Đậu Hủ & Rau', images: ['/images/11.png'] },
-      { id: 'Món Chay', title: 'Món Chay', images: ['/images/12.png'] },
-      { id: 'Nước Uống', title: 'Nước Uống', images: ['/images/13.jpg'] },
+      {
+        id: 'Mì & Miến',
+        titleKey: 'menu.sections.noodles',
+        images: ['/images/06.png'],
+      },
+      {
+        id: 'Cơm Chiên',
+        titleKey: 'menu.sections.friedRice',
+        images: ['/images/07.png'],
+      },
+      {
+        id: 'Cháo & Súp',
+        titleKey: 'menu.sections.porridgeSoup',
+        images: ['/images/08.png'],
+      },
+      {
+        id: 'Lẩu',
+        titleKey: 'menu.sections.hotpot',
+        images: ['/images/09.png'],
+      },
+      {
+        id: 'Gỏi Salad',
+        titleKey: 'menu.sections.salad',
+        images: ['/images/10.png'],
+      },
+      {
+        id: 'Đậu Hủ & Rau',
+        titleKey: 'menu.sections.tofuVegetables',
+        images: ['/images/11.png'],
+      },
+      {
+        id: 'Món Chay',
+        titleKey: 'menu.sections.vegetarian',
+        images: ['/images/12.png'],
+      },
+      {
+        id: 'Nước Uống',
+        titleKey: 'menu.sections.drinks',
+        images: ['/images/13.jpg'],
+      },
     ],
     []
   );
@@ -77,10 +111,10 @@ export default function MenuPage() {
       {/* Main Menu Content Area */}
       <div className="flex-grow p-4 md:p-8">
         <h1 className="text-4xl md:text-5xl text-themxua-primary mb-2 text-center font-medium">
-          Thực Đơn
+          {t('menu.pageTitle')}
         </h1>
         <p className="text-lg md:text-xl font-instrument text-themxua-secondary mb-8 md:mb-12 text-center">
-          Những món ăn Việt Nam ngon miệng
+          {t('menu.pageSubtitle')}
         </p>
         {/* Menu Sections */}
         {menuSections.map(section => (
@@ -89,17 +123,10 @@ export default function MenuPage() {
             <div className="flex flex-col items-center">
               {/* Stack images vertically */}
               {section.images.map((imageUrl, index) => (
-                // Placeholder for Image with Zoom functionality
-                // You would replace this div with an Image component
-                // and wrap it with zoom/pan logic (e.g., using a library)
-                <div
-                  key={index}
-                  className="w-full max-w-3xl cursor-pointer"
-                >
-                  {/* Add cursor-pointer to indicate interactivity */}
+                <div key={index} className="w-full max-w-3xl cursor-pointer">
                   <Image
                     src={imageUrl}
-                    alt={`${section.title} Menu Item ${index + 1}`}
+                    alt={`${t(section.titleKey)} ${t('menu.imageAlt')} ${index + 1}`}
                     className="w-full h-auto object-contain shadow-lg rounded-lg"
                     width={1200}
                     height={1200}
@@ -113,7 +140,7 @@ export default function MenuPage() {
       {/* Scrollspy Area */}
       <div className="w-full md:w-64 p-4 md:p-8 sticky md:top-0 md:h-screen overflow-x-auto md:overflow-y-auto bg-white/80 md:bg-transparent z-10 md:z-auto flex-shrink-0">
         <h3 className="text-xl md:text-2xl font-dm-serif text-themxua-primary mb-4 text-center md:text-left">
-          Mục Lục
+          {t('menu.categories')}
         </h3>
         <nav>
           <ul className="flex md:block gap-2 md:space-y-2 overflow-x-auto">
@@ -127,7 +154,7 @@ export default function MenuPage() {
                       : ''
                   }`}
                 >
-                  {section.title}
+                  {t(section.titleKey)}
                 </a>
               </li>
             ))}

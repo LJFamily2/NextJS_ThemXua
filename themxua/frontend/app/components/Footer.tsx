@@ -1,8 +1,10 @@
 'use client';
 
 import React from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Footer: React.FC = () => {
+  const { t } = useLanguage();
   return (
     <footer className="bg-themxua-footer-bg">
       <div className="w-full max-w-7xl mx-auto px-4 md:px-8 lg:px-[70px] py-12 lg:py-16">
@@ -15,9 +17,9 @@ const Footer: React.FC = () => {
               <h2 className=" font-bold text-5xl lg:text-6xl text-themxua-primary mb-1">
                 THEM XUA
               </h2>
-                <p className=" text-md text-themxua-black opacity-80">
+              <p className=" text-md text-themxua-black opacity-80">
                 Ẩm thực Việt Nam - Nơi hương vị truyền thống gặp gỡ hiện đại
-                </p>
+              </p>
             </div>
 
             {/* Contact Info Grid */}
@@ -26,18 +28,21 @@ const Footer: React.FC = () => {
               <div className="space-y-6">
                 {/* Hours */}
                 <div className="space-y-3">
-                  <h3 className=" font-semibold text-xl text-themxua-primary">
-                    Giờ hoạt động
+                  <h3 className="font-semibold text-xl text-themxua-primary">
+                    {t('footer.openHours')}
                   </h3>
-                  <p className=" text-base text-themxua-black">
-                    Thứ 2 - CN: 10h - 23h
+                  <p className="text-base text-themxua-black">
+                    {t('footer.openTime')}
                   </p>
                 </div>
 
                 {/* Contact */}
                 <div className="space-y-3">
-                  <h3 className=" font-semibold text-xl text-themxua-primary" id='contact'>
-                    Liên hệ
+                  <h3
+                    className="font-semibold text-xl text-themxua-primary"
+                    id="contact"
+                  >
+                    {t('footer.contact')}
                   </h3>
                   <div className="space-y-2">
                     <a
@@ -61,9 +66,7 @@ const Footer: React.FC = () => {
                       >
                         <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                       </svg>
-                      <span className=" text-base">
-                        Facebook
-                      </span>
+                      <span className=" text-base">Facebook</span>
                     </a>
                   </div>
                 </div>
@@ -71,15 +74,15 @@ const Footer: React.FC = () => {
 
               {/* Address */}
               <div className="space-y-3">
-                <h3 className=" font-semibold text-xl text-themxua-primary">
-                  Địa chỉ
+                <h3 className="font-semibold text-xl text-themxua-primary">
+                  {t('footer.address')}
                 </h3>
                 <div className="space-y-2">
-                  <p className=" text-base text-themxua-black leading-relaxed">
-                    Cổng chính: 23 Hoàng Lê Kha, Phường 3, Tây Ninh
+                  <p className="text-base text-themxua-black leading-relaxed">
+                    {t('footer.mainEntrance')}
                   </p>
-                  <p className=" text-base text-themxua-black leading-relaxed">
-                    Cổng sau: 285 Huỳnh Công Giản, Tây Ninh
+                  <p className="text-base text-themxua-black leading-relaxed">
+                    {t('footer.backEntrance')}
                   </p>
                 </div>
               </div>
