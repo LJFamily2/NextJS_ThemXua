@@ -89,7 +89,7 @@ const WelcomeSection: React.FC = () => {
             {/* View More Button */}
             <div className="absolute bottom-[30px] left-1/2 transform -translate-x-1/2">
               <Link
-                href="/areas/banquet-hall"
+                href="/party"
                 className="inline-block bg-themxua-primary text-white  text-[15px] px-[20px] py-[10px] rounded-[5px] hover:bg-opacity-90 transition-all duration-300"
               >
                 Xem thêm

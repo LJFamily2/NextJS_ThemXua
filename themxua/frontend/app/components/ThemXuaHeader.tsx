@@ -32,6 +32,7 @@ const ThemXuaHeader = () => {
   const navigationItems = [
     { name: 'Trang chủ', href: '/' },
     { name: 'Menu', href: '/menu' },
+    { name: 'Sảnh tiệc', href: '/party' },
     { name: 'Liên hệ', href: '/#contact' },
   ];
 
@@ -42,7 +43,7 @@ const ThemXuaHeader = () => {
     return pathname.startsWith(href);
   };
 
-  const isRelativeHeader = ['/menu', '/vip'];
+  const isRelativeHeader = ['/menu', '/vip', '/party'];
 
   return (
     <header
@@ -58,7 +59,10 @@ const ThemXuaHeader = () => {
     >
       <nav className="flex items-center justify-between px-4 md:px-8 lg:px-[100px] h-[70px]">
         {/* Logo Section */}
-        <Link href="/" className="flex items-center gap-1 group z-40 cursor-pointer">
+        <Link
+          href="/"
+          className="flex items-center gap-1 group z-40 cursor-pointer"
+        >
           <div className="relative w-12 h-12 transition-transform duration-300 group-hover:scale-110 animate-[slideInRight_0.5s_ease-in] z-30">
             <Image
               src="/images/logoTransparentNauDo.png"
