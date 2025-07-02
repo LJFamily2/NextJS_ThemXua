@@ -142,7 +142,7 @@ export default function MenuPage() {
       {!isOffcanvasOpen && (
         <button
           onClick={() => setIsOffcanvasOpen(!isOffcanvasOpen)}
-          className="fixed right-0 bottom-1/4 transform -translate-y-1/2 z-50 bg-themxua-primary text-white p-3 rounded-l-lg shadow-lg md:hidden"
+          className="fixed right-0 top-[40rem] transform -translate-y-1/2 z-50 bg-themxua-primary text-white p-3 rounded-l-lg shadow-lg md:hidden"
           aria-label="Toggle menu categories"
         >
           <span className="text-lg font-bold">‹‹</span>
@@ -152,11 +152,11 @@ export default function MenuPage() {
       {/* Scrollspy Area */}
       <div
         className={`
-        fixed md:static top-0 right-0 h-full md:h-screen w-80 md:w-64 
+        fixed md:sticky top-0 right-0 h-full md:h-screen w-80 md:w-64 
         bg-white md:bg-transparent shadow-xl md:shadow-none
         transform transition-transform duration-300 ease-in-out
         ${isOffcanvasOpen ? 'translate-x-0' : 'translate-x-full md:translate-x-0'}
-        z-40 md:z-auto
+        z-50 md:z-auto
         p-4 md:p-8 overflow-y-auto
         flex-shrink-0
       `}
@@ -167,7 +167,7 @@ export default function MenuPage() {
           className="absolute top-4 right-4 text-themxua-secondary hover:text-themxua-primary md:hidden"
           aria-label="Close menu categories"
         >
-          <span className="text-2xl">×</span>
+          <span className="text-4xl">×</span>
         </button>
 
         <h3 className="text-xl md:text-2xl font-dm-serif text-themxua-primary mb-4 text-center md:text-left pt-8 md:pt-0">

@@ -1,8 +1,8 @@
 {
   "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/menu/page": "app/menu/page.js",
-  "/page": "app/page.js",
   "/party/page": "app/party/page.js",
+  "/page": "app/page.js",
   "/vip/page": "app/vip/page.js",
-  "/booking/page": "app/booking/page.js"
+  "/booking/page": "app/booking/page.js",
+  "/menu/page": "app/menu/page.js"
 }
