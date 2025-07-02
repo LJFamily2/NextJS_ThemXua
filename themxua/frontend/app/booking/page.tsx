@@ -49,11 +49,8 @@ export default function BookingPage() {
             stroke="currentColor"
             className="w-7 h-7 sm:w-8 sm:h-8 text-themxua-primary"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M2.25 6.75v10.5A2.25 2.25 0 004.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75M2.25 6.75A2.25 2.25 0 014.5 4.5h15a2.25 2.25 0 012.25 2.25M2.25 6.75l9.72 7.29c.66.5 1.68.5 2.34 0l9.72-7.29"
-            />
+            <rect x="3" y="5" width="18" height="14" rx="2" />
+            <path d="M3 7l9 6 9-6" />
           </svg>
           <a
             href="tel:+84971807272"
