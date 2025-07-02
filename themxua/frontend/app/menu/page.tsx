@@ -6,6 +6,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 export default function MenuPage() {
   const { t } = useLanguage();
   const [activeSectionId, setActiveSectionId] = useState<string | null>(null);
+  const [isOffcanvasOpen, setIsOffcanvasOpen] = useState(false);
 
   // Placeholder data for menu sections and images
   const menuSections = useMemo(
@@ -137,17 +138,48 @@ export default function MenuPage() {
           </section>
         ))}
       </div>
+      {/* Mobile Toggle Button */}
+      {!isOffcanvasOpen && (
+        <button
+          onClick={() => setIsOffcanvasOpen(!isOffcanvasOpen)}
+          className="fixed right-0 bottom-1/4 transform -translate-y-1/2 z-50 bg-themxua-primary text-white p-3 rounded-l-lg shadow-lg md:hidden"
+          aria-label="Toggle menu categories"
+        >
+          <span className="text-lg font-bold">‹‹</span>
+        </button>
+      )}
+
       {/* Scrollspy Area */}
-      <div className="w-full md:w-64 p-4 md:p-8 sticky md:top-0 md:h-screen overflow-x-auto md:overflow-y-auto bg-white/80 md:bg-transparent z-10 md:z-auto flex-shrink-0">
-        <h3 className="text-xl md:text-2xl font-dm-serif text-themxua-primary mb-4 text-center md:text-left">
+      <div
+        className={`
+        fixed md:static top-0 right-0 h-full md:h-screen w-80 md:w-64 
+        bg-white md:bg-transparent shadow-xl md:shadow-none
+        transform transition-transform duration-300 ease-in-out
+        ${isOffcanvasOpen ? 'translate-x-0' : 'translate-x-full md:translate-x-0'}
+        z-40 md:z-auto
+        p-4 md:p-8 overflow-y-auto
+        flex-shrink-0
+      `}
+      >
+        {/* Close button for mobile */}
+        <button
+          onClick={() => setIsOffcanvasOpen(false)}
+          className="absolute top-4 right-4 text-themxua-secondary hover:text-themxua-primary md:hidden"
+          aria-label="Close menu categories"
+        >
+          <span className="text-2xl">×</span>
+        </button>
+
+        <h3 className="text-xl md:text-2xl font-dm-serif text-themxua-primary mb-4 text-center md:text-left pt-8 md:pt-0">
           {t('menu.categories')}
         </h3>
         <nav>
-          <ul className="flex md:block gap-2 md:space-y-2 overflow-x-auto">
+          <ul className="space-y-2">
             {menuSections.map(section => (
-              <li key={`nav-${section.id}`} className="inline-block md:block">
+              <li key={`nav-${section.id}`}>
                 <a
                   href={`#${section.id}`}
+                  onClick={() => setIsOffcanvasOpen(false)} // Close offcanvas when clicking a link on mobile
                   className={`block px-3 py-2 rounded transition-colors duration-200 text-themxua-secondary hover:text-themxua-primary hover:bg-themxua-primary/10 md:hover:bg-transparent md:hover:text-themxua-primary ${
                     activeSectionId === section.id
                       ? 'font-bold text-themxua-primary bg-themxua-primary/10 md:bg-transparent'
@@ -161,6 +193,14 @@ export default function MenuPage() {
           </ul>
         </nav>
       </div>
+
+      {/* Overlay for mobile */}
+      {isOffcanvasOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden"
+          onClick={() => setIsOffcanvasOpen(false)}
+        />
+      )}
     </div>
   );
 }
