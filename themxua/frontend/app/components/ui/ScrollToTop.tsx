@@ -13,6 +13,7 @@ const ScrollToTop: React.FC<ScrollToTopProps> = ({
   showAfter = 300,
 }) => {
   const [isVisible, setIsVisible] = useState(false);
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const toggleVisibility = () => {
@@ -35,10 +36,15 @@ const ScrollToTop: React.FC<ScrollToTopProps> = ({
       top: 0,
       behavior: 'smooth',
     });
+    // Remove focus from the button after clicking
+    setTimeout(() => {
+      buttonRef.current?.blur();
+    }, 300); 
   };
 
   return (
     <button
+      ref={buttonRef}
       onClick={scrollToTop}
       className={cn(
         'fixed bottom-6 right-6 z-50 p-3 bg-themxua-primary text-white rounded-full shadow-lg hover:bg-themxua-secondary transition-all duration-300 transform',
