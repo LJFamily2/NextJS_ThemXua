@@ -150,7 +150,7 @@ const ThemXuaHeader = () => {
             {isLangMenuOpen && (
               <div className="absolute right-0 mt-3 w-44 rounded-xl shadow-2xl bg-white border border-themxua-primary/10 overflow-hidden z-50 backdrop-blur-sm">
                 <div className="py-2" role="menu" aria-orientation="vertical">
-                  {Object.values(languages).map((lang, index) => (
+                  {Object.values(languages).map((lang) => (
                     <button
                       key={lang.code}
                       onClick={() =>
@@ -158,9 +158,9 @@ const ThemXuaHeader = () => {
                       }
                       className={`flex items-center gap-3 px-4 py-3 text-sm w-full text-left transition-all duration-200 hover:scale-[1.02] ${
                         currentLanguage === lang.code
-                          ? 'bg-gradient-to-r from-themxua-cream/40 to-themxua-cream/20 text-themxua-primary font-semibold border-l-4 border-themxua-secondary'
+                          ? 'bg-gradient-to-r from-themxua-cream/40 to-themxua-cream/20 text-themxua-primary font-semibold'
                           : 'text-gray-700 hover:bg-themxua-cream/30 hover:text-themxua-primary'
-                      } ${index !== Object.values(languages).length - 1 ? 'border-b border-themxua-primary/5' : ''}`}
+                      } `}
                       role="menuitem"
                     >
                       <div className="relative w-6 h-6">
@@ -261,15 +261,15 @@ const ThemXuaHeader = () => {
       {isLangMenuOpen && (
         <div className="lg:hidden absolute top-[70px] right-4 mt-2 w-40 rounded-xl shadow-2xl bg-white border border-themxua-primary/10 overflow-hidden z-50">
           <div className="py-2" role="menu" aria-orientation="vertical">
-            {Object.values(languages).map((lang, index) => (
+            {Object.values(languages).map((lang) => (
               <button
                 key={lang.code}
                 onClick={() => handleLanguageChange(lang.code as LanguageCode)}
                 className={`flex items-center gap-3 px-4 py-3 text-sm w-full text-left transition-all duration-200 ${
                   currentLanguage === lang.code
-                    ? 'bg-gradient-to-r from-themxua-cream/40 to-themxua-cream/20 text-themxua-primary font-semibold border-l-4 border-themxua-secondary'
+                    ? 'bg-gradient-to-r from-themxua-cream/40 to-themxua-cream/20 text-themxua-primary font-semibold'
                     : 'text-gray-700 hover:bg-themxua-cream/30 hover:text-themxua-primary'
-                } ${index !== Object.values(languages).length - 1 ? 'border-b border-themxua-primary/5' : ''}`}
+                } `}
                 role="menuitem"
               >
                 <div className="relative w-5 h-5">
