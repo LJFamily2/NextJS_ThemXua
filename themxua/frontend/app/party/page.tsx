@@ -12,25 +12,49 @@ import { useLanguage } from '../contexts/LanguageContext';
 const partyImages = [
   {
     id: 1,
-    src: '/images/party/party-image-1.jpg',
+    src: '/images/partyVip3.jpeg',
     titleKey: 'party.image1Title',
     position: 'center',
   },
   {
     id: 2,
-    src: '/images/party/party-image-2.jpg',
+    src: '/images/partyVip2.jpg',
     titleKey: 'party.image2Title',
     position: 'top',
   },
   {
-    id: 3,
-    src: '/images/party/party-image-3.jpg',
-    titleKey: 'party.image3Title',
-    position: 'bottom',
+    id: 4,
+    src: '/images/partyVip32.jpg',
+    titleKey: 'party.image4Title',
+    position: 'center',
   },
   {
-    id: 4,
-    src: '/images/party/party-image-3.jpg',
+    id: 3,
+    src: '/images/partyBeerClub.jpeg',
+    titleKey: 'party.image3Title',
+    position: 'left',
+  },
+  {
+    id: 5,
+    src: '/images/partyBeerClub2.jpeg',
+    titleKey: 'party.image4Title',
+    position: 'center',
+  },
+  {
+    id: 6,
+    src: '/images/partyBeerClub3.jpeg',
+    titleKey: 'party.image4Title',
+    position: 'center',
+  },
+  {
+    id: 6,
+    src: '/images/partyKhuA.jpg',
+    titleKey: 'party.image4Title',
+    position: 'center',
+  },
+  {
+    id: 7,
+    src: '/images/partyKhuE.jpg',
     titleKey: 'party.image4Title',
     position: 'center',
   },
@@ -157,12 +181,12 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
 // MarqueeGallery Component
 const MarqueeGallery: React.FC<CarouselProps> = ({ images }) => {
   const { t } = useLanguage();
-  const animation = { duration: 15000, easing: (t: number) => t };
+  const animation = { duration: 55000, easing: (t: number) => t };
 
   const [sliderRef] = useKeenSlider<HTMLDivElement>({
     loop: true,
     renderMode: 'performance',
-    drag: false,
+    drag: true,
     slides: {
       perView: 'auto',
       spacing: 32,
