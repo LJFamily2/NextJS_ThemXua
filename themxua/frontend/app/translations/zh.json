@@ -2,11 +2,11 @@
   "header.home": "首页",
   "header.menu": "菜单",
   "header.party": "宴会厅",
+  "header.vip": "包房",
   "header.contact": "联系我们",
   "header.booking": "预订餐桌",
   "header.news": "新闻",
   "header.events": "活动",
-  "header.vip": "VIP包房",
 
   "hero.title": "探索悠古美食",
   "hero.subtitle": "享受温馨的家庭聚餐时光",
@@ -50,10 +50,6 @@
 
   "diningAreas.title": "就餐区域",
   "diningAreas.subtitle": "探索我们多样化的就餐空间",
-  "diningAreas.areaA": "A区",
-  "diningAreas.areaB": "B区",
-  "diningAreas.areaC": "C区",
-  "diningAreas.areaD": "D区",
   "diningAreas.outdoor": "户外区域",
   "diningAreas.indoor": "室内区域",
   "diningAreas.vip": "VIP包房",

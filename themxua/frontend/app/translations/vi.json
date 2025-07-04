@@ -2,11 +2,11 @@
   "header.home": "Trang chủ",
   "header.menu": "Menu",
   "header.party": "Sảnh tiệc",
+  "header.vip": "Phòng kín",
   "header.contact": "Liên hệ",
   "header.booking": "Đặt bàn",
   "header.news": "Tin tức",
   "header.events": "Sự kiện",
-  "header.vip": "Phòng VIP",
 
   "hero.title": "Khám Phá Ẩm Thực Thềm Xưa",
   "hero.subtitle": "Hãy tận hưởng sự ấm cúng của những bữa cơm gia đình",
@@ -26,11 +26,6 @@
   "menu.imageAlt": "Món ăn",
 
   "foodShowcase.description1": "Nâng tầm trải nghiệm ẩm thực của bạn tại Thềm Xưa với tuyển tập các món ăn Việt Nam được tuyển chọn kỹ lưỡng, mỗi món là một kiệt tác về hương vị và mùi thơm.",
-
-  "diningAreas.areaA": "Khu A",
-  "diningAreas.areaB": "Khu B",
-  "diningAreas.areaC": "Khu C",
-  "diningAreas.areaD": "Khu D",
 
   "booking.title": "Đặt Bàn",
   "booking.tour": "Tour",

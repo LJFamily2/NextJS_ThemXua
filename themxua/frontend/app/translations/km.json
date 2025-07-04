@@ -2,11 +2,11 @@
   "header.home": "ទំព័រដើម",
   "header.menu": "ម៉ឺនុយ",
   "header.party": "សាលជប់លៀង",
+  "header.vip": "បន្ទប់ឯកជន",
   "header.contact": "ទំនាក់ទំនង",
   "header.booking": "កក់តុ",
   "header.news": "ព័ត៌មាន",
   "header.events": "ព្រឹត្តិការណ៍",
-  "header.vip": "បន្ទប់ VIP",
 
   "hero.title": "ស្វែងយល់ពីម្ហូបអាហារ Them Xua",
   "hero.subtitle": "រីករាយជាមួយភាពកក់ក្ដៅនៃបាយគ្រួសារ",
@@ -50,10 +50,6 @@
 
   "diningAreas.title": "តំបន់ញុំាអាហារ",
   "diningAreas.subtitle": "ស្វែងយល់ពីតំបន់ញុំាអាហារចម្រុះរបស់យើង",
-  "diningAreas.areaA": "តំបន់ A",
-  "diningAreas.areaB": "តំបន់ B",
-  "diningAreas.areaC": "តំបន់ C",
-  "diningAreas.areaD": "តំបន់ D",
   "diningAreas.outdoor": "តំបន់ខាងក្រៅ",
   "diningAreas.indoor": "តំបន់ខាងក្នុង",
   "diningAreas.vip": "បន្ទប់ VIP",

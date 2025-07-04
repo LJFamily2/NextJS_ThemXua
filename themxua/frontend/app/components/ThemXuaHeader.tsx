@@ -39,6 +39,8 @@ const ThemXuaHeader = () => {
   const navigationItems = [
     { name: t('header.home'), href: '/' },
     { name: t('header.menu'), href: '/menu' },
+    { name: t('header.party'), href: '/party' },
+    { name: t('header.vip'), href: '/vip' },
     { name: t('header.contact'), href: '/#contact' },
   ];
 
@@ -150,7 +152,7 @@ const ThemXuaHeader = () => {
             {isLangMenuOpen && (
               <div className="absolute right-0 mt-3 w-44 rounded-xl shadow-2xl bg-white border border-themxua-primary/10 overflow-hidden z-50 backdrop-blur-sm">
                 <div className="py-2" role="menu" aria-orientation="vertical">
-                  {Object.values(languages).map((lang) => (
+                  {Object.values(languages).map(lang => (
                     <button
                       key={lang.code}
                       onClick={() =>
@@ -261,7 +263,7 @@ const ThemXuaHeader = () => {
       {isLangMenuOpen && (
         <div className="lg:hidden absolute top-[70px] right-4 mt-2 w-40 rounded-xl shadow-2xl bg-white border border-themxua-primary/10 overflow-hidden z-50">
           <div className="py-2" role="menu" aria-orientation="vertical">
-            {Object.values(languages).map((lang) => (
+            {Object.values(languages).map(lang => (
               <button
                 key={lang.code}
                 onClick={() => handleLanguageChange(lang.code as LanguageCode)}

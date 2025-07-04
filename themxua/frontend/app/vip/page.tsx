@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { SectionContainer } from '../components/ui';
 import ThemXuaButton from '../components/ui/ThemXuaButton';
 import { useLanguage } from '../contexts/LanguageContext';
+import Link from 'next/link';
 
 // Define interface for VIP room data
 interface VipRoom {
@@ -40,19 +41,19 @@ const vipRoomsData: VipRoom[] = [
   {
     id: 3,
     titleKey: 'vip.room3',
-    image: '/images/vip1.jpg',
-    mobileImage: '/images/vip1Mobile.jpg',
-    imagePosition: 'object-[30%_center]',
-    mobileImagePosition: 'object-[80%_center]',
+    image: '/images/vip3.jpg',
+    mobileImage: '/images/vip3Mobile.jpg',
+    imagePosition: 'object-[0%_0%]',
+    mobileImagePosition: 'object-[80%_0%]',
     layout: 'image-left',
   },
   {
     id: 4,
     titleKey: 'vip.room4',
-    image: '/images/vip1.jpg',
-    mobileImage: '/images/vip1Mobile.jpg',
-    imagePosition: 'object-[30%_center]',
-    mobileImagePosition: 'object-center',
+    image: '/images/vip4.jpg',
+    mobileImage: '/images/vip4Mobile.jpg',
+    imagePosition: 'object-[100%_60%]',
+    mobileImagePosition: 'object-[100%_60%]',
     layout: 'image-right',
   },
 ];
@@ -191,7 +192,7 @@ const VipRoomPage: React.FC = () => {
       <section
         className="relative min-h-screen flex items-center justify-center cursorWhite"
         style={{
-          backgroundImage: "url('/images/vip-hero-bg.jpg')",
+          backgroundImage: "url('/images/vipBg.png')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -208,9 +209,12 @@ const VipRoomPage: React.FC = () => {
           <p className="text-base md:text-md font-roboto-serif font-normal text-[#DED6C8] leading-[2.5em] mb-8 max-w-2xl mx-auto">
             {t('vip.hero.subtitle')}
           </p>
-          <p className="text-sm md:text-base font-normal text-[#C3B29D] leading-tight">
+          <Link
+            href="#vip-rooms"
+            className="text-sm md:text-base font-normal text-[#C3B29D] leading-tight underline hover:text-[#A68B6B] transition-colors duration-200"
+          >
             {t('vip.hero.explore')}
-          </p>
+          </Link>
         </div>
       </section>
 
@@ -220,7 +224,7 @@ const VipRoomPage: React.FC = () => {
         padding="none"
         className="text-center pt-20"
       >
-        <p className="text-base font-normal text-[#C4AA89] mb-4 leading-tight">
+        <p className="text-base font-normal text-[#C4AA89] mb-4 leading-tight" id='vip-rooms'>
           {t('vip.section.discover')}
         </p>
         <h2 className="text-4xl md:text-5xl lg:text-[40px] font-semibold text-[#463B34] leading-tight mb-8">
