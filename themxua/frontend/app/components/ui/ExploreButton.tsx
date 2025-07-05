@@ -20,7 +20,7 @@ const ExploreButton: React.FC<ExploreButtonProps> = ({
       href={href}
       className={`group inline-flex items-center gap-3 text-themxua-primary hover:text-themxua-secondary transition-colors duration-300 ${className}`}
     >
-      <span className="font-roboto-serif font-semibold text-sm leading-tight">
+      <span className="font-roboto-serif font-semibold text-sm leading-tight group-hover:font-bold transition-all duration-300">
         {children}
       </span>
 
