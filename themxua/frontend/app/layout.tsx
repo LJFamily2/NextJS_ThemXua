@@ -11,7 +11,6 @@ const robotoSerif = Roboto_Serif({
   display: 'swap',
 });
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -19,6 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi">
+      <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+      </head>
       <body className={`${robotoSerif.variable} antialiased select-none`}>
         <LanguageProvider>
           <ThemXuaHeader />
