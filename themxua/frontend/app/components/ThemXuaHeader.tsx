@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { usePathname } from 'next/navigation';
 import {
   useLanguage,
@@ -17,7 +18,14 @@ const ThemXuaHeader = () => {
   const pathname = usePathname();
   const { currentLanguage, setLanguage, t } = useLanguage();
 
+  const router = useRouter();
   useEffect(() => {
+    // Prefetch common routes for faster navigation
+    router.prefetch('/menu');
+    router.prefetch('/vip');
+    router.prefetch('/party');
+    router.prefetch('/booking');
+
     const handleScroll = () => {
       // Only apply scrolled effect on desktop (lg and up)
       if (window.innerWidth >= 1024) {
@@ -34,7 +42,7 @@ const ThemXuaHeader = () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleScroll);
     };
-  }, []);
+  }, [router]);
 
   const navigationItems = [
     { name: t('header.home'), href: '/' },

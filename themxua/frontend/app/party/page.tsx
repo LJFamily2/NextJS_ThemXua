@@ -239,6 +239,8 @@ const MarqueeGallery: React.FC<CarouselProps> = ({ images }) => {
   );
 };
 
+export const dynamic = 'force-static';
+// Static generation enabled for party page
 export default function PartyPage() {
   const { t } = useLanguage();
 

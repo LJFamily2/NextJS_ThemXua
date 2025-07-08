@@ -1,3 +1,5 @@
+export const dynamic = 'force-static';
+// Static generation enabled for home page
 import HeroSection from './components/sections/HeroSection';
 import WelcomeSection from './components/sections/WelcomeSection';
 import MenuSection from './components/sections/MenuSection';

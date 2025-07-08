@@ -186,6 +186,8 @@ const useIntersectionObserver = (options = {}) => {
 };
 
 // Main VIP Page Component
+export const dynamic = 'force-static';
+// Static generation enabled for VIP page
 const VipRoomPage: React.FC = () => {
   const { t } = useLanguage();
 

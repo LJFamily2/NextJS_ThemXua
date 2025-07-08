@@ -3,6 +3,8 @@ import Image from 'next/image';
 import { useState, useEffect, useMemo } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 
+export const dynamic = 'force-static';
+// Static generation enabled for menu page
 export default function MenuPage() {
   const { t } = useLanguage();
   const [activeSectionId, setActiveSectionId] = useState<string | null>(null);
