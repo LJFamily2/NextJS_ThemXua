@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import { Roboto_Serif } from 'next/font/google';
 import './globals.css';
 import ThemXuaHeader from './components/ThemXuaHeader';
@@ -12,10 +11,6 @@ const robotoSerif = Roboto_Serif({
   display: 'swap',
 });
 
-export const metadata: Metadata = {
-  title: 'ThemXua Restaurant',
-  description: 'Authentic Vietnamese Cuisine',
-};
 
 export default function RootLayout({
   children,

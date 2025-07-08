@@ -47,13 +47,13 @@ const partyImages = [
     position: 'center',
   },
   {
-    id: 6,
+    id: 7,
     src: '/images/partyKhuA.jpg',
     titleKey: 'party.image4Title',
     position: 'center',
   },
   {
-    id: 7,
+    id: 8,
     src: '/images/partyKhuE.jpg',
     titleKey: 'party.image4Title',
     position: 'center',

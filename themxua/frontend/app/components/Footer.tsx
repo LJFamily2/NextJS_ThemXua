@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
                 THEM XUA
               </h2>
               <p className=" text-md text-themxua-black opacity-80">
-                Ẩm thực Việt Nam - Nơi hương vị truyền thống gặp gỡ hiện đại
+                {t('footer.brandSubtitle')}
               </p>
             </div>
 

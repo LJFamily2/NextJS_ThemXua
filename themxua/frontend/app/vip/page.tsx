@@ -101,7 +101,7 @@ const VipRoomSection: React.FC<VipRoomSectionProps> = ({ room, isVisible }) => {
             alt={t(room.titleKey)}
             fill
             className={`object-cover block md:hidden ${room.mobileImagePosition} transition-transform duration-500 group-hover:scale-110`}
-            sizes="100vw"
+            sizes="(max-width: 767px) 90vw, 400px"
             priority
           />
         </div>

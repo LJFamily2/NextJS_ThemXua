@@ -31,6 +31,7 @@ const FoodShowcaseSection: React.FC = () => {
                 src="/images/heroBg.jpg"
                 alt="Decorative Shape"
                 fill
+                sizes="(max-width: 1024px) 100vw, 626px"
                 className="object-cover object-left hover:scale-105 transition-transform duration-700 "
               />
             </div>
@@ -59,6 +60,7 @@ const FoodShowcaseSection: React.FC = () => {
                   src="/images/FoodShowcase.jpg"
                   alt="ThemXua Signature Dish"
                   fill
+                  sizes="(max-width: 1024px) 100vw, 628px"
                   className="object-cover hover:scale-105 transition-transform duration-700"
                 />
               </div>

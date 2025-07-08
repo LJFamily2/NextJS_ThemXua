@@ -28,6 +28,7 @@ const WelcomeSection: React.FC = () => {
               src="/images/center.webp"
               alt="ThemXua Restaurant Outdoor Area"
               fill
+              sizes="(max-width: 1024px) 100vw, 415px"
               className="object-cover hover:scale-105 transition-transform duration-500"
             />
             {/* Area Type Badge */}
@@ -53,6 +54,7 @@ const WelcomeSection: React.FC = () => {
               src="/images/vipThumbnail.jpg"
               alt="ThemXua Restaurant Private Room"
               fill
+              sizes="(max-width: 1024px) 100vw, 415px"
               className="object-cover hover:scale-105 transition-transform duration-500"
             />
             {/* Area Type Badge */}
@@ -78,6 +80,7 @@ const WelcomeSection: React.FC = () => {
               src="/images/partyThumbnail.jpg"
               alt="ThemXua Restaurant Banquet Hall"
               fill
+              sizes="(max-width: 1024px) 100vw, 415px"
               className="object-cover hover:scale-105 transition-transform duration-500"
             />
             {/* Area Type Badge */}
