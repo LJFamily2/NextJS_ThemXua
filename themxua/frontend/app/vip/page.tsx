@@ -50,11 +50,20 @@ const vipRoomsData: VipRoom[] = [
   {
     id: 4,
     titleKey: 'vip.room4',
-    image: '/images/vip4.jpg',
+    image: '/images/vipc4.jpg',
     mobileImage: '/images/vip4Mobile.jpg',
     imagePosition: 'object-[100%_60%]',
     mobileImagePosition: 'object-[100%_60%]',
     layout: 'image-right',
+  },
+  {
+    id: 5,
+    titleKey: 'vip.room5',
+    image: '/images/vipc5.jpg',
+    mobileImage: '/images/vipc5Mobile.jpg',
+    imagePosition: 'object-[50%_100%]',
+    mobileImagePosition: 'object-[100%_60%]',
+    layout: 'image-left',
   },
 ];
 
@@ -135,9 +144,11 @@ const VipRoomSection: React.FC<VipRoomSectionProps> = ({ room, isVisible }) => {
           >
             {t('vip.booking.button')}
           </ThemXuaButton>
-          <small className="italic text-[#C4AA89] block md:inline mt-1 md:mt-0">
-            {t('vip.booking.note')}
-          </small>
+          {room.id !== 4 && room.id !== 5 && (
+            <small className="italic text-[#C4AA89] block md:inline mt-1 md:mt-0">
+              {t('vip.booking.note')}
+            </small>
+          )}
         </div>
       </div>
     </div>
@@ -178,13 +189,13 @@ const useIntersectionObserver = (options = {}) => {
 const VipRoomPage: React.FC = () => {
   const { t } = useLanguage();
 
-  // Create individual refs for each section
-  const section1 = useIntersectionObserver();
-  const section2 = useIntersectionObserver();
-  const section3 = useIntersectionObserver();
-  const section4 = useIntersectionObserver();
-
-  const sectionRefs = [section1, section2, section3, section4];
+  const sectionRefs = [
+    useIntersectionObserver(),
+    useIntersectionObserver(),
+    useIntersectionObserver(),
+    useIntersectionObserver(),
+    useIntersectionObserver(),
+  ];
 
   return (
     <div className="min-h-screen">
@@ -192,7 +203,7 @@ const VipRoomPage: React.FC = () => {
       <section
         className="relative min-h-screen flex items-center justify-center cursorWhite"
         style={{
-          backgroundImage: "url('/images/vipBg.png')",
+          backgroundImage: "url('/images/vipBg.jpg')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -224,7 +235,10 @@ const VipRoomPage: React.FC = () => {
         padding="none"
         className="text-center pt-20"
       >
-        <p className="text-base font-normal text-[#C4AA89] mb-4 leading-tight" id='vip-rooms'>
+        <p
+          className="text-base font-normal text-[#C4AA89] mb-4 leading-tight"
+          id="vip-rooms"
+        >
           {t('vip.section.discover')}
         </p>
         <h2 className="text-4xl md:text-5xl lg:text-[40px] font-semibold text-[#463B34] leading-tight mb-8">

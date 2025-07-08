@@ -50,7 +50,7 @@ const WelcomeSection: React.FC = () => {
           {/* Image 2 - Private Room */}
           <div className="relative w-full max-w-[415px] h-[400px] lg:h-[580px] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group">
             <Image
-              src="/images/vip1.webp"
+              src="/images/vipThumbnail.jpg"
               alt="ThemXua Restaurant Private Room"
               fill
               className="object-cover hover:scale-105 transition-transform duration-500"
@@ -75,7 +75,7 @@ const WelcomeSection: React.FC = () => {
           {/* Image 3 - Banquet Hall */}
           <div className="relative w-full max-w-[415px] h-[400px] lg:h-[580px] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group">
             <Image
-              src="/images/wood.webp"
+              src="/images/partyThumbnail.jpg"
               alt="ThemXua Restaurant Banquet Hall"
               fill
               className="object-cover hover:scale-105 transition-transform duration-500"

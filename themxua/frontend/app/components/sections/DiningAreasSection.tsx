@@ -13,11 +13,11 @@ const AREAS = [
   },
   {
     id: 'area-c',
-    image: '/images/DSC02597-Enhanced-NR.jpg',
+    image: '/images/section-c.jpg',
   },
   {
     id: 'area-d',
-    image: '/images/nhaGoThap.jpg',
+    image: '/images/sectiond.jpg',
   },
 ];
 

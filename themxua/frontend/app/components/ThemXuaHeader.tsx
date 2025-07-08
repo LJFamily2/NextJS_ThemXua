@@ -39,8 +39,8 @@ const ThemXuaHeader = () => {
   const navigationItems = [
     { name: t('header.home'), href: '/' },
     { name: t('header.menu'), href: '/menu' },
-    { name: t('header.party'), href: '/party' },
     { name: t('header.vip'), href: '/vip' },
+    { name: t('header.party'), href: '/party' },
     { name: t('header.contact'), href: '/#contact' },
   ];
 

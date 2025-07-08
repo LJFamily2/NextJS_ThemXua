@@ -11,26 +11,21 @@
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
     ],
-    "/vip/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/vip/page.js"
-    ],
     "/party/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/party/page.css",
       "static/chunks/app/party/page.js"
     ],
-    "/booking/page": [
+    "/vip/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/booking/page.js"
+      "static/chunks/app/vip/page.js"
     ],
-    "/menu/page": [
+    "/_not-found/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/menu/page.js"
+      "static/chunks/app/_not-found/page.js"
     ]
   }
 }
