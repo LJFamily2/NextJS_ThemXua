@@ -38,18 +38,36 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({
   const [currentLanguage, setCurrentLanguage] = useState<LanguageCode>('vi');
   const [isLoading, setIsLoading] = useState(true);
 
+  // Helper to detect browser language
+  const detectBrowserLanguage = (): LanguageCode => {
+    if (typeof window === 'undefined') return 'vi';
+    const browserLang = navigator.language.split('-')[0];
+    if (['vi', 'en', 'zh', 'km'].includes(browserLang)) {
+      return browserLang as LanguageCode;
+    }
+    return 'vi';
+  };
+
   // Load translations
   useEffect(() => {
     const loadTranslations = async () => {
       try {
         setIsLoading(true);
 
-        // Get stored language preference or use default
-        const storedLang = localStorage.getItem(
-          'themxua-language'
-        ) as LanguageCode;
-        const langToUse =
-          storedLang && languages[storedLang] ? storedLang : 'vi';
+        // Get stored language preference or detect from browser
+        let langToUse: LanguageCode = 'vi';
+        const storedLang =
+          typeof window !== 'undefined'
+            ? (localStorage.getItem('themxua-language') as LanguageCode)
+            : undefined;
+        if (storedLang && languages[storedLang]) {
+          langToUse = storedLang;
+        } else {
+          langToUse = detectBrowserLanguage();
+          if (typeof window !== 'undefined') {
+            localStorage.setItem('themxua-language', langToUse);
+          }
+        }
 
         // Import the translation file dynamically
         const translationModule = await import(
@@ -59,14 +77,12 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({
         setCurrentLanguage(langToUse);
       } catch (error) {
         console.error('Failed to load translations:', error);
-        // Fallback to empty translations if file cannot be loaded
         setTranslations({});
         setCurrentLanguage('vi');
       } finally {
         setIsLoading(false);
       }
     };
-
     loadTranslations();
   }, []);
 
