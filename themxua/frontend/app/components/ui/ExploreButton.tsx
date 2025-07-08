@@ -20,17 +20,16 @@ const ExploreButton: React.FC<ExploreButtonProps> = ({
       href={href}
       className={`group inline-flex items-center gap-3 text-themxua-primary hover:text-themxua-secondary transition-colors duration-300 ${className}`}
     >
-      <span className="font-roboto-serif font-semibold text-sm leading-tight group-hover:font-bold transition-all duration-300">
-        {children}
-      </span>
-
-      {/* Arrow Line */}
-      <div className="flex items-center">
-        <div className="w-12 lg:w-[70px] h-0.5 bg-themxua-primary group-hover:bg-themxua-secondary transition-colors duration-300" />
-        <ArrowRightIcon
-          size={16}
-          className="ml-1 transform group-hover:translate-x-1 transition-transform duration-300"
-        />
+      <div className="flex items-center bg-themxua-primary/5 rounded-full px-6 py-2 group-hover:bg-themxua-secondary/10 transition-colors duration-300">
+        <span className="font-roboto-serif font-semibold text-xl leading-tight text-themxua-primary group-hover:text-themxua-secondary transition-colors duration-300">
+          {children}
+        </span>
+        <span className="ml-4 flex items-center">
+          <ArrowRightIcon
+            size={18}
+            className="transform transition-transform duration-300 group-hover:translate-x-2 text-themxua-primary group-hover:text-themxua-secondary"
+          />
+        </span>
       </div>
     </Link>
   );

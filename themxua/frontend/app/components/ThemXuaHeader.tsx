@@ -105,10 +105,10 @@ const ThemXuaHeader = () => {
             <Link
               key={item.name}
               href={item.href}
-              className={`relative text-base leading-none transition-all duration-300 hover:text-themxua-secondary group
+              className={`relative text-base font-semibold leading-none transition-all duration-300 hover:text-themxua-secondary group
               ${
                 isActiveLink(item.href)
-                  ? 'text-themxua-secondary font-bold text-lg '
+                  ? 'text-themxua-secondary font-extrabold text-lg '
                   : pathname === '/' && !scrolled
                     ? 'text-white font-normal'
                     : 'text-themxua-primary font-normal'
