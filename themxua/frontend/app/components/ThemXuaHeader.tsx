@@ -94,7 +94,7 @@ const ThemXuaHeader = () => {
               sizes="(max-width: 639px) 100vw, (min-width: 640px) 100vw"
             />
           </div>
-          <span className="text-themxua-primary font-dm-serif text-2xl font-medium leading-none transition-colors duration-300 group-hover:text-themxua-secondary z-40">
+          <span className="text-themxua-primary font-dm-serif text-2xl font-extrabold leading-none transition-colors duration-300 group-hover:text-themxua-secondary z-40">
             Them Xua
           </span>
         </Link>
@@ -105,13 +105,13 @@ const ThemXuaHeader = () => {
             <Link
               key={item.name}
               href={item.href}
-              className={`relative text-base font-semibold leading-none transition-all duration-300 hover:text-themxua-secondary group
+              className={`relative text-base leading-none transition-all duration-300 hover:text-themxua-secondary group
               ${
                 isActiveLink(item.href)
                   ? 'text-themxua-secondary font-extrabold text-lg '
                   : pathname === '/' && !scrolled
-                    ? 'text-white font-normal'
-                    : 'text-themxua-primary font-normal'
+                    ? 'text-white font-semibold'
+                    : 'text-themxua-primary font-semibold'
               }`}
             >
               {item.name}{' '}
