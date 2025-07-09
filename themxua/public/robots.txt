@@ -1,0 +1,125 @@
+# Robots.txt for Quán Thềm Xưa Tây Ninh
+# https://https://themxuatayninh.com
+
+User-agent: *
+Allow: /
+
+# Important pages for crawling
+Allow: /menu
+Allow: /booking
+Allow: /vip
+Allow: /party
+Allow: /news
+Allow: /events
+
+# Language versions
+Allow: /vi/
+Allow: /en/
+Allow: /zh/
+Allow: /km/
+
+# Menu categories for better SEO
+Allow: /menu/hai-san
+Allow: /menu/mon-gia-dinh
+Allow: /menu/dat-tiec
+Allow: /menu/do-uong
+Allow: /menu/mon-chay
+
+# SEO-friendly URLs
+Allow: /menu/seafood
+Allow: /menu/family-dining
+Allow: /menu/party-catering
+Allow: /menu/beverages
+Allow: /menu/vegetarian
+
+# Static assets and images
+Allow: /images/
+Allow: /favicon.ico
+Allow: /logo.png
+Allow: /apple-touch-icon.png
+
+# Disallow admin and private pages
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+Disallow: /_next/
+Disallow: /dashboard/
+Disallow: /analytics/
+Disallow: /cms/
+
+# Disallow file types that shouldn't be crawled
+Disallow: *.json$
+Disallow: *.txt$
+Disallow: *.log$
+Disallow: *.xml$
+Disallow: *.css.map$
+Disallow: *.js.map$
+
+# Disallow query parameters that don't affect content
+Disallow: /*?utm_*
+Disallow: /*?ref=*
+Disallow: /*?source=*
+Disallow: /*?campaign=*
+
+# Specific bot configurations for Vietnamese market
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Crawl-delay: 1
+
+# Support for Vietnamese and Asian search engines
+User-agent: Yandex
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Crawl-delay: 2
+
+User-agent: Baiduspider
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Crawl-delay: 2
+
+# Social media bots
+User-agent: FacebookBot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+User-agent: Twitterbot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+User-agent: LinkedInBot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+User-agent: Applebot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+# WhatsApp and Telegram bots for link previews
+User-agent: WhatsApp
+Allow: /
+
+User-agent: TelegramBot
+Allow: /
+
+# Sitemaps
+Sitemap: https://https://themxuatayninh.com/sitemap.xml
+
+# Host (preferred domain)
+Host: https://https://themxuatayninh.com
+
+# Additional crawling hints for Vietnamese content
+# Vietnamese restaurant, seafood, family dining, Tay Ninh

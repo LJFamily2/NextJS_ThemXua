@@ -1,0 +1,161 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global font family */
+* {
+  font-family: var(--font-roboto-serif), 'Roboto Serif', serif;
+}
+
+/* Custom font utilities */
+.font-roboto-serif {
+  font-family: var(--font-roboto-serif), 'Roboto Serif', serif;
+}
+
+/* Custom scrollbar for mobile menu */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6e3b27;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #662811;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeftContent {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive overlay gradients for HeroSection */
+.bg-gradient-mobile {
+  background: linear-gradient(
+    0deg,
+    #f0e1cd 0%,
+    #f0e1cd 45%,
+    rgba(240, 225, 205, 0.8) 75%,
+    rgba(240, 225, 205, 0.4) 80%,
+    rgba(240, 225, 205, 0.1) 90%,
+    transparent 95%
+  );
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes wavy-outline {
+  0%   { outline-offset: 6px; }
+  20%  { outline-offset: 0px; }
+  40%  { outline-offset: 6px; }
+  60%  { outline-offset: 0px; }
+  80%  { outline-offset: 6px; }
+  90%  { outline-offset: 0px; }
+  100%  { outline-offset: 6px; }
+}
+
+@media (min-width: 768px) {
+  .bg-gradient-desktop {
+    background: linear-gradient(
+      90deg,
+      #f0e1cd 0%,
+      #f0e1cd 45%,
+      rgba(240, 225, 205, 0.8) 55%,
+      rgba(240, 225, 205, 0.4) 70%,
+      rgba(240, 225, 205, 0.1) 80%,
+      transparent 95%
+    );
+  }
+}
+
+/* Slide in from bottom animation for mobile */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 2s ease-in-out;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-slide-in-left {
+  animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-slide-in-left-content {
+  animation: slideInLeftContent 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (min-width: 768px) {
+  .animate-slide-in-left {
+    animation: slideInLeft 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
