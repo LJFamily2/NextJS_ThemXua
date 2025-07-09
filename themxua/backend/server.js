@@ -41,18 +41,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// Example input validation middleware (replace with actual validation as needed)
-// const { body, validationResult } = require('express-validator');
-// app.post('/your-route', [
-//   body('field').isString().notEmpty(),
-// ], (req, res, next) => {
-//   const errors = validationResult(req);
-//   if (!errors.isEmpty()) {
-//     return res.status(400).json({ errors: errors.array() });
-//   }
-//   next();
-// });
-
 // Add Content Security Policy (CSP) with Helmet
 app.use(
   helmet.contentSecurityPolicy({
@@ -78,9 +66,6 @@ app.use(
     },
   })
 );
-
-// Place your routes here
-// app.use('/api', require('./src/routes')); // Example
 
 // 404 handler
 app.use("*", (req, res) => {
