@@ -82,7 +82,6 @@ export default function BookingPage() {
           }}
         />
       </Head>
-      return (
       <section
         id="booking"
         className="relative min-h-screen flex items-center justify-center px-2 sm:px-4 md:px-8 py-8"
