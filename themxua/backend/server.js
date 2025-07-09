@@ -30,18 +30,70 @@ app.use(
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
-// Error handling middleware
+// Enforce HTTPS (if not behind a proxy like Nginx)
+app.use((req, res, next) => {
+  if (
+    process.env.NODE_ENV === "production" &&
+    req.headers["x-forwarded-proto"] !== "https"
+  ) {
+    return res.redirect("https://" + req.headers.host + req.url);
+  }
+  next();
+});
+
+// Example input validation middleware (replace with actual validation as needed)
+// const { body, validationResult } = require('express-validator');
+// app.post('/your-route', [
+//   body('field').isString().notEmpty(),
+// ], (req, res, next) => {
+//   const errors = validationResult(req);
+//   if (!errors.isEmpty()) {
+//     return res.status(400).json({ errors: errors.array() });
+//   }
+//   next();
+// });
+
+// Add Content Security Policy (CSP) with Helmet
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: [
+        "'self'",
+        "https://www.googletagmanager.com",
+        "https://connect.facebook.net",
+        "https://www.clarity.ms",
+      ],
+      styleSrc: ["'self'", "https:", "'unsafe-inline'"],
+      imgSrc: ["'self'", "data:", "https:"],
+      connectSrc: [
+        "'self'",
+        "https://www.google-analytics.com",
+        "https://www.clarity.ms",
+      ],
+      fontSrc: ["'self'", "https:", "data:"],
+      objectSrc: ["'none'"],
+      frameAncestors: ["'none'"],
+      upgradeInsecureRequests: [],
+    },
+  })
+);
+
+// Place your routes here
+// app.use('/api', require('./src/routes')); // Example
+
+// 404 handler
+app.use("*", (req, res) => {
+  res.status(404).json({ message: "Route not found" });
+});
+
+// Error handling middleware (should be last)
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({
     message: "Something went wrong!",
     error: process.env.NODE_ENV === "production" ? {} : err,
   });
-});
-
-// 404 handler
-app.use("*", (req, res) => {
-  res.status(404).json({ message: "Route not found" });
 });
 
 app.listen(PORT, () => {

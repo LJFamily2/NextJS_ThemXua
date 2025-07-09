@@ -16,7 +16,7 @@ export const analyticsConfig: AnalyticsConfig = {
   googleSearchConsoleId: 'uqMorhH6TQTpzo7dScpjr-UKriCF-f6XD7sYrMVO_Fo',
 
   // Replace with your Facebook Pixel ID
-  facebookPixelId: 'REPLACE_WITH_YOUR_PIXEL_ID',
+  facebookPixelId: '4086193828336260',
 };
 
 // Google Analytics tracking events for restaurant
