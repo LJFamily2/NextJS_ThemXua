@@ -2,15 +2,24 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "node server.js",
+    "lint": "next lint",
+    "server": "ts-node --project tsconfig.json server.ts"
   },
   "dependencies": {
     "clsx": "^2.1.1",
+    "cors": "^2.8.5",
+    "critters": "^0.0.25",
+    "dotenv": "^17.1.0",
+    "express": "^5.1.0",
+    "express-rate-limit": "^7.5.1",
+    "helmet": "^8.1.0",
     "keen-slider": "^6.8.6",
+    "mongoose": "^8.16.2",
     "next": "15.3.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -28,6 +37,7 @@
     "postcss": "^8.5.6",
     "prettier": "^3.5.3",
     "tailwindcss": "^3.4.0",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }

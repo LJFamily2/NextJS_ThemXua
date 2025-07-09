@@ -1,88 +1,93 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
-const helmet = require("helmet");
-const rateLimit = require("express-rate-limit");
-require("dotenv").config();
+import { parse } from 'url';
+import next from 'next';
+import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
+import express from 'express';
+import cors from 'cors';
 
-const app = express();
-const PORT = process.env.PORT || 5000;
+const dev = process.env.NODE_ENV !== 'production';
+const hostname = 'localhost';
+const port = process.env.PORT || 3000;
 
-// Security middleware
-app.use(helmet());
+const app = next({ dev, hostname, port });
+const handle = app.getRequestHandler();
 
-// Rate limiting
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // limit each IP to 100 requests per windowMs
-});
-app.use(limiter);
+app.prepare().then(() => {
+  const server = express();
 
-// CORS configuration
-app.use(
-  cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:3000",
+  // CORS configuration
+  const corsOptions = {
+    origin: dev
+      ? ['http://localhost:3000'] 
+      : ['https://themxuatayninh.com'], 
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
-  })
-);
+    maxAge: 86400, // 24 hours
+  };
+  server.use(cors(corsOptions));
 
-// Body parsing middleware
-app.use(express.json({ limit: "10mb" }));
-app.use(express.urlencoded({ extended: true, limit: "10mb" }));
+  // Basic security headers
+  server.use(
+    helmet({
+      contentSecurityPolicy: {
+        directives: {
+          defaultSrc: ["'self'"],
+          scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+          styleSrc: ["'self'", "'unsafe-inline'"],
+          imgSrc: ["'self'", 'data:', 'https:'],
+          connectSrc: ["'self'"],
+          fontSrc: ["'self'", 'https:', 'data:'],
+          objectSrc: ["'none'"],
+          mediaSrc: ["'self'"],
+          frameSrc: ["'none'"],
+        },
+      },
+      crossOriginEmbedderPolicy: true,
+      crossOriginOpenerPolicy: true,
+      crossOriginResourcePolicy: true,
+      dnsPrefetchControl: true,
+      frameguard: { action: 'deny' },
+      hidePoweredBy: true,
+      hsts: true,
+      ieNoOpen: true,
+      noSniff: true,
+      referrerPolicy: true,
+      xssFilter: true,
+    })
+  );
 
-// Enforce HTTPS (if not behind a proxy like Nginx)
-app.use((req, res, next) => {
-  if (
-    process.env.NODE_ENV === "production" &&
-    req.headers["x-forwarded-proto"] !== "https"
-  ) {
-    return res.redirect("https://" + req.headers.host + req.url);
-  }
-  next();
-});
+  // Rate limiting
+  const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // Limit each IP to 100 requests per windowMs
+    message: 'Too many requests from this IP, please try again later.',
+    standardHeaders: true,
+    legacyHeaders: false,
+  });
 
-// Add Content Security Policy (CSP) with Helmet
-app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: ["'self'"],
-      scriptSrc: [
-        "'self'",
-        "https://www.googletagmanager.com",
-        "https://connect.facebook.net",
-        "https://www.clarity.ms",
-      ],
-      styleSrc: ["'self'", "https:", "'unsafe-inline'"],
-      imgSrc: ["'self'", "data:", "https:"],
-      connectSrc: [
-        "'self'",
-        "https://www.google-analytics.com",
-        "https://www.clarity.ms",
-      ],
-      fontSrc: ["'self'", "https:", "data:"],
-      objectSrc: ["'none'"],
-      frameAncestors: ["'none'"],
-      upgradeInsecureRequests: [],
-    },
-  })
-);
+  // Apply rate limiting to all routes
+  server.use(limiter);
 
-// 404 handler
-app.use("*", (req, res) => {
-  res.status(404).json({ message: "Route not found" });
-});
+  // Handle Next.js requests
+  server.all(/(.*)/, async (req, res) => {
+    try {
+      const parsedUrl = parse(req.url, true);
+      await handle(req, res, parsedUrl);
+    } catch (err) {
+      console.error('Error occurred handling', req.url, err);
+      res.status(500).send('Internal Server Error');
+    }
+  });
 
-// Error handling middleware (should be last)
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({
-    message: "Something went wrong!",
-    error: process.env.NODE_ENV === "production" ? {} : err,
+  server.listen(port, () => {
+    console.log(
+      `> Ready on http://${hostname}:${port} - env ${process.env.NODE_ENV}`
+    );
+  });
+
+  server.on('error', err => {
+    console.error(err);
+    process.exit(1);
   });
 });
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
-
-module.exports = app;
