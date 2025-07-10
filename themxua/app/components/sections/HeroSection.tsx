@@ -20,7 +20,7 @@ const HeroSection: React.FC = () => {
           fill
           className="object-cover object-[center_30%] hidden sm:block"
           priority
-          sizes="(min-width: 640px) 100vw, 0vw"
+          sizes="100vw"
         />
         {/* Mobile */}
         <Image
@@ -29,7 +29,7 @@ const HeroSection: React.FC = () => {
           fill
           className="object-cover sm:hidden"
           priority
-          sizes="(max-width: 639px) 100vw"
+          sizes="100vw"
         />
       </div>{' '}
       {/* Overlay Gradient */}
