@@ -1,3 +1,4 @@
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Roboto_Serif } from 'next/font/google';
 import './globals.css';
 import ThemXuaHeader from './components/ThemXuaHeader';
@@ -192,6 +193,7 @@ export default function RootLayout({
         <LanguageProvider>
           <ThemXuaHeader />
           <main>{children}</main>
+          <SpeedInsights />
           <ConditionalScrollToTop />
         </LanguageProvider>
       </body>
