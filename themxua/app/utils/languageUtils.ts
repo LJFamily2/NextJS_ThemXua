@@ -89,31 +89,16 @@ export const formatCurrency = (amount: number, lang: LanguageCode): string => {
 /**
  * Creates a URL with language prefix
  */
-export const createLocalizedUrl = (
-  path: string,
-  lang: LanguageCode
-): string => {
-  // Remove leading slash if present
-  const cleanPath = path.startsWith('/') ? path.substring(1) : path;
-
-  // Special case for home page
-  if (cleanPath === '' || cleanPath === '/') {
-    return `/${lang}`;
-  }
-
-  return `/${lang}/${cleanPath}`;
+export const createLocalizedUrl = (path: string): string => {
+  // No language prefix for any language
+  const cleanPath = path.replace(/^\/+|\/+$/g, '');
+  return cleanPath ? `/${cleanPath}` : '/';
 };
 
 /**
  * Extracts language code from URL path
  */
-export const extractLanguageFromPath = (path: string): LanguageCode | null => {
-  const parts = path.split('/').filter(Boolean);
-  const possibleLang = parts[0];
-
-  if (possibleLang && ['vi', 'en', 'zh', 'km'].includes(possibleLang)) {
-    return possibleLang as LanguageCode;
-  }
-
+export const extractLanguageFromPath = (): LanguageCode | null => {
+  // No language prefix in path, always return null (or default)
   return null;
 };

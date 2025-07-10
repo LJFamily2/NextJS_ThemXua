@@ -18,11 +18,7 @@ Allow: /party
 Allow: /news
 Allow: /events
 
-# Language versions
-Allow: /vi/
-Allow: /en/
-Allow: /zh/
-Allow: /km/
+## Language versions (no longer using language prefixes)
 
 # Menu categories
 Allow: /menu/hai-san
@@ -46,7 +42,7 @@ Disallow: *.log$
 # Allow important static files
 Allow: /favicon.ico
 Allow: /images/
-Allow: /logo.png
+Allow: /logoTransparentNauDo.png
 Allow: /sitemap.xml
 Allow: /robots.txt
 

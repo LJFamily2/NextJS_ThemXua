@@ -69,7 +69,7 @@ export default function MenuPage() {
           alt: 'Menu hải sản Quán Thềm Xưa Tây Ninh',
         },
         {
-          url: `${seoConfig.baseUrl}/images/logo.png`,
+          url: `${seoConfig.baseUrl}/images/logoTransparentNauDo.png`,
           width: 800,
           height: 600,
           alt: seoConfig.business.name,
@@ -199,7 +199,7 @@ export default function MenuPage() {
         <meta property="og:description" content={menuSEOData.description} />
         <meta
           property="og:image"
-          content={`${seoConfig.baseUrl}/images/logo.png`}
+          content={`${seoConfig.baseUrl}/images/logoTransparentNauDo.png`}
         />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -212,7 +212,7 @@ export default function MenuPage() {
         <meta name="twitter:description" content={menuSEOData.description} />
         <meta
           name="twitter:image"
-          content={`${seoConfig.baseUrl}/images/logo.png`}
+          content={`${seoConfig.baseUrl}/images/logoTransparentNauDo.png`}
         />
 
         {/* Enhanced Structured Data: Menu */}

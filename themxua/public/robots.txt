@@ -35,7 +35,7 @@ Allow: /menu/vegetarian
 # Static assets and images
 Allow: /images/
 Allow: /favicon.ico
-Allow: /logo.png
+Allow: /logoTransparentNauDo.png
 Allow: /apple-touch-icon.png
 
 # Disallow admin and private pages

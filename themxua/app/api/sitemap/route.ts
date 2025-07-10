@@ -31,42 +31,25 @@ export async function GET() {
 
   // Add static pages with language alternates
   for (const page of staticPages) {
-    for (const lang of supportedLanguages) {
-      const url =
-        page.path === ''
-          ? lang === 'vi'
-            ? baseUrl
-            : `${baseUrl}/${lang}`
-          : lang === 'vi'
-            ? `${baseUrl}${page.path}`
-            : `${baseUrl}/${lang}${page.path}`;
-
-      sitemapXml += `  <url>
+    const url = page.path === '' ? baseUrl : `${baseUrl}${page.path}`;
+    sitemapXml += `  <url>
     <loc>${url}</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
     <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>`;
 
-      // Add hreflang alternates
-      for (const altLang of supportedLanguages) {
-        const altUrl =
-          page.path === ''
-            ? altLang === 'vi'
-              ? baseUrl
-              : `${baseUrl}/${altLang}`
-            : altLang === 'vi'
-              ? `${baseUrl}${page.path}`
-              : `${baseUrl}/${altLang}${page.path}`;
-
-        sitemapXml += `
+    // Add hreflang alternates (no prefix)
+    for (const altLang of supportedLanguages) {
+      const altUrl = page.path === '' ? baseUrl : `${baseUrl}${page.path}`;
+      sitemapXml += `
     <xhtml:link rel="alternate" hreflang="${altLang}" href="${altUrl}" />`;
-      }
+    }
 
-      // Add images for certain pages
-      if (page.path === '' || page.path === '/menu') {
-        sitemapXml += `
+    // Add images for certain pages
+    if (page.path === '' || page.path === '/menu') {
+      sitemapXml += `
     <image:image>
-      <image:loc>${baseUrl}/images/logo.png</image:loc>
+      <image:loc>${baseUrl}/images/logoTransparentNauDo.png</image:loc>
       <image:title>${seoConfig.business.name}</image:title>
       <image:caption>Logo của ${seoConfig.business.name}</image:caption>
     </image:image>
@@ -75,30 +58,23 @@ export async function GET() {
       <image:title>Hải sản tươi ngon tại ${seoConfig.business.name}</image:title>
       <image:caption>Món hải sản đặc trưng của quán</image:caption>
     </image:image>`;
-      }
+    }
 
-      sitemapXml += `
+    sitemapXml += `
   </url>
 `;
-    }
   }
 
   // Add menu categories
   for (const category of menuCategories) {
-    for (const lang of supportedLanguages) {
-      const url =
-        lang === 'vi'
-          ? `${baseUrl}/menu/${category}`
-          : `${baseUrl}/${lang}/menu/${category}`;
-
-      sitemapXml += `  <url>
+    const url = `${baseUrl}/menu/${category}`;
+    sitemapXml += `  <url>
     <loc>${url}</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 `;
-    }
   }
 
   sitemapXml += `</urlset>`;

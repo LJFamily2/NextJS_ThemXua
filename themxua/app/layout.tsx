@@ -33,7 +33,7 @@ export const metadata: Metadata = generateSEOMetadata({
     description: `Quán hải sản giá rẻ, hot nhất Tây Ninh! Không gian ấm cúng, phù hợp gia đình, GenZ, young adult, nhóm bạn, tiệc công ty. Menu đa dạng, phục vụ tận tình. Đặt bàn ngay!`,
     images: [
       {
-        url: `${seoConfig.baseUrl}/images/logo.png`,
+        url: `${seoConfig.baseUrl}/images/logoTransparentNauDo.png`,
         width: 1200,
         height: 630,
         alt: `${seoConfig.business.name} - Logo`,
@@ -113,7 +113,7 @@ export default function RootLayout({
               '@id': `${seoConfig.baseUrl}#organization`,
               name: seoConfig.business.name,
               url: seoConfig.baseUrl,
-              logo: `${seoConfig.baseUrl}/images/logo.png`,
+              logo: `${seoConfig.baseUrl}/images/logoTransparentNauDo.png`,
               contactPoint: {
                 '@type': 'ContactPoint',
                 telephone: seoConfig.business.phone,

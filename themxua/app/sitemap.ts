@@ -66,8 +66,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
         languages: supportedLanguages.reduce(
           (acc, lang) => {
             acc[lang] = pageConfig.path
-              ? `${baseUrl}/${lang}/${pageConfig.path}`
-              : `${baseUrl}/${lang}`;
+              ? `${baseUrl}/${pageConfig.path}`
+              : `${baseUrl}`;
             return acc;
           },
           {} as Record<string, string>
@@ -77,22 +77,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   });
 
   // Add language-specific pages
-  supportedLanguages.forEach(lang => {
-    if (lang !== 'vi') {
-      // vi is default, already added above
-      corePages.forEach(pageConfig => {
-        const url = pageConfig.path
-          ? `${baseUrl}/${lang}/${pageConfig.path}`
-          : `${baseUrl}/${lang}`;
-        sitemapEntries.push({
-          url,
-          lastModified: new Date(),
-          changeFrequency: pageConfig.changeFreq,
-          priority: pageConfig.priority * 0.9, // Slightly lower priority for non-default language
-        });
-      });
-    }
-  });
+  // No language-specific pages, all languages use the same path (no prefix)
 
   // Add menu categories for Vietnamese (main language)
   menuCategories.forEach(category => {
@@ -104,10 +89,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       alternates: {
         languages: supportedLanguages.reduce(
           (acc, lang) => {
-            acc[lang] =
-              lang === 'vi'
-                ? `${baseUrl}/menu/${category}`
-                : `${baseUrl}/${lang}/menu/${category}`;
+            acc[lang] = `${baseUrl}/menu/${category}`;
             return acc;
           },
           {} as Record<string, string>

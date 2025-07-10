@@ -112,7 +112,7 @@ export const generateMetadata = (
       siteName: business.name,
       images: pageSEO.openGraph?.images || [
         {
-          url: `${baseUrl}/images/logo.png`,
+          url: `${baseUrl}/images/logoTransparentNauDo.png`,
           width: 1200,
           height: 630,
           alt: business.name,
@@ -126,7 +126,8 @@ export const generateMetadata = (
       title: pageSEO.openGraph?.title || pageSEO.title,
       description: pageSEO.openGraph?.description || pageSEO.description,
       images:
-        pageSEO.openGraph?.images?.[0]?.url || `${baseUrl}/images/logo.png`,
+        pageSEO.openGraph?.images?.[0]?.url ||
+        `${baseUrl}/images/logoTransparentNauDo.png`,
     },
     alternates: {
       canonical: pageSEO.canonical || baseUrl,
@@ -174,7 +175,7 @@ export const generateLocalBusinessStructuredData = () => {
       : undefined,
     openingHours: business.openingHours,
     image: [
-      `${baseUrl}/images/logo.png`,
+      `${baseUrl}/images/logoTransparentNauDo.png`,
       `${baseUrl}/images/heroDesktop.jpg`,
       `${baseUrl}/images/FoodShowcase.jpg`,
     ],

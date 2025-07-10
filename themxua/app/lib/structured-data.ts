@@ -131,7 +131,7 @@ export const generateFoodEstablishmentStructuredData = () => {
       : undefined,
     openingHours: seoConfig.business.openingHours,
     image: [
-      `${seoConfig.baseUrl}/images/logo.png`,
+      `${seoConfig.baseUrl}/images/logoTransparentNauDo.png`,
       `${seoConfig.baseUrl}/images/heroDesktop.jpg`,
       `${seoConfig.baseUrl}/images/FoodShowcase.jpg`,
     ],

@@ -62,13 +62,9 @@ export const generateHreflangTags = (currentPath: string) => {
   const hreflangTags: Array<{ rel: string; hreflang: string; href: string }> =
     [];
 
-  // Add self-referencing hreflang
+  // All languages use the same path (no prefix)
   languages.forEach(lang => {
-    const href =
-      lang === 'vi'
-        ? `${seoConfig.baseUrl}${currentPath}`
-        : `${seoConfig.baseUrl}/${lang}${currentPath}`;
-
+    const href = `${seoConfig.baseUrl}${currentPath}`;
     hreflangTags.push({
       rel: 'alternate',
       hreflang: lang,
@@ -76,7 +72,7 @@ export const generateHreflangTags = (currentPath: string) => {
     });
   });
 
-  // Add x-default for Vietnamese (main language)
+  // Add x-default
   hreflangTags.push({
     rel: 'alternate',
     hreflang: 'x-default',
@@ -107,7 +103,7 @@ export const generateLocalizedOpenGraph = (
     type: 'website',
     images: [
       {
-        url: `${seoConfig.baseUrl}/images/logo.png`,
+        url: `${seoConfig.baseUrl}/images/logoTransparentNauDo.png`,
         width: 1200,
         height: 630,
         alt: seoConfig.business.name,
@@ -159,7 +155,7 @@ export const generateLocalizedStructuredData = (language: string) => {
       : undefined,
     openingHours: seoConfig.business.openingHours,
     image: [
-      `${seoConfig.baseUrl}/images/logo.png`,
+      `${seoConfig.baseUrl}/images/logoTransparentNauDo.png`,
       `${seoConfig.baseUrl}/images/heroDesktop.jpg`,
       `${seoConfig.baseUrl}/images/FoodShowcase.jpg`,
     ],
