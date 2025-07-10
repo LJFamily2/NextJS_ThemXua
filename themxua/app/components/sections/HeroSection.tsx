@@ -21,6 +21,8 @@ const HeroSection: React.FC = () => {
           className="object-cover object-[center_30%] hidden sm:block"
           priority
           sizes="100vw"
+          placeholder="blur"
+          blurDataURL="/images/heroDesktop.jpg"
         />
         {/* Mobile */}
         <Image
@@ -30,24 +32,14 @@ const HeroSection: React.FC = () => {
           className="object-cover sm:hidden"
           priority
           sizes="100vw"
+          placeholder="blur"
+          blurDataURL="/images/heroMobile.jpg"
         />
       </div>{' '}
       {/* Overlay Gradient */}
-      <div
-        className="absolute inset-0 animate-slide-in-left md:animate-slide-in-left bg-gradient-mobile bg-gradient-desktop"
-        style={{
-          animationDelay: '0.2s',
-          animationFillMode: 'both',
-        }}
-      />
+      <div className="absolute inset-0 bg-gradient-mobile bg-gradient-desktop" />
       {/* Content Container */}
-      <div
-        className="relative z-10 h-full flex items-center animate-slide-in-left-content"
-        style={{
-          animationDelay: '0.5s',
-          animationFillMode: 'both',
-        }}
-      >
+      <div className="relative z-10 h-full flex items-center">
         <div className="w-full max-w-7xl mx-auto px-4 md:px-16">
           <div className="max-w-[691px]">
             {/* Main Heading */}

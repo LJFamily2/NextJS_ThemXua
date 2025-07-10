@@ -36,47 +36,8 @@ html {
 }
 
 /* Custom animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 0.1;
-  }
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-100%);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideInLeftContent {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
+/* Animations removed from LCP elements for better LCP performance */
+/* @keyframes fadeIn, fadeInUp, slideInLeft, slideInLeftContent removed for LCP optimization */
 
 /* Responsive overlay gradients for HeroSection */
 .bg-gradient-mobile {
@@ -103,13 +64,27 @@ html {
 }
 
 @keyframes wavy-outline {
-  0%   { outline-offset: 6px; }
-  20%  { outline-offset: 0px; }
-  40%  { outline-offset: 6px; }
-  60%  { outline-offset: 0px; }
-  80%  { outline-offset: 6px; }
-  90%  { outline-offset: 0px; }
-  100%  { outline-offset: 6px; }
+  0% {
+    outline-offset: 6px;
+  }
+  20% {
+    outline-offset: 0px;
+  }
+  40% {
+    outline-offset: 6px;
+  }
+  60% {
+    outline-offset: 0px;
+  }
+  80% {
+    outline-offset: 6px;
+  }
+  90% {
+    outline-offset: 0px;
+  }
+  100% {
+    outline-offset: 6px;
+  }
 }
 
 @media (min-width: 768px) {
