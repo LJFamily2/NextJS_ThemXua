@@ -14,6 +14,7 @@
     "@vercel/speed-insights": "^1.2.0",
     "clsx": "^2.1.1",
     "cors": "^2.8.5",
+    "critters": "^0.0.25",
     "dotenv": "^17.1.0",
     "express": "^5.1.0",
     "express-rate-limit": "^7.5.1",
