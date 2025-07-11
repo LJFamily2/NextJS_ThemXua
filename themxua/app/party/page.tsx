@@ -313,7 +313,7 @@ export default function PartyPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
               <div className="text-center">
                 <div className="w-16 h-16 bg-themxua-secondary rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl text-white">🎉</span>
+                  <span className="text-2xl text-white">✨</span>
                 </div>
                 <h3 className="text-xl font-medium text-themxua-primary mb-2">
                   {t('party.services.events.title')}
@@ -326,7 +326,7 @@ export default function PartyPage() {
               <div className="text-center">
                 <Link href="/menu" target="_blank" className="inline-block">
                   <div className="w-16 h-16 bg-themxua-secondary rounded-full flex items-center justify-center mx-auto mb-4 hover:bg-themxua-dark transition-colors duration-200">
-                    <span className="text-2xl text-white">🍽️</span>
+                    <span className="text-2xl text-white">🥂</span>
                   </div>
                 </Link>
                 <h3 className="text-xl font-medium text-themxua-primary mb-2">
@@ -339,7 +339,7 @@ export default function PartyPage() {
 
               <div className="text-center">
                 <div className="w-16 h-16 bg-themxua-secondary rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl text-white">👥</span>
+                  <span className="text-2xl text-white">🧑‍🤝‍🧑</span>
                 </div>
                 <h3 className="text-xl font-medium text-themxua-primary mb-2">
                   {t('party.services.staff.title')}
