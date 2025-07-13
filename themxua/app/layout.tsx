@@ -29,7 +29,7 @@ export const metadata: Metadata = generateSEOMetadata({
   keywords: vietnameseSeafoodKeywords,
   canonical: seoConfig.baseUrl,
   openGraph: {
-    title: `${seoConfig.business.name} | Nhà hàng hải sản số 1 Tây Ninh 2025`,
+    title: `${seoConfig.business.name} | Hải sản, quán ăn gia đình, đặt tiệc Tây Ninh 2025`,
     description: `Quán hải sản giá rẻ, hot nhất Tây Ninh! Không gian ấm cúng, phù hợp gia đình, GenZ, young adult, nhóm bạn, tiệc công ty. Menu đa dạng, phục vụ tận tình. Đặt bàn ngay!`,
     images: [
       {
