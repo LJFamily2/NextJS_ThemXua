@@ -31,31 +31,31 @@ const partyImages = [
   {
     id: 3,
     src: '/images/partyBeerClub.jpeg',
-    titleKey: 'party.image3Title',
+    titleKey: 'party.image3Title', // Sinh nhật đáng nhớ
     position: 'left',
   },
   {
     id: 5,
     src: '/images/partyBeerClub2.jpeg',
-    titleKey: 'party.image4Title',
+    titleKey: 'party.image5Title', // không gian khác biệt
     position: 'center',
   },
   {
     id: 6,
     src: '/images/partyBeerClub3.jpeg',
-    titleKey: 'party.image4Title',
+    titleKey: 'party.image6Title', // Năm mới sum vầy
     position: 'center',
   },
   {
     id: 7,
     src: '/images/partyKhuA.jpg',
-    titleKey: 'party.image4Title',
+    titleKey: 'party.image7Title', // không gian thoáng mát
     position: 'center',
   },
   {
     id: 8,
     src: '/images/partyKhuE.jpg',
-    titleKey: 'party.image4Title',
+    titleKey: 'party.image8Title', // không gian chill chill
     position: 'center',
   },
 ];
