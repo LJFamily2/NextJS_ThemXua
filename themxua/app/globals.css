@@ -12,6 +12,27 @@
   font-family: var(--font-roboto-serif), 'Roboto Serif', serif;
 }
 
+/* Loading animations */
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+.animate-breathe {
+  animation: breathe 2s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin 3s linear infinite;
+}
+
 /* Custom scrollbar for mobile menu */
 ::-webkit-scrollbar {
   width: 8px;

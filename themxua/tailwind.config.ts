@@ -7,6 +7,14 @@ export default {
       fontFamily: {
         'roboto-serif': ['var(--font-roboto-serif)', 'Roboto Serif', 'serif'],
       },
+      animation: {
+        'spin-slow': 'spin 3s linear infinite',
+        breathe: 'breathe 2s ease-in-out infinite',
+        'fade-in': 'fadeIn 0.5s ease-in-out',
+        'slide-down': 'slideDown 0.3s ease-out',
+        'slide-up': 'slideUp 0.3s ease-out',
+        'scale-up': 'scaleUp 0.3s ease-out',
+      },
       colors: {
         themxua: {
           primary: '#6E3B27',
@@ -28,13 +36,11 @@ export default {
       screens: {
         xs: '475px',
       },
-      animation: {
-        'fade-in': 'fadeIn 0.5s ease-in-out',
-        'slide-down': 'slideDown 0.3s ease-out',
-        'slide-up': 'slideUp 0.3s ease-out',
-        'scale-up': 'scaleUp 0.3s ease-out',
-      },
       keyframes: {
+        spin: {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
         fadeIn: {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },

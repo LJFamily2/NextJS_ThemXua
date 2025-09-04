@@ -5,6 +5,7 @@ import './globals.css';
 import ThemXuaHeader from './components/ThemXuaHeader';
 import { LanguageProvider } from './contexts/LanguageContext';
 import ConditionalScrollToTop from './components/ConditionalScrollToTop';
+import LoadingScreen from './components/ui/LoadingScreen';
 import Script from 'next/script';
 import {
   generateLocalBusinessStructuredData,
@@ -193,6 +194,7 @@ export default function RootLayout({
       </head>
       <body className={`${robotoSerif.variable} antialiased select-none`}>
         <LanguageProvider>
+          <LoadingScreen />
           <ThemXuaHeader />
           <main>{children}</main>
           <SpeedInsights />
