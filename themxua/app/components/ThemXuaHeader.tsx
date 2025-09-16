@@ -20,11 +20,7 @@ const ThemXuaHeader = () => {
 
   const router = useRouter();
   useEffect(() => {
-    // Prefetch common routes for faster navigation
-    router.prefetch('/menu');
-    router.prefetch('/vip');
-    router.prefetch('/party');
-    router.prefetch('/booking');
+
 
     const handleScroll = () => {
       // Only apply scrolled effect on desktop (lg and up)
