@@ -6,18 +6,22 @@ const AREAS = [
   {
     id: 'area-a',
     image: '/images/section5-bg.png',
+    mobileImage: '/images/section5-bg-mobile.png',
   },
   {
     id: 'area-b',
     image: '/images/DSC_3302.jpg',
+    mobileImage: '/images/DSC_3302.jpg',
   },
   {
     id: 'area-c',
     image: '/images/section-c.jpg',
+    mobileImage: '/images/section-c.jpg',
   },
   {
     id: 'area-d',
     image: '/images/sectiond.jpg',
+    mobileImage: '/images/sectiond.jpg',
   },
 ];
 
@@ -40,7 +44,7 @@ const DiningAreasSection: React.FC = () => {
             }}
             className="relative w-full h-[600px] lg:h-[941px] flex items-start justify-start scroll-mt-24"
             style={{
-              backgroundImage: `url(${area.image})`,
+              backgroundImage: `url(${typeof window !== 'undefined' && window.innerWidth < 1024 ? area.mobileImage : area.image})`,
               backgroundAttachment: 'fixed',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',

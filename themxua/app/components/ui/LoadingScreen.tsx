@@ -11,10 +11,10 @@ const LoadingScreen = () => {
 
   useEffect(() => {
     if (!isLoading) {
-      // Add a small delay before hiding to ensure smooth transition
+      // Reduced delay for faster disappearance
       const timeout = setTimeout(() => {
         setShow(false);
-      }, 200);
+      }, 0);
       return () => clearTimeout(timeout);
     } else {
       setShow(true);

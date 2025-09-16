@@ -2,6 +2,12 @@
 
 import React, { createContext, useState, useContext, useEffect } from 'react';
 
+// Import all translations at build time for better performance
+import viTranslations from '../translations/vi.json';
+import enTranslations from '../translations/en.json';
+import zhTranslations from '../translations/zh.json';
+import kmTranslations from '../translations/km.json';
+
 // Available languages
 export const languages = {
   vi: { code: 'vi', name: 'Tiếng Việt', flag: '/images/vietnamFlag.png' },
@@ -22,6 +28,19 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(
   undefined
 );
+
+// Preloaded translations map for instant access
+const preloadedTranslations: Record<LanguageCode, Record<string, string>> = {
+  vi: viTranslations,
+  en: enTranslations,
+  zh: zhTranslations,
+  km: kmTranslations,
+};
+
+// Local storage keys
+const STORAGE_KEY = 'themxua-language';
+const CACHE_VERSION = '1.0'; // Increment when translations change
+const CACHE_KEY = 'themxua-translations-cache';
 
 export const useLanguage = () => {
   const context = useContext(LanguageContext);
@@ -48,56 +67,100 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({
     return 'vi';
   };
 
-  // Load translations
-  useEffect(() => {
-    const loadTranslations = async () => {
-      try {
-        setIsLoading(true);
+  // Get cached translations from localStorage
+  const getCachedTranslations = (
+    lang: LanguageCode
+  ): Record<string, string> | null => {
+    if (typeof window === 'undefined') return null;
+    try {
+      const cached = localStorage.getItem(
+        `${CACHE_KEY}-${lang}-${CACHE_VERSION}`
+      );
+      return cached ? JSON.parse(cached) : null;
+    } catch {
+      return null;
+    }
+  };
 
-        // Get stored language preference or detect from browser
-        let langToUse: LanguageCode = 'vi';
-        const storedLang =
-          typeof window !== 'undefined'
-            ? (localStorage.getItem('themxua-language') as LanguageCode)
-            : undefined;
+  // Cache translations to localStorage
+  const setCachedTranslations = (
+    lang: LanguageCode,
+    translations: Record<string, string>
+  ) => {
+    if (typeof window === 'undefined') return;
+    try {
+      localStorage.setItem(
+        `${CACHE_KEY}-${lang}-${CACHE_VERSION}`,
+        JSON.stringify(translations)
+      );
+    } catch {
+      // Storage quota exceeded or disabled, silently fail
+    }
+  };
+
+  // Initialize on mount
+  useEffect(() => {
+    const initializeLanguage = () => {
+      let langToUse: LanguageCode = 'vi';
+
+      // Get stored language preference or detect from browser
+      if (typeof window !== 'undefined') {
+        const storedLang = localStorage.getItem(STORAGE_KEY) as LanguageCode;
         if (storedLang && languages[storedLang]) {
           langToUse = storedLang;
         } else {
           langToUse = detectBrowserLanguage();
-          if (typeof window !== 'undefined') {
-            localStorage.setItem('themxua-language', langToUse);
-          }
+          localStorage.setItem(STORAGE_KEY, langToUse);
         }
-
-        // Import the translation file dynamically
-        const translationModule = await import(
-          `../translations/${langToUse}.json`
-        );
-        setTranslations(translationModule.default);
-        setCurrentLanguage(langToUse);
-      } catch (error) {
-        console.error('Failed to load translations:', error);
-        setTranslations({});
-        setCurrentLanguage('vi');
-      } finally {
-        setIsLoading(false);
       }
+
+      // Try cache first for instant loading
+      const cached = getCachedTranslations(langToUse);
+      if (cached) {
+        setTranslations(cached);
+        setCurrentLanguage(langToUse);
+        setIsLoading(false);
+        return;
+      }
+
+      // Use preloaded translations (instant)
+      const preloaded = preloadedTranslations[langToUse];
+      setTranslations(preloaded);
+      setCurrentLanguage(langToUse);
+
+      // Cache for future use
+      setCachedTranslations(langToUse, preloaded);
+
+      // Very short loading delay for smooth UX (only on first load)
+      setTimeout(() => setIsLoading(false), 50);
     };
-    loadTranslations();
+
+    initializeLanguage();
   }, []);
 
-  // Set language and store preference
-  const setLanguage = async (lang: LanguageCode) => {
-    try {
-      setIsLoading(true);
-      const translationModule = await import(`../translations/${lang}.json`);
-      setTranslations(translationModule.default);
+  // Set language instantly (no loading state for language switches)
+  const setLanguage = (lang: LanguageCode) => {
+    // Try cache first for instant switch
+    const cached = getCachedTranslations(lang);
+    if (cached) {
+      setTranslations(cached);
       setCurrentLanguage(lang);
-      localStorage.setItem('themxua-language', lang);
-    } catch (error) {
-      console.error('Failed to set language:', error);
-    } finally {
-      setIsLoading(false);
+      if (typeof window !== 'undefined') {
+        localStorage.setItem(STORAGE_KEY, lang);
+      }
+      return;
+    }
+
+    // Use preloaded translations (instant)
+    const preloaded = preloadedTranslations[lang];
+    setTranslations(preloaded);
+    setCurrentLanguage(lang);
+
+    // Cache for future use
+    setCachedTranslations(lang, preloaded);
+
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(STORAGE_KEY, lang);
     }
   };
 
