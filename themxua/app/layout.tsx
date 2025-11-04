@@ -189,7 +189,7 @@ export default function RootLayout({
         {/* Google Search Console Verification */}
         <meta
           name="google-site-verification"
-          content="${analyticsConfig.googleSearchConsoleId}"
+          content={`${analyticsConfig.googleSearchConsoleId}`}
         />
       </head>
       <body className={`${robotoSerif.variable} antialiased select-none`}>
