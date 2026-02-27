@@ -1,11 +1,9 @@
-import HeroSection from './components/sections/HeroSection';
-import LazyHomeSections from './components/LazyHomeSections';
+import GoodbyeSection from './components/sections/GoodbyeSection';
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
-      <HeroSection />
-      <LazyHomeSections />
-    </div>
+    <main className="min-h-screen">
+      <GoodbyeSection />
+    </main>
   );
 }

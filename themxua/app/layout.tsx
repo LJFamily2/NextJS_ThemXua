@@ -2,7 +2,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from '@vercel/analytics/next';
 import { Roboto_Serif } from 'next/font/google';
 import './globals.css';
-import ThemXuaHeader from './components/ThemXuaHeader';
+// import ThemXuaHeader from './components/ThemXuaHeader';
 import { LanguageProvider } from './contexts/LanguageContext';
 import ConditionalScrollToTop from './components/ConditionalScrollToTop';
 // import LoadingScreen from './components/ui/LoadingScreen';
@@ -17,7 +17,7 @@ import { analyticsConfig } from './lib/analytics';
 import { Metadata } from 'next';
 
 const robotoSerif = Roboto_Serif({
-  subsets: ['latin'],
+  subsets: ['latin', 'vietnamese'],
   weight: ['300', '400', '500', '600', '700', '800', '900'],
   variable: '--font-roboto-serif',
   display: 'swap',
@@ -195,7 +195,6 @@ export default function RootLayout({
       <body className={`${robotoSerif.variable} antialiased select-none`}>
         <LanguageProvider>
           {/* <LoadingScreen /> */}
-          <ThemXuaHeader />
           <main>{children}</main>
           <SpeedInsights />
           <Analytics />
